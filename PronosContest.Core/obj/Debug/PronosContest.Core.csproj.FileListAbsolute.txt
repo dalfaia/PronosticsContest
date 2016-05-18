@@ -1,0 +1,5 @@
+C:\PronosContest\PronosContest\PronosContest.Core\bin\Debug\PronosContest.Core.dll
+C:\PronosContest\PronosContest\PronosContest.Core\bin\Debug\PronosContest.Core.pdb
+C:\PronosContest\PronosContest\PronosContest.Core\obj\Debug\PronosContest.Core.csprojResolveAssemblyReference.cache
+C:\PronosContest\PronosContest\PronosContest.Core\obj\Debug\PronosContest.Core.dll
+C:\PronosContest\PronosContest\PronosContest.Core\obj\Debug\PronosContest.Core.pdb

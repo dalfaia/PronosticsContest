@@ -1,0 +1,62 @@
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll.config
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.pdb
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.pdb
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll.config
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.pdb
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.pdb
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb
+C:\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll.config
+C:\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll
+C:\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.pdb
+C:\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.dll
+C:\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.dll
+C:\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.pdb
+C:\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.xml
+C:\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
+C:\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
+C:\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll.config
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.pdb
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.pdb
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll.config
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.pdb
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.dll
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.dll
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.pdb
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.xml
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\PronosContest\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
+C:\PronosContest\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
+C:\PronosContest\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.Core.dll
+C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.Core.pdb

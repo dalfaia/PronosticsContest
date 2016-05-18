@@ -1,0 +1,313 @@
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\csc.exe
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\Microsoft.CSharp.Core.targets
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\Microsoft.VisualBasic.Core.targets
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\System.Collections.Immutable.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\System.Reflection.Metadata.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\vbc.exe
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe.config
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\PronosContest.dll.config
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\PronosContest.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\PronosContest.pdb
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\Antlr3.Runtime.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\EntityFramework.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\EntityFramework.SqlServer.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\Microsoft.Web.Infrastructure.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\Newtonsoft.Json.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\PronosContest.BLL.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\PronosContest.DAL.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.Helpers.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.Mvc.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.Optimization.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.Razor.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.WebPages.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\WebGrease.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\PronosContest.BLL.pdb
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\PronosContest.DAL.pdb
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\EntityFramework.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\EntityFramework.SqlServer.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.Helpers.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.Mvc.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.Optimization.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.Razor.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.WebPages.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\Antlr3.Runtime.pdb
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\Newtonsoft.Json.xml
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\fr\System.Web.Helpers.resources.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\fr\System.Web.Mvc.resources.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\fr\System.Web.Optimization.resources.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\fr\System.Web.Razor.resources.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\fr\System.Web.WebPages.resources.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Deployment.resources.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Razor.resources.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\obj\Debug\PronosContest.csprojResolveAssemblyReference.cache
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\obj\Debug\PronosContest.dll
+\\data1.val2000.com\bureautique$\dalfaia\Mes documents\Visual Studio 2015\Projects\PronosContest\PronosContest\obj\Debug\PronosContest.pdb
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\csc.exe
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\vbc.exe
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\PronosContest.dll.config
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\PronosContest.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\PronosContest.pdb
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Antlr3.Runtime.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\EntityFramework.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\EntityFramework.SqlServer.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Newtonsoft.Json.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\PronosContest.BLL.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\PronosContest.DAL.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.Helpers.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.Mvc.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.Optimization.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.Razor.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.WebPages.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\WebGrease.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\PronosContest.BLL.pdb
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\PronosContest.DAL.pdb
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\EntityFramework.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\EntityFramework.SqlServer.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.Helpers.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.Mvc.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.Optimization.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.Razor.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.WebPages.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Antlr3.Runtime.pdb
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Newtonsoft.Json.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\fr\System.Web.Optimization.resources.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\fr\System.Web.Razor.resources.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\fr\System.Web.WebPages.resources.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\obj\Debug\PronosContest.csprojResolveAssemblyReference.cache
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\obj\Debug\PronosContest.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\obj\Debug\PronosContest.pdb
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.Owin.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.Owin.Security.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Owin.dll
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.Owin.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.Owin.Security.xml
+C:\Users\dalfaia\Desktop\PronosContest\PronosContest\bin\Microsoft.Owin.Security.Cookies.xml
+C:\PronosContest\PronosContest\bin\roslyn\csc.exe
+C:\PronosContest\PronosContest\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\PronosContest\PronosContest\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\PronosContest\PronosContest\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\PronosContest\PronosContest\bin\roslyn\System.Collections.Immutable.dll
+C:\PronosContest\PronosContest\bin\roslyn\System.Reflection.Metadata.dll
+C:\PronosContest\PronosContest\bin\roslyn\vbc.exe
+C:\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe
+C:\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe.config
+C:\PronosContest\PronosContest\bin\PronosContest.dll.config
+C:\PronosContest\PronosContest\bin\PronosContest.dll
+C:\PronosContest\PronosContest\bin\PronosContest.pdb
+C:\PronosContest\PronosContest\bin\Antlr3.Runtime.dll
+C:\PronosContest\PronosContest\bin\EntityFramework.dll
+C:\PronosContest\PronosContest\bin\EntityFramework.SqlServer.dll
+C:\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\PronosContest\PronosContest\bin\Microsoft.Owin.dll
+C:\PronosContest\PronosContest\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\PronosContest\PronosContest\bin\Microsoft.Owin.Security.Cookies.dll
+C:\PronosContest\PronosContest\bin\Microsoft.Owin.Security.dll
+C:\PronosContest\PronosContest\bin\Microsoft.Web.Infrastructure.dll
+C:\PronosContest\PronosContest\bin\Newtonsoft.Json.dll
+C:\PronosContest\PronosContest\bin\Owin.dll
+C:\PronosContest\PronosContest\bin\PronosContest.BLL.dll
+C:\PronosContest\PronosContest\bin\PronosContest.DAL.dll
+C:\PronosContest\PronosContest\bin\System.Web.Helpers.dll
+C:\PronosContest\PronosContest\bin\System.Web.Mvc.dll
+C:\PronosContest\PronosContest\bin\System.Web.Optimization.dll
+C:\PronosContest\PronosContest\bin\System.Web.Razor.dll
+C:\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.dll
+C:\PronosContest\PronosContest\bin\System.Web.WebPages.dll
+C:\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.dll
+C:\PronosContest\PronosContest\bin\WebGrease.dll
+C:\PronosContest\PronosContest\bin\PronosContest.BLL.pdb
+C:\PronosContest\PronosContest\bin\PronosContest.DAL.pdb
+C:\PronosContest\PronosContest\bin\EntityFramework.xml
+C:\PronosContest\PronosContest\bin\EntityFramework.SqlServer.xml
+C:\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\PronosContest\PronosContest\bin\Microsoft.Owin.xml
+C:\PronosContest\PronosContest\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\PronosContest\PronosContest\bin\Microsoft.Owin.Security.xml
+C:\PronosContest\PronosContest\bin\Microsoft.Owin.Security.Cookies.xml
+C:\PronosContest\PronosContest\bin\System.Web.Helpers.xml
+C:\PronosContest\PronosContest\bin\System.Web.Mvc.xml
+C:\PronosContest\PronosContest\bin\System.Web.Optimization.xml
+C:\PronosContest\PronosContest\bin\System.Web.Razor.xml
+C:\PronosContest\PronosContest\bin\System.Web.WebPages.xml
+C:\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.xml
+C:\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.xml
+C:\PronosContest\PronosContest\bin\Antlr3.Runtime.pdb
+C:\PronosContest\PronosContest\bin\Newtonsoft.Json.xml
+C:\PronosContest\PronosContest\bin\fr\System.Web.Helpers.resources.dll
+C:\PronosContest\PronosContest\bin\fr\System.Web.Mvc.resources.dll
+C:\PronosContest\PronosContest\bin\fr\System.Web.Optimization.resources.dll
+C:\PronosContest\PronosContest\bin\fr\System.Web.Razor.resources.dll
+C:\PronosContest\PronosContest\bin\fr\System.Web.WebPages.resources.dll
+C:\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\PronosContest\PronosContest\obj\Debug\PronosContest.csprojResolveAssemblyReference.cache
+C:\PronosContest\PronosContest\obj\Debug\PronosContest.dll
+C:\PronosContest\PronosContest\obj\Debug\PronosContest.pdb
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\csc.exe
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.CSharp.Core.targets
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.VisualBasic.Core.targets
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\System.Collections.Immutable.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\System.Reflection.Metadata.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\vbc.exe
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe.config
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\PronosContest.dll.config
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\PronosContest.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\PronosContest.pdb
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Antlr3.Runtime.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\EntityFramework.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\EntityFramework.SqlServer.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Host.SystemWeb.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Security.Cookies.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Security.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.Web.Infrastructure.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Newtonsoft.Json.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Owin.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\PronosContest.BLL.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\PronosContest.DAL.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.Helpers.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.Mvc.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.Optimization.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.Razor.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\WebGrease.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\PronosContest.BLL.pdb
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\PronosContest.DAL.pdb
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\EntityFramework.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\EntityFramework.SqlServer.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Host.SystemWeb.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Security.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Security.Cookies.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.Helpers.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.Mvc.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.Optimization.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.Razor.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Antlr3.Runtime.pdb
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\Newtonsoft.Json.xml
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.Helpers.resources.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.Mvc.resources.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.Optimization.resources.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.Razor.resources.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.WebPages.resources.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Deployment.resources.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Razor.resources.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\obj\Debug\PronosContest.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\obj\Debug\PronosContest.dll
+\\vmware-host\Shared Folders\Bureau\PronosContest\PronosContest\PronosContest\obj\Debug\PronosContest.pdb
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\csc.exe
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\System.Collections.Immutable.dll
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\System.Reflection.Metadata.dll
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\vbc.exe
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe
+C:\PronosContest\PronosContest\PronosContest\bin\roslyn\VBCSCompiler.exe.config
+C:\PronosContest\PronosContest\PronosContest\bin\PronosContest.dll.config
+C:\PronosContest\PronosContest\PronosContest\bin\PronosContest.dll
+C:\PronosContest\PronosContest\PronosContest\bin\PronosContest.pdb
+C:\PronosContest\PronosContest\PronosContest\bin\Antlr3.Runtime.dll
+C:\PronosContest\PronosContest\PronosContest\bin\EntityFramework.dll
+C:\PronosContest\PronosContest\PronosContest\bin\EntityFramework.SqlServer.dll
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.dll
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Security.Cookies.dll
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Security.dll
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.Web.Infrastructure.dll
+C:\PronosContest\PronosContest\PronosContest\bin\Newtonsoft.Json.dll
+C:\PronosContest\PronosContest\PronosContest\bin\Owin.dll
+C:\PronosContest\PronosContest\PronosContest\bin\PronosContest.BLL.dll
+C:\PronosContest\PronosContest\PronosContest\bin\PronosContest.DAL.dll
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.Helpers.dll
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.Mvc.dll
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.Optimization.dll
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.Razor.dll
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.dll
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.dll
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.dll
+C:\PronosContest\PronosContest\PronosContest\bin\WebGrease.dll
+C:\PronosContest\PronosContest\PronosContest\bin\PronosContest.BLL.pdb
+C:\PronosContest\PronosContest\PronosContest\bin\PronosContest.DAL.pdb
+C:\PronosContest\PronosContest\PronosContest\bin\EntityFramework.xml
+C:\PronosContest\PronosContest\PronosContest\bin\EntityFramework.SqlServer.xml
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.xml
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Security.xml
+C:\PronosContest\PronosContest\PronosContest\bin\Microsoft.Owin.Security.Cookies.xml
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.Helpers.xml
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.Mvc.xml
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.Optimization.xml
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.Razor.xml
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.xml
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.Deployment.xml
+C:\PronosContest\PronosContest\PronosContest\bin\System.Web.WebPages.Razor.xml
+C:\PronosContest\PronosContest\PronosContest\bin\Antlr3.Runtime.pdb
+C:\PronosContest\PronosContest\PronosContest\bin\Newtonsoft.Json.xml
+C:\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.Helpers.resources.dll
+C:\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.Mvc.resources.dll
+C:\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.Optimization.resources.dll
+C:\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.Razor.resources.dll
+C:\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.WebPages.resources.dll
+C:\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\PronosContest\PronosContest\PronosContest\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\PronosContest\PronosContest\PronosContest\obj\Debug\PronosContest.csprojResolveAssemblyReference.cache
+C:\PronosContest\PronosContest\PronosContest\obj\Debug\PronosContest.dll
+C:\PronosContest\PronosContest\PronosContest\obj\Debug\PronosContest.pdb
+C:\PronosContest\PronosContest\PronosContest\bin\PronosContest.Core.dll
+C:\PronosContest\PronosContest\PronosContest\bin\PronosContest.Core.pdb
