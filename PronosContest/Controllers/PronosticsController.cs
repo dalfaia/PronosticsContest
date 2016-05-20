@@ -10,9 +10,14 @@ namespace PronosContest.Controllers
 {
 	public class PronosticsController : Controller
 	{
-		public ActionResult Index()
+		public ActionResult Concours()
 		{
 			return View();
 		}
+
+        public ActionResult SaisirPronostics()
+        {
+            return View();
+        }
 	}
 }

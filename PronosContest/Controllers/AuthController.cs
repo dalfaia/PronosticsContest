@@ -33,17 +33,18 @@ namespace PronosContest.Controllers
             var user = PronosContestWebService.GetService().AuthenticationService.Connexion(pModel.Email, pModel.Password);
             if (user != null)
             {
-                
                 var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name, user.Prenom),
                     new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Surname, user.Nom)
+                    new Claim(ClaimTypes.Surname, user.Nom),
+                    new Claim(ClaimTypes.Sid, user.ID.ToString())
                 }, "ApplicationCookie");
 
                 var ctx = Request.GetOwinContext();
                 var authManager = ctx.Authentication;
-
+                
                 authManager.SignIn(identity);
+
                 return Redirect(GetRedirectUrl(pModel.ReturnUrl));
             }
             

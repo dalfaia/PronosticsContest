@@ -21,6 +21,9 @@ namespace PronosContest.BLL
 		{
 			return _pronosContestContextDatabase.Competitions.ToList();
 		}
-		
-	}
+		public List<Concours> GetConcoursByUserID(int pId)
+        {
+            return _pronosContestContextDatabase.Concours.Where(c => c.CompteUtilisateurs.Where(user => user.ID == pId).Any()).ToList();
+        }
+    }
 }

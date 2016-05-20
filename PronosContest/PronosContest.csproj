@@ -952,6 +952,7 @@
     <Content Include="bower.json" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Shared\_LayoutPublic.cshtml" />
+    <Content Include="Views\Pronostics\Concours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PronosContest.BLL\PronosContest.BLL.csproj">
