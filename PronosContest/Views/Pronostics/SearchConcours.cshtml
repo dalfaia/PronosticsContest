@@ -1,0 +1,35 @@
+﻿@model PronosContest.Models.SearchConcoursModel
+@{
+    ViewBag.Title = "Rechercher des concours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ValidationSummary(false, "", new { @style = "color:red;" })
+@using (Html.BeginForm())
+{
+	<fieldset>
+		<div class="form-group">
+			@Html.TextBoxFor(m => m.Recherche, new { @class = "form control", placeholder = "Rechercher un concours" })
+		</div>
+		<button class="btn btn-lg btn-success btn-block" type="submit">Rechercher</button>
+	</fieldset>
+}
+
+@{
+	if (this.Model != null && this.Model.Recherche != String.Empty)
+	{
+		if (this.Model.Resultats.Any())
+		{
+			foreach (var c in this.Model.Resultats)
+			{
+
+			}
+		}
+		else
+		{
+			<div class="alert alert-warning" role="alert">
+				Aucun concours trouvé !
+			</div>
+		}
+	}
+}

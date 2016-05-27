@@ -148,12 +148,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Code\PronosContestControllerBase.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\PronosticsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PronosticsModels.cs" />
     <Compile Include="Models\AuthModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -953,11 +955,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Views\Shared\_LayoutPublic.cshtml" />
     <Content Include="Views\Pronostics\Concours.cshtml" />
+    <Content Include="Views\Pronostics\SearchConcours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PronosContest.BLL\PronosContest.BLL.csproj">
       <Project>{1ee93a7a-e5df-44d6-813d-82e085366cab}</Project>
       <Name>PronosContest.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PronosContest.Core\PronosContest.Core.csproj">
+      <Project>{f8712080-9bd1-41e9-a8e2-a2600b05e6e6}</Project>
+      <Name>PronosContest.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\PronosContest.DAL\PronosContest.DAL.csproj">
       <Project>{b7688024-ec05-4e4c-9da4-7eef9caaa82c}</Project>

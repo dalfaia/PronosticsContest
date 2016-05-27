@@ -21,15 +21,14 @@ namespace PronosContest.DAL.Pronos
 		[Key]
 		public int ID { get; set; }
 		
-		public TypeDePronostic TypePronostic { get; set; }
-		public EtatPronostic EtatPronostic { get; set; }
-		public EtatConcours EtatConcours { get; set; }
-		
+		public EtatConcours EtatConcours { get; set; }		
 		public DateTime DateDebut { get; set; }
-		public DateTime DateFin { get; set; }
+		public DateTime? DateFin { get; set; }
 
 		[ForeignKey("Competition")]
 		public int CompetitionID { get; set; }
+		[ForeignKey("CompteUtilisateur")]
+		public int CompteUtilisateurID { get; set; }
 		#endregion
 
 		public Concours()
@@ -42,6 +41,7 @@ namespace PronosContest.DAL.Pronos
 		public virtual ICollection<CompteUtilisateur> CompteUtilisateurs { get; set; }
 		public virtual ICollection<Pronostic> Pronostics { get; set; }
 		public virtual Competition Competition { get; set; }
+		public virtual CompteUtilisateur CompteUtilisateur { get; set; }
 		#endregion
 	}
 }

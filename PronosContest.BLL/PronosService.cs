@@ -25,5 +25,9 @@ namespace PronosContest.BLL
         {
             return _pronosContestContextDatabase.Concours.Where(c => c.CompteUtilisateurs.Where(user => user.ID == pId).Any()).ToList();
         }
-    }
+		public List<Concours> SearchConcours(string pRecherche, int pUserID)
+		{
+			return _pronosContestContextDatabase.Concours.Where(c => !c.CompteUtilisateurs.Where(user => user.ID == pUserID).Any() && (c.Competition.Libelle.Contains(pRecherche) || c.CompteUtilisateur.Email == pRecherche)).ToList();
+		}
+	}
 }

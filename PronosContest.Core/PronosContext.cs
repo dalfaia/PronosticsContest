@@ -9,11 +9,15 @@ namespace PronosContest.Core
 {
     public static class PronosContext
     {
-        public static int UserID
+        public static int? UserID
         {
             get
             {
-                return Helper.GetIntFromString(HttpContext.Current.Items["UserID"] as string);
+                return Helper.GetIntFromString(HttpContext.Current.Session["UserID"] as string);
+            }
+			set
+			{
+				HttpContext.Current.Session["UserID"] = value;
             }
         }
     }

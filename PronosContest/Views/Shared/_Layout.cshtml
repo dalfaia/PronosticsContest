@@ -40,8 +40,11 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 
-	<div class="container-fluid">
-		@RenderBody();
+	<div class="container">
+		<div class="page-header">
+			<h1>@ViewBag.Title</h1>
+		</div>
+		@RenderBody()
 	</div>
 
     @RenderSection("scripts", required: false)

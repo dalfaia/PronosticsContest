@@ -1,14 +1,22 @@
-﻿@model PronosContest.DAL.Pronos.Competition
+﻿@model List<PronosContest.DAL.Pronos.Concours>
 @{
     ViewBag.Title = "Vos concours";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Vos concours</h2>
+@{
+	if (this.Model != null && this.Model.Any())
+	{
 
-@{ 
-    if (this.Model != null)
-    {
+		foreach (var c in this.Model)
+		{
 
-    }
+		}
+	}
+	else
+	{
+		<div class="alert alert-warning" role="alert">
+			Vous ne participez à aucun concours de pronostics !
+		</div>
+	}
 }

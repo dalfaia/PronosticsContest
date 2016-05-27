@@ -1,4 +1,6 @@
-﻿using PronosContest.DAL.Shared;
+﻿using PronosContest.DAL.Pronos;
+using PronosContest.DAL.Shared;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
@@ -27,7 +29,7 @@ namespace PronosContest.Models
 		[Required]
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
-		
+
 		[Required]
 		[DataType(DataType.Password)]
 		public string Password2 { get; set; }

@@ -74,7 +74,17 @@ namespace PronosContest.BLL
 				compet.Groupes.Add(groupeB);
 
 				_pronosContestContextDatabase.SaveChanges();
-			}
+
+				_pronosContestContextDatabase.Concours.Add(new Concours()
+				{
+					Competition = compet,
+					CompteUtilisateurID = 1,
+					DateDebut = DateTime.Now.Date,
+					EtatConcours = EtatConcours.EnCours
+				});
+
+				_pronosContestContextDatabase.SaveChanges();
+            }
 		}
 		
 	}

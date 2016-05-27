@@ -88,6 +88,14 @@
     <Compile Include="Migrations\201605140921448_1.0.0.7.Designer.cs">
       <DependentUpon>201605140921448_1.0.0.7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605201438372_1.0.0.8.cs" />
+    <Compile Include="Migrations\201605201438372_1.0.0.8.Designer.cs">
+      <DependentUpon>201605201438372_1.0.0.8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605201526160_1.0.0.9.cs" />
+    <Compile Include="Migrations\201605201526160_1.0.0.9.Designer.cs">
+      <DependentUpon>201605201526160_1.0.0.9.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PronosContestContext.cs" />
     <Compile Include="Pronos\Match.cs" />
@@ -131,6 +139,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605140921448_1.0.0.7.resx">
       <DependentUpon>201605140921448_1.0.0.7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605201438372_1.0.0.8.resx">
+      <DependentUpon>201605201438372_1.0.0.8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605201526160_1.0.0.9.resx">
+      <DependentUpon>201605201526160_1.0.0.9.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using PronosContest.BLL;
+using PronosContest.Core;
 using PronosContest.Models;
 using System;
 using System.Collections.Generic;
@@ -6,15 +7,16 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using PronosContest.Code;
 
 namespace PronosContest.Controllers
 {
 	[AllowAnonymous]
-    public class AuthController : Controller
-    {
+    public class AuthController : PronosContestControllerBase
+	{
         [HttpGet]
         public ActionResult LogIn(string returnUrl, string pEmail = "")
-        {
+		{
 			var model = new LogInModel {
                 Email = pEmail,
 				ReturnUrl = returnUrl
@@ -26,9 +28,7 @@ namespace PronosContest.Controllers
 		public ActionResult LogIn(LogInModel pModel)
 		{
 			if (!ModelState.IsValid)
-			{
 				return View();
-			}
 
             var user = PronosContestWebService.GetService().AuthenticationService.Connexion(pModel.Email, pModel.Password);
             if (user != null)
@@ -45,7 +45,10 @@ namespace PronosContest.Controllers
                 
                 authManager.SignIn(identity);
 
-                return Redirect(GetRedirectUrl(pModel.ReturnUrl));
+				this.UserID = user.ID;
+				this.CurrentUser = user;
+
+				return Redirect(GetRedirectUrl(pModel.ReturnUrl));
             }
             
 			// user authN failed
@@ -59,7 +62,11 @@ namespace PronosContest.Controllers
             var ctx = Request.GetOwinContext();
             var authManager = ctx.Authentication;
             authManager.SignOut();
-            return RedirectToAction("LogIn");
+
+			this.UserID = null;
+			this.CurrentUser = null;
+
+			return RedirectToAction("LogIn");
         }
 
         private string GetRedirectUrl(string returnUrl)
