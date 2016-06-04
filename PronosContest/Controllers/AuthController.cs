@@ -45,14 +45,11 @@ namespace PronosContest.Controllers
                 
                 authManager.SignIn(identity);
 
-				this.UserID = user.ID;
-				this.CurrentUser = user;
-
 				return Redirect(GetRedirectUrl(pModel.ReturnUrl));
             }
             
 			// user authN failed
-			ModelState.AddModelError("", "Votre identifiants sont incorrects !");
+			ModelState.AddModelError("", "Vos identifiants sont incorrects !");
 			return View();
 		}
 
@@ -62,9 +59,6 @@ namespace PronosContest.Controllers
             var ctx = Request.GetOwinContext();
             var authManager = ctx.Authentication;
             authManager.SignOut();
-
-			this.UserID = null;
-			this.CurrentUser = null;
 
 			return RedirectToAction("LogIn");
         }

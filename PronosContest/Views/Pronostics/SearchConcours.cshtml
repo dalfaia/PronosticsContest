@@ -5,31 +5,68 @@
 }
 
 @Html.ValidationSummary(false, "", new { @style = "color:red;" })
+
 @using (Html.BeginForm())
 {
-	<fieldset>
-		<div class="form-group">
-			@Html.TextBoxFor(m => m.Recherche, new { @class = "form control", placeholder = "Rechercher un concours" })
-		</div>
-		<button class="btn btn-lg btn-success btn-block" type="submit">Rechercher</button>
-	</fieldset>
+    <div class="input-group">
+        @Html.TextBoxFor(m => m.Recherche, new { @class = "form-control", placeholder = "Rechercher un concours" })
+        <span class="input-group-btn">
+            <button class="btn btn-success" style="float:right;" type="submit"><i class="fa fa-search"></i></button>
+        </span>
+    </div>
 }
-
-@{
-	if (this.Model != null && this.Model.Recherche != String.Empty)
-	{
-		if (this.Model.Resultats.Any())
-		{
-			foreach (var c in this.Model.Resultats)
-			{
-
-			}
-		}
-		else
-		{
-			<div class="alert alert-warning" role="alert">
-				Aucun concours trouvé !
-			</div>
-		}
-	}
-}
+<div class="row" style="margin-top: 10px;">
+    <div class="col-xs-12">
+        @{
+            if (this.Model != null && this.Model.Recherche != null && this.Model.Recherche != String.Empty)
+            {
+                if (this.Model.Resultats.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Competition</th>
+                                    <th>Début du concours</th>
+                                    <th>Etat</th>
+                                    <th>Créé par</th>
+                                    <th>Joueurs inscrits</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @foreach (var c in this.Model.Resultats)
+                            {
+                                <tr>
+                                    <td>
+                                        @c.Competition.Libelle
+                                    </td>
+                                    <td>
+                                        @c.DateDebut
+                                    </td>
+                                    <td>
+                                        @c.EtatConcours
+                                    </td>
+                                    <td>
+                                        @(c.CompteUtilisateur.Prenom + " " + c.CompteUtilisateur.Nom)
+                                    </td>
+                                    <td>
+                                        @c.ConcoursCompteUtilisateurs.Count()
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("S'inscrire", "InscrireConcours", new { pConcoursID = c.ID })
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        Aucun concours trouvé !
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>

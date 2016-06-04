@@ -1,4 +1,5 @@
 ﻿using PronosContest.Core;
+using PronosContest.DAL.Pronos;
 using PronosContest.DAL.Shared;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,7 @@ namespace PronosContest.DAL.Authentification
         {
             this.Role = CompteUtilisateurRole.Utilisateur;
             this.Adresse = new Adresse();
+            this.ConcoursCompteUtilisateurs = new List<ConcoursCompteUtilisateur>();
         }
         public CompteUtilisateur(string pEmail,string pPassword,string pNom, string pPrenom, Adresse pAdresse)
         {
@@ -52,7 +54,10 @@ namespace PronosContest.DAL.Authentification
             this.Prenom = pPrenom;
             this.Role = CompteUtilisateurRole.Utilisateur;
             this.Adresse = new Adresse();
+            this.ConcoursCompteUtilisateurs = new List<ConcoursCompteUtilisateur>();
         }
-        
+
+        public virtual ICollection<Concours> Concours { get; set; }
+        public virtual ICollection<ConcoursCompteUtilisateur> ConcoursCompteUtilisateurs { get; set; }
     }
 }

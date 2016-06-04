@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace PronosContest.Code
@@ -14,31 +16,35 @@ namespace PronosContest.Code
 		{
 			get
 			{
-				if (Session["PronosContest.UserID"] != null && Session["PronosContest.UserID"] is int)
-					return (int)Session["PronosContest.UserID"];
-				return null;
-			}
-			set
-			{
-				Session["PronosContest.UserID"] = value;
+                var ctx = Request.GetOwinContext();
+                var authManager = ctx.Authentication;
+
+                if (authManager.User != null)
+                {
+                    var userInfo = authManager.User.Claims.Where(c => c.Type == ClaimTypes.Sid).FirstOrDefault();
+                    if (userInfo != null)
+                        return Core.Helper.GetIntFromString(userInfo.Value);
+                }
+                return null;
 			}
 		}
+        protected string UserName
+        {
+            get
+            {
+                var ctx = Request.GetOwinContext();
+                var authManager = ctx.Authentication;
 
-		protected CompteUtilisateur CurrentUser
-		{
-			get
-			{
-				if (Session["PronosContest.CurrentUser"] != null && Session["PronosContest.CurrentUser"] is CompteUtilisateur)
-					return (CompteUtilisateur)Session["PronosContest.CurrentUser"];
-				return null;
-			}
-			set
-			{
-				Session["PronosContest.CurrentUser"] = value;
-			}
-		}
-
-		public PronosContestControllerBase()
+                if (authManager.User != null)
+                {
+                    var userInfo = authManager.User.Claims.Where(c => c.Type == ClaimTypes.Name).FirstOrDefault();
+                    if (userInfo != null)
+                        return userInfo.Value;
+                }
+                return null;
+            }
+        }
+        public PronosContestControllerBase()
 		{
 		}
 

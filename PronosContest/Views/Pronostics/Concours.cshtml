@@ -5,16 +5,44 @@
 }
 
 @{
-	if (this.Model != null && this.Model.Any())
-	{
-
-		foreach (var c in this.Model)
-		{
-
-		}
-	}
-	else
-	{
+    if (this.Model != null && this.Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Competition</th>
+                        <th>Début du concours</th>
+                        <th>Etat</th>
+                        <th>Joueurs inscrits</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var c in this.Model)
+                {
+                    <tr>
+                        <td>
+                            @c.Competition.Libelle
+                        </td>
+                        <td>
+                            @c.DateDebut
+                        </td>
+                        <td>
+                            @c.EtatConcours
+                        </td>
+                        <td>
+                            @c.ConcoursCompteUtilisateurs.Count()
+                        </td>
+                        <td>
+                            @Html.ActionLink("Saisir les pronostics", "SaisirPronostics", new { pConcoursID = c.ID })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    else
+    {
 		<div class="alert alert-warning" role="alert">
 			Vous ne participez à aucun concours de pronostics !
 		</div>

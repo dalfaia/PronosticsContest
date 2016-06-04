@@ -96,8 +96,17 @@
     <Compile Include="Migrations\201605201526160_1.0.0.9.Designer.cs">
       <DependentUpon>201605201526160_1.0.0.9.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605290838088_1.0.0.10.cs" />
+    <Compile Include="Migrations\201605290838088_1.0.0.10.Designer.cs">
+      <DependentUpon>201605290838088_1.0.0.10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605291356542_1.0.0.11.cs" />
+    <Compile Include="Migrations\201605291356542_1.0.0.11.Designer.cs">
+      <DependentUpon>201605291356542_1.0.0.11.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PronosContestContext.cs" />
+    <Compile Include="Pronos\ConcoursCompteUtilisateur.cs" />
     <Compile Include="Pronos\Match.cs" />
     <Compile Include="Pronos\Equipe.cs" />
     <Compile Include="Pronos\PhaseFinale.cs" />
@@ -145,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605201526160_1.0.0.9.resx">
       <DependentUpon>201605201526160_1.0.0.9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605290838088_1.0.0.10.resx">
+      <DependentUpon>201605290838088_1.0.0.10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605291356542_1.0.0.11.resx">
+      <DependentUpon>201605291356542_1.0.0.11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

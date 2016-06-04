@@ -23,7 +23,9 @@ namespace PronosContest.DAL.Pronos
 		[ForeignKey("PhaseFinale")]
 		public int? PhaseFinaleID { get; set; }
 
-		public DateTime Date { get; set; }
+        public int? ButsEquipeDomicile { get; set; }
+        public int? ButsEquipeExterieur { get; set; }
+        public DateTime Date { get; set; }
 		public string Stade { get; set; }
 		#endregion
 

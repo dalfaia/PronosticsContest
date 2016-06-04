@@ -34,11 +34,11 @@ namespace PronosContest.DAL.Pronos
 		public Concours()
 		{
 			this.Pronostics = new List<Pronostic>();
-			this.CompteUtilisateurs = new List<CompteUtilisateur>();
+			this.ConcoursCompteUtilisateurs = new List<ConcoursCompteUtilisateur>();
 		}
 
 		#region Propriétés de navigation
-		public virtual ICollection<CompteUtilisateur> CompteUtilisateurs { get; set; }
+		public virtual ICollection<ConcoursCompteUtilisateur> ConcoursCompteUtilisateurs { get; set; }
 		public virtual ICollection<Pronostic> Pronostics { get; set; }
 		public virtual Competition Competition { get; set; }
 		public virtual CompteUtilisateur CompteUtilisateur { get; set; }

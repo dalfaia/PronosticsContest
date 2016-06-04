@@ -41,5 +41,5 @@ namespace PronosContest.DAL.Pronos
 		public virtual ICollection<PhaseGroupe> Groupes { get; set; }
 		public virtual ICollection<PhaseFinale> PhasesFinales { get; set; }
 		#endregion
-	}
+    }
 }

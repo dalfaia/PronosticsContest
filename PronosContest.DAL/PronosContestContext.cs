@@ -25,7 +25,8 @@ namespace PronosContest.DAL
 		public DbSet<Match> Matchs { get; set; }
 		public DbSet<Concours> Concours { get; set; }
 		public DbSet<Pronostic> Pronostics { get; set; }
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        public DbSet<ConcoursCompteUtilisateur> ConcoursCompteUtilisateurs { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 		}

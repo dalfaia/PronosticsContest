@@ -606,6 +606,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="img\euro.jpg" />
     <Content Include="less\mixins.less" />
     <Content Include="less\sb-admin-2.less" />
     <Content Include="less\variables.less" />
@@ -956,6 +957,7 @@
     <Content Include="Views\Shared\_LayoutPublic.cshtml" />
     <Content Include="Views\Pronostics\Concours.cshtml" />
     <Content Include="Views\Pronostics\SearchConcours.cshtml" />
+    <Content Include="Views\Pronostics\_Classement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PronosContest.BLL\PronosContest.BLL.csproj">

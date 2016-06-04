@@ -1,14 +1,111 @@
-﻿@model PronosContest.DAL.Pronos.Competition
-@{
+﻿@model List<PronosContest.Models.GroupePronosticsModel> 
+@{ 
     ViewBag.Title = "Saisir vos pronostics";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var concoursID = Request.Params["pConcoursID"];
 }
-
-<h2>Saisir vos pronostics</h2>
-
-@{ 
-    if (this.Model != null)
-    {
-
+<script type="text/javascript">
+    function SetScore(pConcoursID, pGroupeID, pMatchID, pEquipeID, pValue) {
+        $.ajax({
+            url: '@Url.Action("SetScore")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeID=' + pEquipeID + '&pValue=' + pValue,
+            context: { ConcoursID: pConcoursID, GroupeID: pGroupeID },
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                RemplirClassement(this.ConcoursID, this.GroupeID);
+            }
+        });
     }
-}
+
+    function RemplirClassement(pConcoursID, pGroupeID) {
+        $.ajax({
+            url: '@Url.Action("GetClassement")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID,
+            context: { pGroupeID: pGroupeID },
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#classement_grp_' + pGroupeID).html(result);
+            }
+        });
+    }
+</script> 
+<div class="row">
+    <div class="col-sm-3 col-md-2" >
+        <ul class="nav nav-pills nav-stacked">
+            @{
+                <li role="presentation" @(this.Model.Any(m => m.IsChoosen) ? "" : "class=active")>@Html.ActionLink("Tous", "SaisirPronostics", new { pConcoursID = concoursID })</li>
+                foreach (var grp in this.Model)
+                {
+                    <li role="presentation" @(grp.IsChoosen ? "class=active" : "")>@Html.ActionLink(grp.Nom, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Nom })</li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="col-xs-1">
+        &nbsp;
+    </div>
+    <div class="col-sm-8 col-md-9">
+        @{
+            var groupes = this.Model.Where(m => m.IsChoosen);
+            if (!groupes.Any())
+            {
+                groupes = this.Model;
+            }
+            foreach (var grp in groupes)
+            {
+                <div class="row">
+                    <div class="row">
+                        <h1><small>@grp.Nom</small></h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6" style="font-size: 0.85em;">
+                            @{
+                                foreach (var prono in grp.MatchsPronostics)
+                                {
+                                    <div class="row">
+                                        <div class="col-xs-3 text-muted">
+                                            <div class="form-group">
+                                                <label>@prono.DateHeure</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-9 text-primary">
+                                            <div class="col-xs-4 text-right">
+                                                <div class="form-group">
+                                                    <label>@prono.EquipeA</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <div class="form-group">
+                                                    @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "',$(this).val());" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <div class="form-group">
+                                                    @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeBID + "',$(this).val());" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <div class="form-group">
+                                                    <label>@prono.EquipeB</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row" id="classement_grp_@grp.ID">
+                                @{
+                                    Html.RenderPartial("_Classement", grp.Classement);
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+    
+
