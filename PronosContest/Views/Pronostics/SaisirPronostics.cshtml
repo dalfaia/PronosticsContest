@@ -1,6 +1,5 @@
 ﻿@model List<PronosContest.Models.GroupePronosticsModel> 
 @{ 
-    ViewBag.Title = "Saisir vos pronostics";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var concoursID = Request.Params["pConcoursID"];
 }
@@ -29,78 +28,268 @@
         });
     }
 </script> 
+<div class="hidden-md hidden-lg">
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-xs-12">
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                @{
+                    <div class="btn-group" role="group">
+                        @{
+                            if (this.Model.Any(m => m.IsChoosen))
+                            {
+                                @Html.ActionLink("#", "SaisirPronostics", new { pConcoursID = concoursID }, new { @class = "btn btn-default" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("#", "SaisirPronostics", new { pConcoursID = concoursID }, new { @class = "btn btn-primary" })
+                            }
+                        }
+                    </div>
+                    foreach (var grp in this.Model)
+                    {
+                        <div class="btn-group" role="group">
+                            @{
+                                if (grp.IsChoosen)
+                                {
+                                    @Html.ActionLink(grp.ShortName, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name }, new { @class = "btn btn-primary" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink(grp.ShortName, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name }, new { @class = "btn btn-default" })
+                                }
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
-    <div class="col-sm-3 col-md-2" >
+    <div class="col-md-2 hidden-xs hidden-sm" >
         <ul class="nav nav-pills nav-stacked">
             @{
                 <li role="presentation" @(this.Model.Any(m => m.IsChoosen) ? "" : "class=active")>@Html.ActionLink("Tous", "SaisirPronostics", new { pConcoursID = concoursID })</li>
                 foreach (var grp in this.Model)
                 {
-                    <li role="presentation" @(grp.IsChoosen ? "class=active" : "")>@Html.ActionLink(grp.Nom, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Nom })</li>
+                    <li role="presentation" @(grp.IsChoosen ? "class=active" : "")>@Html.ActionLink(grp.Name, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name })</li>
                 }
             }
         </ul>
     </div>
+   
     <div class="col-xs-1">
         &nbsp;
     </div>
-    <div class="col-sm-8 col-md-9">
+    @{ 
+        var groupes = this.Model.Where(m => m.IsChoosen);
+        if (!groupes.Any())
+        {
+            groupes = this.Model;
+        }
+    }
+    <div class="col-md-9 hidden-xs hidden-sm">
         @{
-            var groupes = this.Model.Where(m => m.IsChoosen);
-            if (!groupes.Any())
-            {
-                groupes = this.Model;
-            }
             foreach (var grp in groupes)
             {
-                <div class="row">
-                    <div class="row">
-                        <h1><small>@grp.Nom</small></h1>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6" style="font-size: 0.85em;">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">@grp.Name</div>
+                    <div class="panel-body">
+                        <table>
                             @{
                                 foreach (var prono in grp.MatchsPronostics)
                                 {
-                                    <div class="row">
-                                        <div class="col-xs-3 text-muted">
+                                    <tr>
+                                        <td width="130px">
                                             <div class="form-group">
                                                 <label>@prono.DateHeure</label>
                                             </div>
-                                        </div>
-                                        <div class="col-xs-9 text-primary">
-                                            <div class="col-xs-4 text-right">
-                                                <div class="form-group">
-                                                    <label>@prono.EquipeA</label>
-                                                </div>
+                                        </td>
+                                        <td width="27%">
+                                            <div class="form-group text-right text-primary">
+                                                &nbsp;
+                                                <label class="hidden-sm hidden-xs">@prono.EquipeAName</label>
+                                                <label class="hidden-md hidden-lg">@prono.EquipeAShortName</label>
+                                                <span style="width:20px;"><img src="@prono.LogoUrlEquipeA" width="20" /></span>
+                                                &nbsp;
                                             </div>
-                                            <div class="col-xs-2">
+                                        </td>
+                                        <td width="80px">
+                                            <center>
                                                 <div class="form-group">
-                                                    @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "',$(this).val());" })
+                                                   @{
+                                                        if (prono.IsReadOnly)
+                                                        {
+                                                            <span class="text-primary">@prono.ButsA</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "',$(this).val());" })
+                                                        }
+                                                    }
                                                 </div>
-                                            </div>
-                                            <div class="col-xs-2">
+                                            </center>
+                                        </td>
+                                        <td width="80px">
+                                            <center>
                                                 <div class="form-group">
-                                                    @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeBID + "',$(this).val());" })
+                                                    @{
+                                                        if (prono.IsReadOnly)
+                                                        {
+                                                            <span class="text-primary">@prono.ButsB</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeBID + "',$(this).val());" })
+                                                        }
+                                                    }
                                                 </div>
+                                            </center>
+                                        </td>
+                                        <td width="27%">
+                                            <div class="form-group text-primary">
+                                                &nbsp;
+                                                <span style="width:20px;"><img src="@prono.LogoUrlEquipeB" width="20" /></span>
+                                                <label class="hidden-sm hidden-xs">@prono.EquipeBName</label>
+                                                <label class="hidden-md hidden-lg">@prono.EquipeBShortName</label>
+                                                &nbsp;
                                             </div>
-                                            <div class="col-xs-4">
-                                                <div class="form-group">
-                                                    <label>@prono.EquipeB</label>
-                                                </div>
+                                        </td>
+                                        <td width="30px" class="text-right">
+                                            <div class="form-group">
+                                                @{
+                                                    switch (prono.Etat)
+                                                    {
+                                                        case PronosContest.DAL.Pronos.EtatPronostic.Empty:
+                                                            <span class="label label-default">Non renseigné</span>
+                                                            break;
+                                                        case PronosContest.DAL.Pronos.EtatPronostic.EnCours:
+                                                            <span class="label label-primary">En cours</span>
+                                                            break;
+                                                        case PronosContest.DAL.Pronos.EtatPronostic.Gagne:
+                                                            <span class="label label-success">Gagné</span>
+                                                            break;
+                                                        case PronosContest.DAL.Pronos.EtatPronostic.Perdu:
+                                                            <span class="label label-danger">Perdu</span>
+                                                            break;
+                                                    }
+                                                }
                                             </div>
-                                        </div>
-                                    </div>
+                                        </td>
+                                    </tr>
                                 }
-                            }
-                        </div>
-                        <div class="col-xs-6">
-                            <div class="row" id="classement_grp_@grp.ID">
-                                @{
-                                    Html.RenderPartial("_Classement", grp.Classement);
-                                }
+                             }
+                        </table>
+                    </div>
+                    <div id="classement_grp_@grp.ID">
+                        @{
+                            Html.RenderPartial("_Classement", grp.Classement);
+                        }
+                    </div>
+
+                </div>
+            }
+        }
+    </div>
+    <div class="col-xs-12 hidden-lg hidden-md">
+        @{
+            foreach (var grp in groupes)
+            {
+                <div class="panel panel-primary">
+                    <div class="panel-heading">@grp.Name</div>
+                    <div class="panel-body">
+                    @{
+                        foreach (var prono in grp.MatchsPronostics)
+                        {
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <center>
+                                        <div class="form-group">
+                                            <label>@prono.DateHeure</label>
+                                        </div>
+                                    </center>
+                                </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="form-group text-right text-primary">
+                                        &nbsp;
+                                        <label class="hidden-sm hidden-xs">@prono.EquipeAName</label>
+                                        <label class="hidden-md hidden-lg">@prono.EquipeAShortName</label>
+                                        <span style="width:20px;"><img src="@prono.LogoUrlEquipeA" width="20" /></span>
+                                        &nbsp;
+                                    </div>
+                                </div>
+                                <div class="col-xs-2">
+                                    <div class="form-group">
+                                        @{
+                                            if (prono.IsReadOnly)
+                                            {
+                                                <span class="text-primary">@prono.ButsA</span>
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "',$(this).val());" })
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-xs-2">
+                                    <div class="form-group">
+                                        @{
+                                            if (prono.IsReadOnly)
+                                            {
+                                                <span class="text-primary">@prono.ButsB</span>
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeBID + "',$(this).val());" })
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group text-primary">
+                                        &nbsp;
+                                        <span style="width:20px;"><img src="@prono.LogoUrlEquipeB" width="20" /></span>
+                                        <label class="hidden-sm hidden-xs">@prono.EquipeBName</label>
+                                        <label class="hidden-md hidden-lg">@prono.EquipeBShortName</label>
+                                        &nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <center>
+                                        <div class="form-group">
+                                            @{
+                                                switch (prono.Etat)
+                                                {
+                                                    case PronosContest.DAL.Pronos.EtatPronostic.Empty:
+                                                        <span class="label label-default">Non renseigné</span>
+                                                        break;
+                                                    case PronosContest.DAL.Pronos.EtatPronostic.EnCours:
+                                                        <span class="label label-primary">En cours</span>
+                                                        break;
+                                                    case PronosContest.DAL.Pronos.EtatPronostic.Gagne:
+                                                        <span class="label label-success">Gagné</span>
+                                                        break;
+                                                    case PronosContest.DAL.Pronos.EtatPronostic.Perdu:
+                                                        <span class="label label-danger">Perdu</span>
+                                                        break;
+                                                }
+                                            }
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        }
+                    }
+                    </div>
+                    <div id="classement_grp_@grp.ID">
+                        @{
+                            Html.RenderPartial("_Classement", grp.Classement);
+                        }
                     </div>
                 </div>
             }

@@ -18,7 +18,9 @@ namespace PronosContest.DAL.Pronos
 		public int? PhaseGroupeID { get; set; }
 
 		public string Libelle { get; set; }
-		public string Logo { get; set; }
+        public string ShortName { get; set; }
+
+        public string Logo { get; set; }
 		#endregion
 
 		#region Propriétés de navigation

@@ -76,9 +76,28 @@ namespace PronosContest.BLL
                         MatchID = pMatchID,
                         TypePronostic = TypeDePronostic.ScoreExact
                     };
+                    var match = _pronosContestContextDatabase.Matchs.Where(m => m.ID == pMatchID).FirstOrDefault();
+                    if (match != null)
+                        if (match.EquipeAID == pEquipeID)
+                            newProno.ButsEquipeDomicile = pButs;
+                        else
+                            newProno.ButsEquipeExterieur = pButs;
                     concours.Pronostics.Add(newProno);
                 }
-                _pronosContestContextDatabase.SaveChangesAsync();
+                _pronosContestContextDatabase.SaveChanges();
+
+                /*#region Generation phases finales
+                var nbPronosticsGroupes = concours.Pronostics.Where(p => p.CompteUtilisateurID == pUserID && p.Match.PhaseGroupe != null).Count();
+                var nbMatchsGroupes = 0;
+                foreach (var g in concours.Competition.Groupes)
+                    nbMatchsGroupes += g.Matchs.Count();
+
+                if (nbPronosticsGroupes == nbMatchsGroupes)
+                {
+                    concours.
+                    //générer huitiemes
+                }
+                #endregion*/
             }
         }
     }

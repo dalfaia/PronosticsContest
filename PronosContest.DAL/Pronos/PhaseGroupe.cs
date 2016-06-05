@@ -91,6 +91,8 @@ namespace PronosContest.DAL.Pronos
                     var equipeDom = classementFinal.Where(c => c.Nom == match.EquipeA.Libelle).First();
                     var equipeExt = classementFinal.Where(c => c.Nom == match.EquipeB.Libelle).First();
 
+                    equipeDom.IDEquipe = match.EquipeAID.Value;
+                    equipeExt.IDEquipe = match.EquipeBID.Value;
                     equipeDom.MatchsJoues += 1;
                     equipeExt.MatchsJoues += 1;
                     if (prono.ButsEquipeDomicile > prono.ButsEquipeExterieur)
@@ -120,6 +122,7 @@ namespace PronosContest.DAL.Pronos
         }
         public class ClassementGroupeModel
         {
+            public int IDEquipe { get; set; }
             public string Nom { get; set; }
             public int Points { get { return this.MatchsGagnes * 3 + this.MatchsNuls;  } }
             public int MatchsJoues { get; set; }
@@ -129,6 +132,7 @@ namespace PronosContest.DAL.Pronos
             public int ButsMarques { get; set; }
             public int ButsEncaisses { get; set; }
             public int Difference { get { return this.ButsMarques - this.ButsEncaisses; } }
+            public char Groupe { get; set; }
 
             public ClassementGroupeModel(string pNom)
             {

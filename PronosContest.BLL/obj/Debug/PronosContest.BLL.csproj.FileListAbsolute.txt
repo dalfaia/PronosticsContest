@@ -60,3 +60,17 @@ C:\PronosContest\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
 C:\PronosContest\PronosContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb
 C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.Core.dll
 C:\PronosContest\PronosContest\PronosContest.BLL\bin\Debug\PronosContest.Core.pdb
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll.config
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\PronosContest.BLL.pdb
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\EntityFramework.dll
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\PronosContest.Core.dll
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\PronosContest.DAL.dll
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\PronosContest.Core.pdb
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\PronosContest.DAL.pdb
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\EntityFramework.xml
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
+C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb

@@ -16,9 +16,14 @@ namespace PronosContest.DAL.Pronos
 	}
 	public enum EtatPronostic
 	{
-		EnCours = 0,
-		Gagne = 1,
-		Perdu = 2
+        [Display(Name = "Non renseigné")]
+        Empty = 0,
+        [Display(Name = "En cours")]
+        EnCours = 1,
+        [Display(Name = "Gagné")]
+        Gagne = 2,
+        [Display(Name = "Perdu")]
+        Perdu = 3
 	}
 	public class Pronostic
 	{

@@ -1,67 +1,72 @@
 ﻿@model List<PronosContest.DAL.Pronos.PhaseGroupe.ClassementGroupeModel>
 
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Nom</th>
-                <th>Points</th>
-                <th>J</th>
-                <th>G</th>
-                <th>N</th>
-                <th>P</th>
-                <th>BM</th>
-                <th>BE</th>
-                <th>Diff</th>
-            </tr>
-        </thead>
-        @{
-            int i = 1;
-            int milieu = this.Model.Count / 2;
-            foreach (var c in this.Model)
-            {
-                string classLigne = "";
-                if (i > milieu)
-                {
-                    classLigne = "danger";
+@{
+    if (this.Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nom</th>
+                        <th>Points</th>
+                        <th>J</th>
+                        <th>G</th>
+                        <th>N</th>
+                        <th>P</th>
+                        <th>BM</th>
+                        <th>BE</th>
+                        <th>Diff</th>
+                    </tr>
+                </thead>
+                @{
+                    int i = 1;
+                    int milieu = this.Model.Count / 2;
+                    foreach (var c in this.Model)
+                    {
+                        string classLigne = "";
+                        if (i > milieu)
+                        {
+                            classLigne = "danger";
+                        }
+                        else
+                        {
+                            classLigne = "success";
+                        }
+                        <tr class="@classLigne">
+                            <td>@i°</td>
+                            <td>
+                                @c.Nom
+                            </td>
+                            <td>
+                                @c.Points
+                            </td>
+                            <td>
+                                @c.MatchsJoues
+                            </td>
+                            <td>
+                                @c.MatchsGagnes
+                            </td>
+                            <td>
+                                @c.MatchsNuls
+                            </td>
+                            <td>
+                                @c.MatchsPerdus
+                            </td>
+                            <td>
+                                @c.ButsMarques
+                            </td>
+                            <td>
+                                @c.ButsEncaisses
+                            </td>
+                            <td>
+                                @c.Difference
+                            </td>
+                        </tr>
+                        i++;
+                    }
                 }
-                else
-                {
-                    classLigne = "success";
-                }
-                <tr class="@classLigne">
-                    <td>@i°</td>
-                    <td>
-                        @c.Nom
-                    </td>
-                    <td>
-                        @c.Points
-                    </td>
-                    <td>
-                        @c.MatchsJoues
-                    </td>
-                    <td>
-                        @c.MatchsGagnes
-                    </td>
-                    <td>
-                        @c.MatchsNuls
-                    </td>
-                    <td>
-                        @c.MatchsPerdus
-                    </td>
-                    <td>
-                        @c.ButsMarques
-                    </td>
-                    <td>
-                        @c.ButsEncaisses
-                    </td>
-                    <td>
-                        @c.Difference
-                    </td>
-                </tr>
-                i++;
-            }
-        }
-    </table>
-</div>
+            </table>
+        </div>
+    }
+}

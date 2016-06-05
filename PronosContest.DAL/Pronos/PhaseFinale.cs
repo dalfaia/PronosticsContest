@@ -10,12 +10,18 @@ namespace PronosContest.DAL.Pronos
 {
 	public enum TypePhaseFinale
 	{
-		TrenteDeuxieme = 32, 
-		Seizieme = 16, 
-		Huitieme = 8,
-		Quart = 4,
-		Demi = 2,
-		Finale = 1
+        [Display(Name = "32° de finale")]
+		TrenteDeuxieme = 32,
+        [Display(Name = "16° de finale")]
+        Seizieme = 16,
+        [Display(Name = "Huitièmes de finale")]
+        Huitieme = 8,
+        [Display(Name = "Quarts de finale")]
+        Quart = 4,
+        [Display(Name = "Demis-finales")]
+        Demi = 2,
+        [Display(Name = "Finale")]
+        Finale = 1
 	}
 	public class PhaseFinale
 	{

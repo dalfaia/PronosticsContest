@@ -104,6 +104,22 @@
     <Compile Include="Migrations\201605291356542_1.0.0.11.Designer.cs">
       <DependentUpon>201605291356542_1.0.0.11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606051050126_1.0.0.12.cs" />
+    <Compile Include="Migrations\201606051050126_1.0.0.12.Designer.cs">
+      <DependentUpon>201606051050126_1.0.0.12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606051630534_1.0.0.13.cs" />
+    <Compile Include="Migrations\201606051630534_1.0.0.13.Designer.cs">
+      <DependentUpon>201606051630534_1.0.0.13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606051634100_1.0.0.14.cs" />
+    <Compile Include="Migrations\201606051634100_1.0.0.14.Designer.cs">
+      <DependentUpon>201606051634100_1.0.0.14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606051739599_1.0.0.15.cs" />
+    <Compile Include="Migrations\201606051739599_1.0.0.15.Designer.cs">
+      <DependentUpon>201606051739599_1.0.0.15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PronosContestContext.cs" />
     <Compile Include="Pronos\ConcoursCompteUtilisateur.cs" />
@@ -160,6 +176,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605291356542_1.0.0.11.resx">
       <DependentUpon>201605291356542_1.0.0.11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606051050126_1.0.0.12.resx">
+      <DependentUpon>201606051050126_1.0.0.12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606051630534_1.0.0.13.resx">
+      <DependentUpon>201606051630534_1.0.0.13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606051634100_1.0.0.14.resx">
+      <DependentUpon>201606051634100_1.0.0.14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606051739599_1.0.0.15.resx">
+      <DependentUpon>201606051739599_1.0.0.15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
