@@ -36,6 +36,23 @@ namespace PronosContest.Models
         public int ConcoursID { get; set; }
         public EtatPronostic Etat { get; set; }
         public bool IsReadOnly { get; set; }
+		public int VanqueurID {
+			get
+			{
+				if (this.ButsA > this.ButsB)
+				{
+					return this.EquipeAID;
+				}
+				else if (this.ButsA < this.ButsB)
+				{
+					return this.EquipeBID;
+				}
+				else
+				{
+					return 0;
+				}
+			}
+		}
     }
 
     public class GroupePronosticsModel

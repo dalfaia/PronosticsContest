@@ -37,7 +37,8 @@ namespace PronosContest.DAL.Pronos
 			this.PhasesFinales = new List<PhaseFinale>();
 		}
 
-        public List<Combinaisons3eme> TableauCombinaisons
+		[NotMapped]
+		public List<Combinaisons3eme> TableauCombinaisons
         {
             get
             {
@@ -60,6 +61,37 @@ namespace PronosContest.DAL.Pronos
                 return list;
             }
         }
+		public List<char> GetCombinaisonClassementTroisiemes (List<Pronostic> pPronosticsUser)
+		{
+			List<PhaseGroupe.ClassementGroupeModel> classement = new List<PhaseGroupe.ClassementGroupeModel>();
+
+			foreach (var groupe in Groupes)
+			{
+				var equipe3eme = groupe.ClassementWithPronostics(pPronosticsUser).ElementAt(2);
+				classement.Add(equipe3eme);
+			}
+
+			classement = classement.OrderByDescending(c => c.Points).OrderByDescending(c => c.Difference).OrderByDescending(c => c.ButsMarques).ToList();
+
+			List<char> combinaisons = new List<char>();
+			foreach (var cl in classement.Take(4))
+			{
+				var groupe = this.Groupes.Where(g => g.Equipes.Any(e => e.ID == cl.IDEquipe)).FirstOrDefault();
+				combinaisons.Add(groupe.Lettre.ToCharArray().First());
+            }
+			return combinaisons;
+        }
+		[NotMapped]
+		public List<Equipe> Equipes
+		{
+			get
+			{
+				List<Equipe> equipes = new List<Equipe>();
+                foreach (var gr in this.Groupes)
+					equipes.AddRange(gr.Equipes);
+				return equipes;
+			}
+		}
 
 		#region Propriétés de navigation
 		public virtual ICollection<PhaseGroupe> Groupes { get; set; }
@@ -68,6 +100,8 @@ namespace PronosContest.DAL.Pronos
     }
     public class Combinaisons3eme
     {
+		[Key]
+		public int ID { get; set; }
         public List<char> Combinaisons { get; set; }
         public char Adversaire1A { get; set; }
         public char Adversaire1B { get; set; }
