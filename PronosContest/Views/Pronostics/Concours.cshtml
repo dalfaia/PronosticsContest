@@ -13,6 +13,7 @@
                     <tr>
                         <th>Competition</th>
                         <th>Début du concours</th>
+						<th>Date limite de saisie</th>
                         <th>Etat</th>
                         <th>Joueurs inscrits</th>
                         <th></th>
@@ -25,10 +26,23 @@
                             @c.Competition.Libelle
                         </td>
                         <td>
-                            @c.DateDebut
+							@c.DateDebut.ToShortDateString()
                         </td>
+						<td>
+							@c.DateLimiteSaisie.ToShortDateString() à @c.DateLimiteSaisie.ToShortTimeString()
+						</td>
                         <td>
-                            @c.EtatConcours
+							@{ 
+								switch (c.EtatConcours)
+								{
+									case PronosContest.DAL.Pronos.EtatConcours.EnCours:
+										<span>En cours</span>
+										break;
+									case PronosContest.DAL.Pronos.EtatConcours.Termine:
+										<span>Terminé</span>
+										break;
+								}
+							}
                         </td>
                         <td>
                             @c.ConcoursCompteUtilisateurs.Count()

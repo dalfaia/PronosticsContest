@@ -31,19 +31,13 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Concours<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Rechercher", "SearchConcours", "Pronostics")</li>
-                            <li>@Html.ActionLink("Vos concours", "Concours", "Pronostics")</li>
-                        </ul>
-                    </li>
+					<li>@Html.ActionLink("Rechercher", "SearchConcours", "Pronostics")</li>
+					<li>@Html.ActionLink("Vos concours", "Concours", "Pronostics")</li>
+                    
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user"></i><span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Modifier profil</a></li>
 							<li role="separator" class="divider"></li>
 							<li>@Html.ActionLink("Se déconnecter", "LogOut", "Auth")</li>
 						</ul>

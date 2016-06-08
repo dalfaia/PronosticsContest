@@ -29,7 +29,9 @@ namespace PronosContest.DAL.Pronos
 
         public int? ButsEquipeDomicile { get; set; }
         public int? ButsEquipeExterieur { get; set; }
-        public DateTime Date { get; set; }
+		public int? ButsPenaltiesEquipeDomicile { get; set; }
+		public int? ButsPenaltiesEquipeExterieur { get; set; }
+		public DateTime Date { get; set; }
 		public string Stade { get; set; }
 
         public string EquipePossibleDomicile_Libelle { get; set; }

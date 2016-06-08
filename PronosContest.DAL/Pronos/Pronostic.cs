@@ -39,6 +39,8 @@ namespace PronosContest.DAL.Pronos
         public int? EquipeBID { get; set; }
         public int ButsEquipeDomicile { get; set; }
 		public int ButsEquipeExterieur { get; set; }
+		public int ButsPenaltiesEquipeDomicile { get; set; }
+		public int ButsPenaltiesEquipeExterieur { get; set; }
 
 		[ForeignKey("CompteUtilisateur")]
 		public int CompteUtilisateurID { get; set; }

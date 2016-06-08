@@ -88,5 +88,43 @@ namespace PronosContest.BLL
                 _pronosContestContextDatabase.SaveChanges();
             }
         }
-    }
+		public void SetScorePenalties(int pUserID, int pConcoursID, int pMatchID, int pEquipeAID, int pEquipeBID, bool pIsExterieur, int pButs)
+		{
+			var concours = _pronosContestContextDatabase.Concours.Where(c => c.ID == pConcoursID).FirstOrDefault();
+			if (concours != null)
+			{
+				var prono = concours.Pronostics.Where(p => p.MatchID == pMatchID && p.CompteUtilisateurID == pUserID).FirstOrDefault();
+				if (prono != null)
+				{
+					prono.EquipeAID = pEquipeAID;
+					prono.EquipeBID = pEquipeBID;
+					if (!pIsExterieur)
+						prono.ButsPenaltiesEquipeDomicile = pButs;
+					else
+						prono.ButsPenaltiesEquipeExterieur = pButs;
+				}
+				else
+				{
+					Pronostic newProno = new Pronostic()
+					{
+						CompteUtilisateurID = pUserID,
+						DateCreation = DateTime.Now,
+						EtatPronostic = EtatPronostic.EnCours,
+						ButsEquipeDomicile = 0,
+						ButsEquipeExterieur = 0,
+						MatchID = pMatchID,
+						TypePronostic = TypeDePronostic.ScoreExact,
+						EquipeAID = pEquipeAID,
+						EquipeBID = pEquipeBID
+					};
+					if (!pIsExterieur)
+						newProno.ButsPenaltiesEquipeDomicile = pButs;
+					else
+						newProno.ButsPenaltiesEquipeExterieur = pButs;
+					concours.Pronostics.Add(newProno);
+				}
+				_pronosContestContextDatabase.SaveChanges();
+			}
+		}
+	}
 }

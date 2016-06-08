@@ -267,8 +267,9 @@ namespace PronosContest.BLL
                         Competition = compet,
                         CompteUtilisateurID = user.ID,
                         DateDebut = DateTime.Now.Date,
-                        EtatConcours = EtatConcours.EnCours
-                    });
+                        EtatConcours = EtatConcours.EnCours,
+						DateLimiteSaisie = new DateTime(2016, 06, 12, 23, 59, 59)
+					});
                     
                     _pronosContestContextDatabase.SaveChanges();
                 }

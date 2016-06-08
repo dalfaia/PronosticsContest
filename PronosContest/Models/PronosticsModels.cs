@@ -33,7 +33,9 @@ namespace PronosContest.Models
         public int NumeroMatch { get; set; }
         public int ButsA { get; set; }
         public int ButsB { get; set; }
-        public int MatchID { get; set; }
+		public int PenaltiesA { get; set; }
+		public int PenaltiesB { get; set; }
+		public int MatchID { get; set; }
         public int ConcoursID { get; set; }
         public EtatPronostic Etat { get; set; }
         public bool IsReadOnly { get; set; }
@@ -50,7 +52,10 @@ namespace PronosContest.Models
 				}
 				else
 				{
-					return 0;
+					if (this.PenaltiesA > this.PenaltiesB)
+						return this.EquipeAID;
+					else
+						return this.EquipeBID;
 				}
 			}
 		}

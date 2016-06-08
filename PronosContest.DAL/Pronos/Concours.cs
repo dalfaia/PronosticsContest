@@ -24,6 +24,7 @@ namespace PronosContest.DAL.Pronos
 		public EtatConcours EtatConcours { get; set; }		
 		public DateTime DateDebut { get; set; }
 		public DateTime? DateFin { get; set; }
+		public DateTime DateLimiteSaisie { get; set; }
 
 		[ForeignKey("Competition")]
 		public int CompetitionID { get; set; }

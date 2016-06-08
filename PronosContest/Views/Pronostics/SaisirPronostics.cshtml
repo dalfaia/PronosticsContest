@@ -16,6 +16,18 @@
         });
     }
 
+	function SetScorePenalties(pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur, pValue) {
+		$.ajax({
+			url: '@Url.Action("SetScorePenalties")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + pValue,
+			context: { ConcoursID: pConcoursID, GroupeID: pGroupeID },
+			type: 'GET',
+			dataType: 'html',
+			success: function (result) {
+				
+			}
+		});
+	}
+
     function RemplirClassement(pConcoursID, pGroupeID) {
         $.ajax({
             url: '@Url.Action("GetClassement")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID,
@@ -29,37 +41,56 @@
     }
 </script> 
 <div class="hidden-md hidden-lg">
-    <div class="row" style="margin-bottom: 10px;">
+    <div class="row" >
         <div class="col-xs-12">
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 @{
-                    <div class="btn-group" role="group">
-                        @{
-                            if (this.Model.Any(m => m.IsChoosen))
-                            {
-                                @Html.ActionLink("#", "SaisirPronostics", new { pConcoursID = concoursID }, new { @class = "btn btn-default" })
-                            }
-                            else
-                            {
-                                @Html.ActionLink("#", "SaisirPronostics", new { pConcoursID = concoursID }, new { @class = "btn btn-primary" })
-                            }
-                        }
-                    </div>
-                    foreach (var grp in this.Model)
-                    {
-                        <div class="btn-group" role="group">
-                            @{
-                                if (grp.IsChoosen)
-                                {
-                                    @Html.ActionLink(grp.ShortName, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name }, new { @class = "btn btn-primary" })
-                                }
-                                else
-                                {
-                                    @Html.ActionLink(grp.ShortName, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name }, new { @class = "btn btn-default" })
-                                }
-                            }
-                        </div>
-                    }
+					<div class="dropdown">
+						<button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown">
+							@{
+								if (this.Model.Any(m => m.IsChoosen))
+								{
+									<span>@this.Model.Where(m => m.IsChoosen).FirstOrDefault().Name</span>
+								}
+								else
+								{
+									<span>Tous les groupes</span>
+								}
+							}
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li>
+								@{
+									if (this.Model.Any(m => m.IsChoosen))
+									{
+										@Html.ActionLink("Tous les groupes", "SaisirPronostics", new { pConcoursID = concoursID }, null)
+									}
+									else
+									{
+										@Html.ActionLink("Tous les groupes", "SaisirPronostics", new { pConcoursID = concoursID }, null)
+									}
+								}
+							</li>
+							@{
+								foreach (var grp in this.Model)
+								{
+									<li>
+										@{
+											if (grp.IsChoosen)
+											{
+												@Html.ActionLink(grp.ShortName, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name }, null)
+											}
+											else
+											{
+												@Html.ActionLink(grp.ShortName, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name }, null)
+											}
+										}
+									</li>
+								}
+							}
+						</ul>
+					</div>
                 }
             </div>
         </div>
@@ -85,7 +116,7 @@
         var groupes = this.Model.Where(m => m.IsChoosen);
         if (!groupes.Any())
         {
-            groupes = this.Model;
+            groupes = this.Model.Where(m => m.TypePhaseFinale == null);
         }
     }
     <div class="col-md-9 hidden-xs hidden-sm">
@@ -97,8 +128,8 @@
                     <div class="panel-body">
                         <table>
                             @{
-                                foreach (var prono in grp.MatchsPronostics)
-                                {
+								foreach (var prono in grp.MatchsPronostics)
+								{
                                     <tr>
                                         <td width="130px">
                                             <div class="form-group">
@@ -117,16 +148,28 @@
                                         <td width="80px">
                                             <center>
                                                 <div class="form-group">
-                                                   @{
-                                                        if (prono.IsReadOnly)
-                                                        {
-                                                            <span class="text-primary">@prono.ButsA</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
-                                                        }
-                                                    }
+													@{
+														if (prono.IsReadOnly)
+														{
+															<span class="text-primary">@prono.ButsA</span>
+															if (prono.PenaltiesA > 0)
+															{
+																<span class="text-primary">(@prono.PenaltiesA)</span>
+															}
+														}
+														else
+														{
+															<span>
+																@Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
+															</span>
+															if (grp.TypePhaseFinale != null)
+															{
+																<span>
+																	@Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesA", prono.PenaltiesA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
+																</span>
+															}
+														}
+													}
                                                 </div>
                                             </center>
                                         </td>
@@ -134,15 +177,27 @@
                                             <center>
                                                 <div class="form-group">
                                                     @{
-                                                        if (prono.IsReadOnly)
-                                                        {
-                                                            <span class="text-primary">@prono.ButsB</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
-                                                        }
-                                                    }
+														if (prono.IsReadOnly)
+														{
+															<span class="text-primary">@prono.ButsB</span>
+															if (prono.PenaltiesB > 0)
+															{
+																<span class="text-primary">(@prono.PenaltiesB)</span>
+															}
+														}
+														else
+														{
+															<span>
+																@Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
+															</span>
+															if (grp.TypePhaseFinale != null)
+															{
+																<span>
+																	@Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesB", prono.PenaltiesB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
+																</span>
+															}
+														}
+													}
                                                 </div>
                                             </center>
                                         </td>
@@ -223,29 +278,53 @@
                                 <div class="col-xs-2">
                                     <div class="form-group">
                                         @{
-                                            if (prono.IsReadOnly)
-                                            {
-                                                <span class="text-primary">@prono.ButsA</span>
-                                            }
-                                            else
-                                            {
-                                                @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "',$(this).val());" })
-                                            }
-                                        }
+											if (prono.IsReadOnly)
+											{
+												<span class="text-primary">@prono.ButsA</span>
+												if (prono.PenaltiesA > 0)
+												{
+													<span class="text-primary">(@prono.PenaltiesA)</span>
+												}
+											}
+											else
+											{
+												<span>
+													@Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
+												</span>
+												if (grp.TypePhaseFinale != null)
+												{
+													<span>
+														@Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesA", prono.PenaltiesA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
+													</span>
+												}
+											}
+										}
                                     </div>
                                 </div>
                                 <div class="col-xs-2">
                                     <div class="form-group">
-                                        @{
-                                            if (prono.IsReadOnly)
-                                            {
-                                                <span class="text-primary">@prono.ButsB</span>
-                                            }
-                                            else
-                                            {
-                                                @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeBID + "',$(this).val());" })
-                                            }
-                                        }
+										@{
+											if (prono.IsReadOnly)
+											{
+												<span class="text-primary">@prono.ButsB</span>
+												if (prono.PenaltiesB > 0)
+												{
+													<span class="text-primary">(@prono.PenaltiesB)</span>
+												}
+											}
+											else
+											{
+												<span>
+													@Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
+												</span>
+												if (grp.TypePhaseFinale != null)
+												{
+													<span>
+														@Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesB", prono.PenaltiesB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
+													</span>
+												}
+											}
+										}
                                     </div>
                                 </div>
                                 <div class="col-xs-4">
