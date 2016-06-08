@@ -118,7 +118,7 @@ namespace PronosContest.DAL.Pronos
                 }
             }
 
-            return classementFinal.OrderByDescending(c => c.Points).OrderByDescending(c => c.Difference).ToList();
+            return classementFinal.OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
         }
         public class ClassementGroupeModel
         {

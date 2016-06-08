@@ -73,6 +73,7 @@ namespace PronosContest.Controllers
                                 {
                                     ConcoursID = concours.ID,
                                     MatchID = match.ID,
+                                    NumeroMatch = match.NumeroMatch,
                                     EquipeAID = match.EquipeA.ID,
                                     EquipeBID = match.EquipeB.ID,
                                     EquipeAName = match.EquipeA.Libelle,
@@ -94,6 +95,7 @@ namespace PronosContest.Controllers
                                 {
                                     ConcoursID = concours.ID,
                                     MatchID = match.ID,
+                                    NumeroMatch = match.NumeroMatch,
                                     EquipeAID = match.EquipeA.ID,
                                     EquipeBID = match.EquipeB.ID,
                                     EquipeAName = match.EquipeA.Libelle,
@@ -114,6 +116,7 @@ namespace PronosContest.Controllers
                     {
                         GroupePronosticsModel grpModel = new GroupePronosticsModel();
                         grpModel.ID = grp.ID;
+                        grpModel.TypePhaseFinale = grp.TypePhaseFinale;
                         switch (grp.TypePhaseFinale)
                         {
                             case TypePhaseFinale.TrenteDeuxieme:
@@ -149,24 +152,22 @@ namespace PronosContest.Controllers
                             PronosticsModel pronoModel = new PronosticsModel();
                             if (prono != null)
                             {
-                                grpModel.MatchsPronostics.Add(new PronosticsModel()
-                                {
-                                    ConcoursID = concours.ID,
-                                    MatchID = match.ID,
-                                    EquipeAID = match.EquipeA.ID,
-                                    EquipeBID = match.EquipeB.ID,
-                                    EquipeAName = match.EquipeA.Libelle,
-                                    EquipeBName = match.EquipeB.Libelle,
-                                    EquipeAShortName = match.EquipeA.ShortName,
-                                    EquipeBShortName = match.EquipeB.ShortName,
-                                    ButsA = prono.ButsEquipeDomicile,
-                                    ButsB = prono.ButsEquipeExterieur,
-                                    LogoUrlEquipeA = match.EquipeA.Logo,
-                                    LogoUrlEquipeB = match.EquipeB.Logo,
-                                    DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString(),
-                                    Etat = prono.EtatPronostic,
-                                    IsReadOnly = concours.Competition.DateDebut < DateTime.Now
-                                });
+                                pronoModel.ConcoursID = concours.ID;
+                                pronoModel.MatchID = prono.MatchID;
+                                pronoModel.EquipeAID = prono.EquipeA.ID;
+                                pronoModel.EquipeBID = prono.EquipeB.ID;
+                                pronoModel.EquipeAName = prono.EquipeA.Libelle;
+                                pronoModel.EquipeBName = prono.EquipeB.Libelle;
+                                pronoModel.EquipeAShortName = prono.EquipeA.ShortName;
+                                pronoModel.EquipeBShortName = prono.EquipeB.ShortName;
+                                pronoModel.ButsA = prono.ButsEquipeDomicile;
+                                pronoModel.ButsB = prono.ButsEquipeExterieur;
+                                pronoModel.LogoUrlEquipeA = prono.EquipeA.Logo;
+                                pronoModel.LogoUrlEquipeB = prono.EquipeB.Logo;
+                                pronoModel.NumeroMatch = match.NumeroMatch;
+                                pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
+                                pronoModel.Etat = prono.EtatPronostic;
+                                pronoModel.IsReadOnly = concours.Competition.DateDebut < DateTime.Now;
                             }
                             else
                             {
@@ -180,8 +181,8 @@ namespace PronosContest.Controllers
                                     if (match.EquipePossibleDomicile_Place != null && match.EquipePossibleExterieur_Place != null)
                                     {
 										// Premiere phase finale (generation apres les groupes)
-										var combinaisonStr = concours.Competition.GetCombinaisonClassementTroisiemes(concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID).ToList()).OrderBy(c => c).ToString();
-										var combinaison = concours.Competition.TableauCombinaisons.Where(tc => tc.ToString() == combinaisonStr).FirstOrDefault();
+										var combinaison3emes = concours.Competition.GetCombinaisonClassementTroisiemes(concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID).ToList());
+										var combinaison = concours.Competition.TableauCombinaisons.Where(tc => tc.Combinaisons.Intersect(combinaison3emes).Count() == combinaison3emes.Count).FirstOrDefault();
 
                                         var groupe_A = concours.Competition.Groupes.Where(g => match.EquipePossibleDomicile_Groupes.Contains(g.Lettre)).FirstOrDefault();
                                         var classement_A = groupe_A.ClassementWithPronostics(concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID).ToList());
@@ -226,6 +227,7 @@ namespace PronosContest.Controllers
                                             pronoModel.LogoUrlEquipeB = equipeB.Logo;
                                             pronoModel.ConcoursID = concours.ID;
                                             pronoModel.MatchID = match.ID;
+                                            pronoModel.NumeroMatch = match.NumeroMatch;
                                             pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
                                             pronoModel.Etat = EtatPronostic.Empty;
                                             pronoModel.IsReadOnly = false;
@@ -240,8 +242,9 @@ namespace PronosContest.Controllers
 											{
 												var Match_A_ID = match.MatchVainqueurDomicileID.Value;
 												var Match_B_ID = match.MatchVainqueurExterieurID.Value;
-												var match_A = grpModel.MatchsPronostics.Where(m => m.MatchID == Match_A_ID).FirstOrDefault();
-												var match_B = grpModel.MatchsPronostics.Where(m => m.MatchID == Match_A_ID).FirstOrDefault();
+                                                var pronosHuitiemes = model.Where(m => m.TypePhaseFinale == TypePhaseFinale.Huitieme).FirstOrDefault();
+                                                var match_A = pronosHuitiemes.MatchsPronostics.Where(m => m.NumeroMatch == Match_A_ID).FirstOrDefault();
+												var match_B = pronosHuitiemes.MatchsPronostics.Where(m => m.NumeroMatch == Match_B_ID).FirstOrDefault();
 												var equipeA = concours.Competition.Equipes.Where(e => e.ID == match_A.VanqueurID).FirstOrDefault();
 												var equipeB = concours.Competition.Equipes.Where(e => e.ID == match_B.VanqueurID).FirstOrDefault();
 												if (equipeA != null && equipeB != null)
@@ -256,7 +259,8 @@ namespace PronosContest.Controllers
 													pronoModel.LogoUrlEquipeB = equipeB.Logo;
 													pronoModel.ConcoursID = concours.ID;
 													pronoModel.MatchID = match.ID;
-													pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
+                                                    pronoModel.NumeroMatch = match.NumeroMatch;
+                                                    pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
 													pronoModel.Etat = EtatPronostic.Empty;
 													pronoModel.IsReadOnly = false;
 												}
@@ -269,8 +273,9 @@ namespace PronosContest.Controllers
 											{
 												var Match_A_ID = match.MatchVainqueurDomicileID.Value;
 												var Match_B_ID = match.MatchVainqueurExterieurID.Value;
-												var match_A = grpModel.MatchsPronostics.Where(m => m.MatchID == Match_A_ID).FirstOrDefault();
-												var match_B = grpModel.MatchsPronostics.Where(m => m.MatchID == Match_A_ID).FirstOrDefault();
+                                                var pronosQuarts = model.Where(m => m.TypePhaseFinale == TypePhaseFinale.Quart).FirstOrDefault();
+                                                var match_A = pronosQuarts.MatchsPronostics.Where(m => m.NumeroMatch == Match_A_ID).FirstOrDefault();
+                                                var match_B = pronosQuarts.MatchsPronostics.Where(m => m.NumeroMatch == Match_B_ID).FirstOrDefault();
 												var equipeA = concours.Competition.Equipes.Where(e => e.ID == match_A.VanqueurID).FirstOrDefault();
 												var equipeB = concours.Competition.Equipes.Where(e => e.ID == match_B.VanqueurID).FirstOrDefault();
 												if (equipeA != null && equipeB != null)
@@ -285,7 +290,8 @@ namespace PronosContest.Controllers
 													pronoModel.LogoUrlEquipeB = equipeB.Logo;
 													pronoModel.ConcoursID = concours.ID;
 													pronoModel.MatchID = match.ID;
-													pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
+                                                    pronoModel.NumeroMatch = match.NumeroMatch;
+                                                    pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
 													pronoModel.Etat = EtatPronostic.Empty;
 													pronoModel.IsReadOnly = false;
 												}
@@ -298,9 +304,10 @@ namespace PronosContest.Controllers
 											{
 												var Match_A_ID = match.MatchVainqueurDomicileID.Value;
 												var Match_B_ID = match.MatchVainqueurExterieurID.Value;
-												var match_A = grpModel.MatchsPronostics.Where(m => m.MatchID == Match_A_ID).FirstOrDefault();
-												var match_B = grpModel.MatchsPronostics.Where(m => m.MatchID == Match_A_ID).FirstOrDefault();
-												var equipeA = concours.Competition.Equipes.Where(e => e.ID == match_A.VanqueurID).FirstOrDefault();
+                                                var pronosDemis = model.Where(m => m.TypePhaseFinale == TypePhaseFinale.Demi).FirstOrDefault();
+                                                var match_A = pronosDemis.MatchsPronostics.Where(m => m.NumeroMatch == Match_A_ID).FirstOrDefault();
+                                                var match_B = pronosDemis.MatchsPronostics.Where(m => m.NumeroMatch == Match_B_ID).FirstOrDefault();
+                                                var equipeA = concours.Competition.Equipes.Where(e => e.ID == match_A.VanqueurID).FirstOrDefault();
 												var equipeB = concours.Competition.Equipes.Where(e => e.ID == match_B.VanqueurID).FirstOrDefault();
 												if (equipeA != null && equipeB != null)
 												{
@@ -314,7 +321,8 @@ namespace PronosContest.Controllers
 													pronoModel.LogoUrlEquipeB = equipeB.Logo;
 													pronoModel.ConcoursID = concours.ID;
 													pronoModel.MatchID = match.ID;
-													pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
+                                                    pronoModel.NumeroMatch = match.NumeroMatch;
+                                                    pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
 													pronoModel.Etat = EtatPronostic.Empty;
 													pronoModel.IsReadOnly = false;
 												}
@@ -330,6 +338,7 @@ namespace PronosContest.Controllers
                                     pronoModel.EquipeBShortName = match.EquipePossibleExterieur_Libelle;
                                     pronoModel.ConcoursID = concours.ID;
                                     pronoModel.MatchID = match.ID;
+                                    pronoModel.NumeroMatch = match.NumeroMatch;
                                     pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
                                     pronoModel.Etat = EtatPronostic.Empty;
                                     pronoModel.IsReadOnly = false;
@@ -357,16 +366,18 @@ namespace PronosContest.Controllers
             return PartialView();
         }
         [HttpGet]
-        public async Task<bool> SetScore(string pConcoursID, string pGroupeID, string pMatchID, string pEquipeID, string pValue)
+        public async Task<bool> SetScore(string pConcoursID, string pGroupeID, string pMatchID, string pEquipeAID, string pEquipeBID, string pIsExterieur, string pValue)
         {
             int userID = this.UserID.Value;
             int concoursID = Helper.GetIntFromString(pConcoursID).Value;
             int matchID = Helper.GetIntFromString(pMatchID).Value;
-            int equipeID = Helper.GetIntFromString(pEquipeID).Value;
+            int equipeAID = Helper.GetIntFromString(pEquipeAID).Value;
+            int equipeBID = Helper.GetIntFromString(pEquipeBID).Value;
             int value = Helper.GetIntFromString(pValue).Value;
+            bool isExterieur = Helper.GetBoolFromString(pIsExterieur).Value;
             int groupeID = Helper.GetIntFromString(pGroupeID).Value;
 
-            PronosContestWebService.GetService().PronosService.SetScore(userID, concoursID, matchID, equipeID, value);
+            PronosContestWebService.GetService().PronosService.SetScore(userID, concoursID, matchID, equipeAID, equipeBID, isExterieur, value);
             return true;
         }
 
@@ -376,7 +387,8 @@ namespace PronosContest.Controllers
             if (concours != null)
             {
                 var grp = concours.Competition.Groupes.Where(g => g.ID == pGroupeID).FirstOrDefault();
-                return grp.ClassementWithPronostics(concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && p.Match.PhaseGroupeID == grp.ID).ToList());
+                if (grp != null)
+                    return grp.ClassementWithPronostics(concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && p.Match.PhaseGroupeID == grp.ID).ToList());
             }
             return null;
         }

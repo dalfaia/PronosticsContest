@@ -31,8 +31,9 @@
                 @Html.TextBoxFor(m => m.Prenom, new { @class = "form-control", placeholder = "Prénom" })
             </div>
             <!-- Change this to a button or input when using this as a form -->
-            <button class="btn btn-lg btn-success" type="submit">Enregistrer</button>
-            <button class="btn btn-lg btn-default" type="reset">Annuler</button>
+            <button class="btn btn-md btn-success" type="submit">Enregistrer</button>
+            <button class="btn btn-md btn-default" type="reset">Annuler</button>
+            @Html.ActionLink("Retour", "LogIn", null, new { @class= "btn btn-md btn-primary pull-right" })
         </fieldset>
     }
 </div>

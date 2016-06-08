@@ -71,7 +71,7 @@ namespace PronosContest.DAL.Pronos
 				classement.Add(equipe3eme);
 			}
 
-			classement = classement.OrderByDescending(c => c.Points).OrderByDescending(c => c.Difference).OrderByDescending(c => c.ButsMarques).ToList();
+			classement = classement.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
 
 			List<char> combinaisons = new List<char>();
 			foreach (var cl in classement.Take(4))

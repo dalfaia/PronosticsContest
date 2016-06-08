@@ -1,7 +1,7 @@
 ﻿@model List<PronosContest.DAL.Pronos.PhaseGroupe.ClassementGroupeModel>
 
 @{
-    if (this.Model.Any())
+    if (this.Model != null && this.Model.Any())
     {
         <div class="table-responsive">
             <table class="table">

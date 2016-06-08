@@ -35,7 +35,9 @@ namespace PronosContest.DAL.Pronos
 
 		public DateTime DateCreation { get; set; }
 
-		public int ButsEquipeDomicile { get; set; }
+        public int? EquipeAID { get; set; }
+        public int? EquipeBID { get; set; }
+        public int ButsEquipeDomicile { get; set; }
 		public int ButsEquipeExterieur { get; set; }
 
 		[ForeignKey("CompteUtilisateur")]
@@ -55,6 +57,10 @@ namespace PronosContest.DAL.Pronos
 		public virtual CompteUtilisateur CompteUtilisateur { get; set; }
 		public virtual Match Match { get; set; }
 		public virtual Concours Concours { get; set; }
-		#endregion
-	}
+        [ForeignKey("EquipeAID")]
+        public virtual Equipe EquipeA { get; set; }
+        [ForeignKey("EquipeBID")]
+        public virtual Equipe EquipeB { get; set; }
+        #endregion
+    }
 }

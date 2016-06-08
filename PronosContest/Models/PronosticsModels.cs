@@ -30,6 +30,7 @@ namespace PronosContest.Models
         public string EquipeBShortName { get; set; }
         public string LogoUrlEquipeA { get; set; }
         public string LogoUrlEquipeB { get; set; }
+        public int NumeroMatch { get; set; }
         public int ButsA { get; set; }
         public int ButsB { get; set; }
         public int MatchID { get; set; }
@@ -62,6 +63,7 @@ namespace PronosContest.Models
         public string ShortName { get; set; }
         public bool IsChoosen { get; set; }
         public List<PronosticsModel> MatchsPronostics { get; set; }
+        public TypePhaseFinale? TypePhaseFinale { get; set; }
         public List<PhaseGroupe.ClassementGroupeModel> Classement { get; set; }
 
         public GroupePronosticsModel()

@@ -47,7 +47,7 @@ namespace PronosContest.BLL
                         equipeFrance,
                         equipeRoumanie,
                         equipeAlbanie,
-                        equipeAlbanie
+                        equipeSuisse
                     }
                     });
 
@@ -86,7 +86,7 @@ namespace PronosContest.BLL
                     #endregion
 
                     #region Groupe C
-                    var equipeAllemagne = _pronosContestContextDatabase.Equipes.Add(new Equipe() { Libelle = "Allemagne", ShortName = "ALL", Logo = "http://flags.fmcdn.net/data/flags/w580/ge.png" });
+                    var equipeAllemagne = _pronosContestContextDatabase.Equipes.Add(new Equipe() { Libelle = "Allemagne", ShortName = "ALL", Logo = "http://flags.fmcdn.net/data/flags/w580/de.png" });
                     var equipeIrlandeDuNord = _pronosContestContextDatabase.Equipes.Add(new Equipe() { Libelle = "Irlande du Nord", ShortName = "IRN", Logo = "http://www.drapeaux-nationaux.fr/media/flags/flagge-nordirland.gif" });
                     var equipeUkraine = _pronosContestContextDatabase.Equipes.Add(new Equipe() { Libelle = "Ukraine", ShortName = "UKR", Logo = "http://flags.fmcdn.net/data/flags/w580/ua.png" });
                     var equipePologne = _pronosContestContextDatabase.Equipes.Add(new Equipe() { Libelle = "Pologne", ShortName = "POL", Logo = "http://flags.fmcdn.net/data/flags/w580/pl.png" });
@@ -215,10 +215,10 @@ namespace PronosContest.BLL
                         }
                     });
 
-                    var match_quart_1 = new Match() { NumeroMatch = 45, EquipePossibleDomicile_Libelle = "Vainqueur 37", MatchVainqueurDomicileID = match_huitieme_1.ID, EquipePossibleExterieur_Libelle = "Vainqueur 39", MatchVainqueurExterieurID = match_huitieme_3.ID, Date = new DateTime(2016, 6, 30, 21, 00, 00), Stade = "Stade Vélodrome, Marseille" };
-                    var match_quart_2 = new Match() { NumeroMatch = 46, EquipePossibleDomicile_Libelle = "Vainqueur 38", MatchVainqueurDomicileID = match_huitieme_2.ID, EquipePossibleExterieur_Libelle = "Vainqueur 42", MatchVainqueurExterieurID = match_huitieme_6.ID, Date = new DateTime(2016, 7, 1, 21, 00, 00), Stade = "Stade Pierre Mauroy, Lille" };
-                    var match_quart_3 = new Match() { NumeroMatch = 47, EquipePossibleDomicile_Libelle = "Vainqueur 41", MatchVainqueurDomicileID = match_huitieme_5.ID, EquipePossibleExterieur_Libelle = "Vainqueur 43", MatchVainqueurExterieurID = match_huitieme_7.ID, Date = new DateTime(2016, 7, 2, 21, 00, 00), Stade = "Stade de Bordeaux, Bordeaux" };
-                    var match_quart_4 = new Match() { NumeroMatch = 48, EquipePossibleDomicile_Libelle = "Vainqueur 40", MatchVainqueurDomicileID = match_huitieme_4.ID, EquipePossibleExterieur_Libelle = "Vainqueur 44", MatchVainqueurExterieurID = match_huitieme_8.ID, Date = new DateTime(2016, 7, 3, 21, 00, 00), Stade = "Stade de France, Saint-Denis" };
+                    var match_quart_1 = new Match() { NumeroMatch = 45, EquipePossibleDomicile_Libelle = "Vainqueur 37", MatchVainqueurDomicileID = match_huitieme_1.NumeroMatch, EquipePossibleExterieur_Libelle = "Vainqueur 39", MatchVainqueurExterieurID = match_huitieme_3.NumeroMatch, Date = new DateTime(2016, 6, 30, 21, 00, 00), Stade = "Stade Vélodrome, Marseille" };
+                    var match_quart_2 = new Match() { NumeroMatch = 46, EquipePossibleDomicile_Libelle = "Vainqueur 38", MatchVainqueurDomicileID = match_huitieme_2.NumeroMatch, EquipePossibleExterieur_Libelle = "Vainqueur 42", MatchVainqueurExterieurID = match_huitieme_6.NumeroMatch, Date = new DateTime(2016, 7, 1, 21, 00, 00), Stade = "Stade Pierre Mauroy, Lille" };
+                    var match_quart_3 = new Match() { NumeroMatch = 47, EquipePossibleDomicile_Libelle = "Vainqueur 41", MatchVainqueurDomicileID = match_huitieme_5.NumeroMatch, EquipePossibleExterieur_Libelle = "Vainqueur 43", MatchVainqueurExterieurID = match_huitieme_7.NumeroMatch, Date = new DateTime(2016, 7, 2, 21, 00, 00), Stade = "Stade de Bordeaux, Bordeaux" };
+                    var match_quart_4 = new Match() { NumeroMatch = 48, EquipePossibleDomicile_Libelle = "Vainqueur 40", MatchVainqueurDomicileID = match_huitieme_4.NumeroMatch, EquipePossibleExterieur_Libelle = "Vainqueur 44", MatchVainqueurExterieurID = match_huitieme_8.NumeroMatch, Date = new DateTime(2016, 7, 3, 21, 00, 00), Stade = "Stade de France, Saint-Denis" };
                     
                     compet.PhasesFinales.Add(new PhaseFinale()
                     {
@@ -234,8 +234,8 @@ namespace PronosContest.BLL
 
                     _pronosContestContextDatabase.SaveChanges();
 
-                    var match_demi_1 = new Match() { NumeroMatch = 49, EquipePossibleDomicile_Libelle = "Vainqueur 45", MatchVainqueurDomicileID = match_quart_1.ID, EquipePossibleExterieur_Libelle = "Vainqueur 46", MatchVainqueurExterieurID = match_quart_2.ID, Date = new DateTime(2016, 7, 6, 21, 00, 00), Stade = "Parc Olympique Lyonnais, Lyon" };
-                    var match_demi_2 = new Match() { NumeroMatch = 50, EquipePossibleDomicile_Libelle = "Vainqueur 47", MatchVainqueurDomicileID = match_quart_3.ID, EquipePossibleExterieur_Libelle = "Vainqueur 48", MatchVainqueurExterieurID = match_quart_4.ID, Date = new DateTime(2016, 7, 7, 21, 00, 00), Stade = "Stade Vélodrome, Marseille" };
+                    var match_demi_1 = new Match() { NumeroMatch = 49, EquipePossibleDomicile_Libelle = "Vainqueur 45", MatchVainqueurDomicileID = match_quart_1.NumeroMatch, EquipePossibleExterieur_Libelle = "Vainqueur 46", MatchVainqueurExterieurID = match_quart_2.NumeroMatch, Date = new DateTime(2016, 7, 6, 21, 00, 00), Stade = "Parc Olympique Lyonnais, Lyon" };
+                    var match_demi_2 = new Match() { NumeroMatch = 50, EquipePossibleDomicile_Libelle = "Vainqueur 47", MatchVainqueurDomicileID = match_quart_3.NumeroMatch, EquipePossibleExterieur_Libelle = "Vainqueur 48", MatchVainqueurExterieurID = match_quart_4.NumeroMatch, Date = new DateTime(2016, 7, 7, 21, 00, 00), Stade = "Stade Vélodrome, Marseille" };
                     
                     compet.PhasesFinales.Add(new PhaseFinale()
                     {
@@ -249,7 +249,7 @@ namespace PronosContest.BLL
 
                     _pronosContestContextDatabase.SaveChanges();
 
-                    var match_finale = new Match() { NumeroMatch = 51, EquipePossibleDomicile_Libelle = "Vainqueur 49", MatchVainqueurDomicileID = match_demi_1.ID, EquipePossibleExterieur_Libelle = "Vainqueur 50", MatchVainqueurExterieurID = match_demi_2.ID, Date = new DateTime(2016, 7, 10, 21, 00, 00), Stade = "Stade de France, Saint Denis" };
+                    var match_finale = new Match() { NumeroMatch = 51, EquipePossibleDomicile_Libelle = "Vainqueur 49", MatchVainqueurDomicileID = match_demi_1.NumeroMatch, EquipePossibleExterieur_Libelle = "Vainqueur 50", MatchVainqueurExterieurID = match_demi_2.NumeroMatch, Date = new DateTime(2016, 7, 10, 21, 00, 00), Stade = "Stade de France, Saint Denis" };
 
                     compet.PhasesFinales.Add(new PhaseFinale()
                     {

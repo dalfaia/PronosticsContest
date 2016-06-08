@@ -4,9 +4,9 @@
     var concoursID = Request.Params["pConcoursID"];
 }
 <script type="text/javascript">
-    function SetScore(pConcoursID, pGroupeID, pMatchID, pEquipeID, pValue) {
+    function SetScore(pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur, pValue) {
         $.ajax({
-            url: '@Url.Action("SetScore")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeID=' + pEquipeID + '&pValue=' + pValue,
+            url: '@Url.Action("SetScore")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + pValue,
             context: { ConcoursID: pConcoursID, GroupeID: pGroupeID },
             type: 'GET',
             dataType: 'html',
@@ -124,7 +124,7 @@
                                                         }
                                                         else
                                                         {
-                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "',$(this).val());" })
+                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
                                                         }
                                                     }
                                                 </div>
@@ -140,7 +140,7 @@
                                                         }
                                                         else
                                                         {
-                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeBID + "',$(this).val());" })
+                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
                                                         }
                                                     }
                                                 </div>

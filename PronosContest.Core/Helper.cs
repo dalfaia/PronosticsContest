@@ -15,5 +15,12 @@ namespace PronosContest.Core
 				return result;
 			return null;
         }
+        public static bool? GetBoolFromString(string pString)
+        {
+            bool result = false;
+            if (bool.TryParse(pString, out result))
+                return result;
+            return null;
+        }
     }
 }

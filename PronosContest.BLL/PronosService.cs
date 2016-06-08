@@ -52,7 +52,7 @@ namespace PronosContest.BLL
             }
         }
 
-        public void SetScore(int pUserID, int pConcoursID, int pMatchID, int pEquipeID, int pButs)
+        public void SetScore(int pUserID, int pConcoursID, int pMatchID, int pEquipeAID, int pEquipeBID, bool pIsExterieur, int pButs)
         {
             var concours = _pronosContestContextDatabase.Concours.Where(c => c.ID == pConcoursID).FirstOrDefault();
             if (concours != null)
@@ -60,8 +60,9 @@ namespace PronosContest.BLL
                 var prono = concours.Pronostics.Where(p => p.MatchID == pMatchID && p.CompteUtilisateurID == pUserID).FirstOrDefault();
                 if (prono != null)
                 {
-                    var match = prono.Match;
-                    if (match.EquipeAID == pEquipeID)
+                    prono.EquipeAID = pEquipeAID;
+                    prono.EquipeBID = pEquipeBID;
+                    if (!pIsExterieur)
                         prono.ButsEquipeDomicile = pButs;
                     else
                         prono.ButsEquipeExterieur = pButs;
@@ -74,30 +75,17 @@ namespace PronosContest.BLL
                         DateCreation = DateTime.Now,
                         EtatPronostic = EtatPronostic.EnCours,
                         MatchID = pMatchID,
-                        TypePronostic = TypeDePronostic.ScoreExact
+                        TypePronostic = TypeDePronostic.ScoreExact,
+                        EquipeAID = pEquipeAID,
+                        EquipeBID = pEquipeBID
                     };
-                    var match = _pronosContestContextDatabase.Matchs.Where(m => m.ID == pMatchID).FirstOrDefault();
-                    if (match != null)
-                        if (match.EquipeAID == pEquipeID)
-                            newProno.ButsEquipeDomicile = pButs;
-                        else
-                            newProno.ButsEquipeExterieur = pButs;
+                    if (!pIsExterieur)
+                        newProno.ButsEquipeDomicile = pButs;
+                    else
+                        newProno.ButsEquipeExterieur = pButs;
                     concours.Pronostics.Add(newProno);
                 }
                 _pronosContestContextDatabase.SaveChanges();
-
-                /*#region Generation phases finales
-                var nbPronosticsGroupes = concours.Pronostics.Where(p => p.CompteUtilisateurID == pUserID && p.Match.PhaseGroupe != null).Count();
-                var nbMatchsGroupes = 0;
-                foreach (var g in concours.Competition.Groupes)
-                    nbMatchsGroupes += g.Matchs.Count();
-
-                if (nbPronosticsGroupes == nbMatchsGroupes)
-                {
-                    concours.
-                    //générer huitiemes
-                }
-                #endregion*/
             }
         }
     }
