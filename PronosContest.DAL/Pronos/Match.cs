@@ -41,10 +41,38 @@ namespace PronosContest.DAL.Pronos
         public int? EquipePossibleExterieur_Place { get; set; }
         public string EquipePossibleExterieur_Groupes { get; set; }
 
-        #endregion
+		[NotMapped]
+		public int? VainqueurID
+		{
+			get
+			{
+				if (this.ButsEquipeDomicile > this.ButsEquipeExterieur)
+				{
+					return this.EquipeAID;
+				}
+				else if (this.ButsEquipeDomicile < this.ButsEquipeExterieur)
+				{
+					return this.EquipeBID;
+				}
+				else
+				{
+					if (this.ButsPenaltiesEquipeDomicile != null && this.ButsPenaltiesEquipeExterieur != null)
+					{
+						if (this.ButsPenaltiesEquipeDomicile > this.ButsPenaltiesEquipeExterieur)
+							return this.EquipeAID;
+						else
+							return this.EquipeBID;
+					}
+					else
+						return 0;
+				}
+			}
+		}
 
-        #region Propriétés de navigation
-        [ForeignKey("EquipeAID")]
+		#endregion
+
+		#region Propriétés de navigation
+		[ForeignKey("EquipeAID")]
 		public virtual Equipe EquipeA { get; set; }
 		[ForeignKey("EquipeBID")]
 		public virtual Equipe EquipeB { get; set; }

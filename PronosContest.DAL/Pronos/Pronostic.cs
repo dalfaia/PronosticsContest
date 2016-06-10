@@ -48,6 +48,29 @@ namespace PronosContest.DAL.Pronos
 		public int MatchID { get; set; }
 		[ForeignKey("Concours")]
 		public int ConcoursID{ get; set; }
+
+		[NotMapped]
+		public int? VainqueurID 
+		{
+			get
+			{
+				if (this.ButsEquipeDomicile > this.ButsEquipeExterieur)
+				{
+					return this.EquipeAID;
+				}
+				else if (this.ButsEquipeDomicile < this.ButsEquipeExterieur)
+				{
+					return this.EquipeBID;
+				}
+				else
+				{
+					if (this.ButsEquipeDomicile > this.ButsEquipeExterieur)
+						return this.EquipeAID;
+					else
+						return this.EquipeBID;
+				}
+			}
+		}
 		#endregion
 
 		public Pronostic()

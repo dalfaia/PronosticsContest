@@ -70,8 +70,65 @@ namespace PronosContest.DAL.Pronos
                 equipeExt.ButsMarques += match.ButsEquipeExterieur.Value;
                 equipeExt.ButsEncaisses += match.ButsEquipeDomicile.Value;
             }
+			classementFinal = classementFinal.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
+			// ordre du classement
+			if (classementFinal.GroupBy(g => g.Points).Count() != classementFinal.Count)
+			{
+				List<ClassementGroupeModel> classementProvisoire = new List<ClassementGroupeModel>();
 
-            return classementFinal.OrderByDescending(c => c.Points).OrderByDescending(c => c.Difference).ToList();
+				foreach (var c in classementFinal)
+				{
+					if (!classementProvisoire.Any())
+					{
+						classementProvisoire.Add(c);
+						continue;
+					}
+					if (classementProvisoire.Any(cl => cl.Points == c.Points))
+					{
+						// Equipes avec le meme nombre de points
+						var index = 0;
+						foreach (var cp in classementProvisoire.Where(cl => cl.Points == c.Points && cl.IDEquipe != c.IDEquipe))
+						{
+							var equipeA = cp.IDEquipe;
+							var equipeB = c.IDEquipe;
+
+							var matchJoue = this.Matchs.Where(pipcg => (pipcg.EquipeAID == equipeA || pipcg.EquipeBID == equipeA) && (pipcg.EquipeAID == equipeB || pipcg.EquipeBID == equipeB)).FirstOrDefault();
+							if (matchJoue.VainqueurID != null)
+							{
+								if (matchJoue.VainqueurID == equipeA)
+								{
+									index = classementProvisoire.IndexOf(cp) + 1;
+								}
+								else
+								{
+									index = classementProvisoire.IndexOf(cp);
+								}
+							}
+						}
+						classementProvisoire.Insert(index, c);
+					}
+					else
+					{
+						var index = 0;
+						foreach (var cp in classementProvisoire.Where(cl => cl.IDEquipe != c.IDEquipe))
+						{
+							if (cp.Points > c.Points)
+							{
+								index = classementProvisoire.IndexOf(cp) + 1;
+							}
+							else
+							{
+								index = classementProvisoire.IndexOf(cp);
+							}
+						}
+						classementProvisoire.Insert(index, c);
+					}
+				}
+
+				classementFinal = classementProvisoire;
+			}
+
+			return classementFinal;
         }
         public List<ClassementGroupeModel> ClassementWithPronostics(List<Pronostic> pPronosticsIDPourCeGroupe)
         {
@@ -117,8 +174,64 @@ namespace PronosContest.DAL.Pronos
                     equipeExt.ButsEncaisses += prono.ButsEquipeDomicile;
                 }
             }
+			classementFinal = classementFinal.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
+			// ordre du classement
+			if (classementFinal.GroupBy(g=> g.Points).Count() != classementFinal.Count)
+			{
+				List<ClassementGroupeModel> classementProvisoire = new List<ClassementGroupeModel>();
 
-            return classementFinal.OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
+				foreach (var c in classementFinal)
+				{
+					if (!classementProvisoire.Any())
+					{
+						classementProvisoire.Add(c);
+						continue;
+					}
+					if (classementProvisoire.Any(cl => cl.Points == c.Points))
+					{
+						// Equipes avec le meme nombre de points
+						var index = 0;
+						foreach (var cp in classementProvisoire.Where(cl => cl.Points == c.Points && cl.IDEquipe != c.IDEquipe))
+						{
+							var equipeA = cp.IDEquipe;
+							var equipeB = c.IDEquipe;
+
+							var pronoJoue = pPronosticsIDPourCeGroupe.Where(pipcg => (pipcg.EquipeAID == equipeA || pipcg.EquipeBID == equipeA) && (pipcg.EquipeAID == equipeB || pipcg.EquipeBID == equipeB)).FirstOrDefault();
+							if (pronoJoue.VainqueurID != null)
+							{
+								if (pronoJoue.VainqueurID == equipeA)
+								{
+									index = classementProvisoire.IndexOf(cp) + 1;
+								}
+								else
+								{
+									index = classementProvisoire.IndexOf(cp);
+								}
+							}
+						}
+						classementProvisoire.Insert(index, c);
+					}
+					else
+					{
+						var index = 0;
+                        foreach (var cp in classementProvisoire.Where(cl => cl.IDEquipe != c.IDEquipe))
+						{
+							if (cp.Points > c.Points)
+							{
+								index = classementProvisoire.IndexOf(cp) + 1;
+							}
+							else
+							{
+								index = classementProvisoire.IndexOf(cp);
+							}
+						}
+						classementProvisoire.Insert(index, c);
+					}
+				}
+
+				classementFinal = classementProvisoire;
+			}
+			return classementFinal;
         }
         public class ClassementGroupeModel
         {

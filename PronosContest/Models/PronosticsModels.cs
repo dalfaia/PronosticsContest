@@ -6,6 +6,11 @@ using System.Web.Mvc;
 
 namespace PronosContest.Models
 {
+	public enum TypeScore
+	{
+		Domicile = 0,
+		Exterieur = 1
+	}
 	public class SearchConcoursModel
 	{
 		[DataType(DataType.Text)]
@@ -31,10 +36,10 @@ namespace PronosContest.Models
         public string LogoUrlEquipeA { get; set; }
         public string LogoUrlEquipeB { get; set; }
         public int NumeroMatch { get; set; }
-        public int ButsA { get; set; }
-        public int ButsB { get; set; }
-		public int PenaltiesA { get; set; }
-		public int PenaltiesB { get; set; }
+        public int? ButsA { get; set; }
+        public int? ButsB { get; set; }
+		public int? PenaltiesA { get; set; }
+		public int? PenaltiesB { get; set; }
 		public int MatchID { get; set; }
         public int ConcoursID { get; set; }
         public EtatPronostic Etat { get; set; }
@@ -52,10 +57,15 @@ namespace PronosContest.Models
 				}
 				else
 				{
-					if (this.PenaltiesA > this.PenaltiesB)
-						return this.EquipeAID;
+					if (this.PenaltiesA != null && this.PenaltiesB != null)
+					{
+						if (this.PenaltiesA > this.PenaltiesB)
+							return this.EquipeAID;
+						else
+							return this.EquipeBID;
+					}
 					else
-						return this.EquipeBID;
+						return 0;
 				}
 			}
 		}
@@ -76,5 +86,13 @@ namespace PronosContest.Models
             this.MatchsPronostics = new List<PronosticsModel>();
             this.Classement = new List<PhaseGroupe.ClassementGroupeModel>();
         }
+    }
+
+	public class ScoreViewModel
+	{
+		public TypeScore TypeScore { get; set; }
+		public int? Buts { get; set; }
+		public int? Penalties { get; set; }
+		public bool IsReadOnly { get; set; }
     }
 }

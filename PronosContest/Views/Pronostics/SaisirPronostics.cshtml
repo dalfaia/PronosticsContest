@@ -18,7 +18,9 @@
 
     function AddGoalScoreOnClick(buttonClicked, nameControl, pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur)
     {
-        var actualValue = parseInt($('[name=' + nameControl + ']').val());
+    	var actualValue = parseInt($('[name=' + nameControl + ']').val());
+    	if (isNaN(actualValue))
+    		actualValue = -1;
         if (actualValue < 10)
         {
             $('[name=' + nameControl + ']').val(actualValue + 1);
@@ -36,7 +38,9 @@
         }
     }
     function RemoveGoalScoreOnClick(buttonClicked, nameControl, pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur) {
-        var actualValue = parseInt($('[name=' + nameControl + ']').val());
+    	var actualValue = parseInt($('[name=' + nameControl + ']').val());
+    	if (isNaN(actualValue))
+    		actualValue = 1;
         if (actualValue > 0) {
             $('[name=' + nameControl + ']').val(actualValue - 1);
             $(buttonClicked).addClass('disabled');
@@ -54,7 +58,9 @@
     }
 
     function AddGoalPenaltyScoreOnClick(buttonClicked, nameControl, pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur) {
-        var actualValue = parseInt($('[name=' + nameControl + ']').val());
+    	var actualValue = parseInt($('[name=' + nameControl + ']').val());
+    	if (isNaN(actualValue))
+    		actualValue = -1;
         if (actualValue < 20) {
             $('[name=' + nameControl + ']').val(actualValue + 1);
             $(buttonClicked).addClass('disabled');
@@ -70,7 +76,9 @@
         }
     }
     function RemoveGoaPenaltyScoreOnClick(buttonClicked, nameControl, pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur) {
-        var actualValue = parseInt($('[name=' + nameControl + ']').val());
+    	var actualValue = parseInt($('[name=' + nameControl + ']').val());
+    	if (isNaN(actualValue))
+    		actualValue = 1;
         if (actualValue > 0) {
             $('[name=' + nameControl + ']').val(actualValue - 1);
             $(buttonClicked).addClass('disabled');
