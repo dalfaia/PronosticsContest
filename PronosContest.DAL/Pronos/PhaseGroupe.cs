@@ -40,9 +40,9 @@ namespace PronosContest.DAL.Pronos
             foreach (var match in this.Matchs)
             {
                 if (!classementFinal.Where(c => c.Nom == match.EquipeA.Libelle).Any())
-                    classementFinal.Add(new ClassementGroupeModel(match.EquipeA.Libelle));
+                    classementFinal.Add(new ClassementGroupeModel(match.EquipeA.Libelle, match.EquipeA.ShortName));
                 if (!classementFinal.Where(c => c.Nom == match.EquipeB.Libelle).Any())
-                    classementFinal.Add(new ClassementGroupeModel(match.EquipeB.Libelle));
+                    classementFinal.Add(new ClassementGroupeModel(match.EquipeB.Libelle, match.EquipeB.ShortName));
 
                 var equipeDom = classementFinal.Where(c => c.Nom == match.EquipeA.Libelle).First();
                 var equipeExt = classementFinal.Where(c => c.Nom == match.EquipeB.Libelle).First();
@@ -80,9 +80,9 @@ namespace PronosContest.DAL.Pronos
             foreach (var match in this.Matchs)
             {
                 if (!classementFinal.Where(c => c.Nom == match.EquipeA.Libelle).Any())
-                    classementFinal.Add(new ClassementGroupeModel(match.EquipeA.Libelle));
+                    classementFinal.Add(new ClassementGroupeModel(match.EquipeA.Libelle, match.EquipeA.ShortName));
                 if (!classementFinal.Where(c => c.Nom == match.EquipeB.Libelle).Any())
-                    classementFinal.Add(new ClassementGroupeModel(match.EquipeB.Libelle));
+                    classementFinal.Add(new ClassementGroupeModel(match.EquipeB.Libelle, match.EquipeB.ShortName));
 
                 var prono = pronostics.Where(p => p.MatchID == match.ID).FirstOrDefault();
 
@@ -124,6 +124,7 @@ namespace PronosContest.DAL.Pronos
         {
             public int IDEquipe { get; set; }
             public string Nom { get; set; }
+            public string ShortName { get; set; }
             public int Points { get { return this.MatchsGagnes * 3 + this.MatchsNuls;  } }
             public int MatchsJoues { get; set; }
             public int MatchsGagnes { get; set; }
@@ -134,9 +135,10 @@ namespace PronosContest.DAL.Pronos
             public int Difference { get { return this.ButsMarques - this.ButsEncaisses; } }
             public char Groupe { get; set; }
 
-            public ClassementGroupeModel(string pNom)
+            public ClassementGroupeModel(string pNom, string pShortName)
             {
                 this.Nom = pNom;
+                this.ShortName = pShortName;
                 this.MatchsGagnes = this.MatchsJoues = this.MatchsNuls = this.MatchsPerdus = this.ButsEncaisses = this.ButsMarques = 0;
             }
         }

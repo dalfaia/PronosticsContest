@@ -54,9 +54,9 @@ namespace PronosContest.DAL.Pronos
                 list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'A', 'C', 'E', 'F' }, Adversaire1A = 'C', Adversaire1B = 'A', Adversaire1C = 'F', Adversaire1D = 'E' });
                 list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'A', 'D', 'E', 'F' }, Adversaire1A = 'D', Adversaire1B = 'A', Adversaire1C = 'F', Adversaire1D = 'E' });
                 list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'B', 'C', 'D', 'E' }, Adversaire1A = 'C', Adversaire1B = 'D', Adversaire1C = 'B', Adversaire1D = 'E' });
-                list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'B', 'C', 'D', 'F' }, Adversaire1A = 'C', Adversaire1B = 'D', Adversaire1C = 'B', Adversaire1D = 'B' });
-                list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'B', 'C', 'E', 'F' }, Adversaire1A = 'E', Adversaire1B = 'C', Adversaire1C = 'B', Adversaire1D = 'B' });
-                list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'B', 'D', 'E', 'F' }, Adversaire1A = 'E', Adversaire1B = 'D', Adversaire1C = 'B', Adversaire1D = 'B' });
+                list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'B', 'C', 'D', 'F' }, Adversaire1A = 'C', Adversaire1B = 'D', Adversaire1C = 'B', Adversaire1D = 'F' });
+                list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'B', 'C', 'E', 'F' }, Adversaire1A = 'E', Adversaire1B = 'C', Adversaire1C = 'B', Adversaire1D = 'F' });
+                list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'B', 'D', 'E', 'F' }, Adversaire1A = 'E', Adversaire1B = 'D', Adversaire1C = 'B', Adversaire1D = 'F' });
                 list.Add(new Combinaisons3eme() { Combinaisons = new List<char>() { 'C', 'D', 'E', 'F' }, Adversaire1A = 'C', Adversaire1B = 'D', Adversaire1C = 'F', Adversaire1D = 'E' });
                 return list;
             }
