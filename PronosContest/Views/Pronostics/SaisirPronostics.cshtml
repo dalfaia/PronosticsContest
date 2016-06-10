@@ -75,7 +75,7 @@
             });
         }
     }
-    function RemoveGoaPenaltyScoreOnClick(buttonClicked, nameControl, pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur) {
+    function RemoveGoalPenaltyScoreOnClick(buttonClicked, nameControl, pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur) {
     	var actualValue = parseInt($('[name=' + nameControl + ']').val());
     	if (isNaN(actualValue))
     		actualValue = 1;
@@ -243,7 +243,7 @@
 															if (grp.TypePhaseFinale != null)
 															{
 																<span>
-																	@Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesA", prono.PenaltiesA, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
+																	@Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesA", prono.PenaltiesA, "", new { type = "number", placeholder = "P", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
 																</span>
 															}
 														}
@@ -271,7 +271,7 @@
 															if (grp.TypePhaseFinale != null)
 															{
 																<span>
-																	@Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesB", prono.PenaltiesB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
+																	@Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesB", prono.PenaltiesB, "", new { type = "number", placeholder = "P", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
 																</span>
 															}
 														}
@@ -386,7 +386,7 @@
                                                     <span class="input-group-btn">
                                                         <a href="#" class="btn btn-primary" onclick="RemoveGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false');return false;"><i class="fa fa-minus"></i></a>
                                                     </span>
-                                                    @Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesA", prono.PenaltiesA, "", new { @class = "form-control text-center", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
+                                                    @Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesA", prono.PenaltiesA, "", new { @class = "form-control text-center", placeholder = "P", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val());" })
                                                     <span class="input-group-btn">
                                                         <a href="#" class="btn btn-primary" onclick="AddGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false');return false;"><i class="fa fa-plus"></i></a>
                                                     </span>
@@ -439,7 +439,7 @@
                                                     <span class="input-group-btn">
                                                         <a href="#" class="btn btn-primary" onclick="RemoveGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true');return false;"><i class="fa fa-minus"></i></a>
                                                     </span>
-                                                    @Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesB", prono.PenaltiesB, "", new { @class = "form-control text-center", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
+                                                    @Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesB", prono.PenaltiesB, "", new { @class = "form-control text-center", placeholder = "P",onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
                                                     <span class="input-group-btn">
                                                         <a href="#" class="btn btn-primary" onclick="AddGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true');return false;"><i class="fa fa-plus"></i></a>
                                                     </span>

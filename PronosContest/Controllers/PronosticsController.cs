@@ -138,33 +138,13 @@ namespace PronosContest.Controllers
                         {
                             var prono = concours.Pronostics.Where(p => p.MatchID == match.ID && p.CompteUtilisateurID == this.UserID.Value).FirstOrDefault();
                             PronosticsModel pronoModel = new PronosticsModel();
-                            if (prono != null)
-                            {
-                                pronoModel.ConcoursID = concours.ID;
-                                pronoModel.MatchID = prono.MatchID;
-                                pronoModel.ButsA = prono.ButsEquipeDomicile;
-                                pronoModel.ButsB = prono.ButsEquipeExterieur;
-                                pronoModel.PenaltiesA = prono.ButsPenaltiesEquipeDomicile;
-                                pronoModel.PenaltiesB = prono.ButsPenaltiesEquipeExterieur;
-                                pronoModel.NumeroMatch = match.NumeroMatch;
-                                pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
-                                pronoModel.Etat = prono.EtatPronostic;
-                                pronoModel.IsReadOnly = concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now;
-
-								if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
-								{
-									if (match.VainqueurID == pronoModel.VanqueurID)
-										pronoModel.Etat = EtatPronostic.Gagne;
-									else
-										pronoModel.Etat = EtatPronostic.Perdu;
-								}
-							}
+                            
                             var nbPronosticsGroupes = concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && p.Match.PhaseGroupe != null).Count();
                             var nbMatchsGroupes = 0;
                             foreach (var g in concours.Competition.Groupes)
                                 nbMatchsGroupes += g.Matchs.Count();
 
-                            if (nbPronosticsGroupes == nbMatchsGroupes)
+                            if (nbPronosticsGroupes >= nbMatchsGroupes)
                             {
                                 if (match.EquipePossibleDomicile_Place != null && match.EquipePossibleExterieur_Place != null)
                                 {
@@ -370,7 +350,30 @@ namespace PronosContest.Controllers
                                 pronoModel.Etat = EtatPronostic.Empty;
                                 pronoModel.IsReadOnly = true;
                             }
-                            grpModel.MatchsPronostics.Add(pronoModel);
+
+							if (prono != null)
+							{
+								pronoModel.ConcoursID = concours.ID;
+								pronoModel.MatchID = prono.MatchID;
+								pronoModel.ButsA = prono.ButsEquipeDomicile;
+								pronoModel.ButsB = prono.ButsEquipeExterieur;
+								pronoModel.PenaltiesA = prono.ButsPenaltiesEquipeDomicile;
+								pronoModel.PenaltiesB = prono.ButsPenaltiesEquipeExterieur;
+								pronoModel.NumeroMatch = match.NumeroMatch;
+								pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
+								pronoModel.Etat = prono.EtatPronostic;
+								pronoModel.IsReadOnly = concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now;
+
+								if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
+								{
+									if (match.VainqueurID == pronoModel.VanqueurID)
+										pronoModel.Etat = EtatPronostic.Gagne;
+									else
+										pronoModel.Etat = EtatPronostic.Perdu;
+								}
+							}
+
+							grpModel.MatchsPronostics.Add(pronoModel);
                         }
                         model.Add(grpModel);
                     }
