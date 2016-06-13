@@ -6,7 +6,7 @@
 <script type="text/javascript">
     function SetScore(pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur, pValue) {
         $.ajax({
-            url: '@Url.Action("SetScore")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + pValue,
+            url: '@Url.Action("SetScoreMatch")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + pValue,
             context: { ConcoursID: pConcoursID, GroupeID: pGroupeID },
             type: 'GET',
             dataType: 'html',
@@ -26,7 +26,7 @@
             $('[name=' + nameControl + ']').val(actualValue + 1);
             $(buttonClicked).addClass('disabled');
             $.ajax({
-                url: '@Url.Action("SetScore")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + $('[name=' + nameControl + ']').val(),
+                url: '@Url.Action("SetScoreMatch")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + $('[name=' + nameControl + ']').val(),
                 context: { ConcoursID: pConcoursID, GroupeID: pGroupeID, ButtonClicked: buttonClicked },
                 type: 'GET',
                 dataType: 'html',
@@ -45,7 +45,7 @@
             $('[name=' + nameControl + ']').val(actualValue - 1);
             $(buttonClicked).addClass('disabled');
             $.ajax({
-                url: '@Url.Action("SetScore")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + $('[name=' + nameControl + ']').val(),
+                url: '@Url.Action("SetScoreMatch")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + $('[name=' + nameControl + ']').val(),
                 context: { ConcoursID: pConcoursID, GroupeID: pGroupeID, ButtonClicked: buttonClicked },
                 type: 'GET',
                 dataType: 'html',
@@ -65,7 +65,7 @@
             $('[name=' + nameControl + ']').val(actualValue + 1);
             $(buttonClicked).addClass('disabled');
             $.ajax({
-                url: '@Url.Action("SetScorePenalties")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + $('[name=' + nameControl + ']').val(),
+                url: '@Url.Action("SetScorePenaltiesMatch")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + $('[name=' + nameControl + ']').val(),
                 context: { ConcoursID: pConcoursID, GroupeID: pGroupeID, ButtonClicked: buttonClicked },
                 type: 'GET',
                 dataType: 'html',
@@ -83,7 +83,7 @@
             $('[name=' + nameControl + ']').val(actualValue - 1);
             $(buttonClicked).addClass('disabled');
             $.ajax({
-                url: '@Url.Action("SetScorePenalties")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + $('[name=' + nameControl + ']').val(),
+                url: '@Url.Action("SetScorePenaltiesMatch")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + $('[name=' + nameControl + ']').val(),
                 context: { ConcoursID: pConcoursID, GroupeID: pGroupeID, ButtonClicked: buttonClicked },
                 type: 'GET',
                 dataType: 'html',
@@ -96,7 +96,7 @@
 
 	function SetScorePenalties(pConcoursID, pGroupeID, pMatchID, pEquipeAID, pEquipeBID, pIsExterieur, pValue) {
 		$.ajax({
-			url: '@Url.Action("SetScorePenalties")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + pValue,
+			url: '@Url.Action("SetScorePenaltiesMatch")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID + '&pMatchID=' + pMatchID + '&pEquipeAID=' + pEquipeAID + '&pEquipeBID=' + pEquipeBID + '&pIsExterieur=' + pIsExterieur + '&pValue=' + pValue,
 			context: { ConcoursID: pConcoursID, GroupeID: pGroupeID },
 			type: 'GET',
 			dataType: 'html',
@@ -108,7 +108,7 @@
 
     function RemplirClassement(pConcoursID, pGroupeID) {
         $.ajax({
-            url: '@Url.Action("GetClassement")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID,
+            url: '@Url.Action("GetClassementMatch")?pConcoursID=' + pConcoursID + '&pGroupeID=' + pGroupeID,
             context: { pGroupeID: pGroupeID },
             type: 'GET',
             dataType: 'html',

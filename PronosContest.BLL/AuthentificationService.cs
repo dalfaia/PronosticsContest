@@ -23,6 +23,11 @@ namespace PronosContest.BLL
 		{
 			return _pronosContestContextDatabase.CompteUtilisateurs.ToList();
 		}
+
+        public CompteUtilisateur GetUserById(int pId)
+        {
+            return _pronosContestContextDatabase.CompteUtilisateurs.Where(cu => cu.ID == pId).FirstOrDefault();
+        }
         public CompteUtilisateur Connexion(string pEmail, string pPassword)
         {
             byte[] passwordHashed = pPassword.ToPasswordHash();

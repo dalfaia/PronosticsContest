@@ -51,6 +51,10 @@ namespace PronosContest.BLL
                 _pronosContestContextDatabase.SaveChanges();
             }
         }
+        public Match GetMatchByID (int pId)
+        {
+            return _pronosContestContextDatabase.Matchs.Where(m => m.ID == pId).FirstOrDefault();
+        }
 
         public void SetScore(int pUserID, int pConcoursID, int pMatchID, int pEquipeAID, int pEquipeBID, bool pIsExterieur, int pButs)
         {
@@ -126,5 +130,36 @@ namespace PronosContest.BLL
 				_pronosContestContextDatabase.SaveChanges();
 			}
 		}
-	}
+
+        public void SetScoreMatch(int pUserID, int pConcoursID, int pMatchID, int pEquipeAID, int pEquipeBID, bool pIsExterieur, int pButs)
+        {
+            var match = GetMatchByID(pMatchID);
+            if (match != null)
+            {
+                match.EquipeAID = pEquipeAID;
+                match.EquipeBID = pEquipeBID;
+                if (!pIsExterieur)
+                    match.ButsEquipeDomicile = pButs;
+                else
+                    match.ButsEquipeExterieur = pButs;
+
+                _pronosContestContextDatabase.SaveChanges();
+            }
+        }
+        public void SetScorePenaltiesMatch(int pUserID, int pConcoursID, int pMatchID, int pEquipeAID, int pEquipeBID, bool pIsExterieur, int pButs)
+        {
+            var match = GetMatchByID(pMatchID);
+            if (match != null)
+            {
+                match.EquipeAID = pEquipeAID;
+                match.EquipeBID = pEquipeBID;
+                if (!pIsExterieur)
+                    match.ButsPenaltiesEquipeDomicile = pButs;
+                else
+                    match.ButsPenaltiesEquipeExterieur = pButs;
+
+                _pronosContestContextDatabase.SaveChanges();
+            }
+        }
+    }
 }

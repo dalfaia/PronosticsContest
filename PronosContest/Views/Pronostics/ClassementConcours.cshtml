@@ -1,0 +1,75 @@
+﻿@model List<PronosContest.DAL.Pronos.Concours.ClassementConcoursModel>
+@{
+    ViewBag.Title = "Vos concours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    if (this.Model != null && this.Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nom</th>
+                        <th>
+                            <span class="hidden-md hidden-lg">G</span>
+                            <span class="hidden-xs hidden-sm">Gagnés</span>
+                        </th>
+                        <th>
+                            <span class="hidden-md hidden-lg">P</span>
+                            <span class="hidden-xs hidden-sm">Perdus</span>
+                        </th>
+                        <th>
+                            <span class="hidden-md hidden-lg">SE</span>
+                            <span class="hidden-xs hidden-sm">Scores exacts</span>
+                        </th>
+                        <th>
+                            <span class="hidden-md hidden-lg">P</span>
+                            <span class="hidden-xs hidden-sm">Points</span>
+                        </th>
+                    </tr>
+                </thead>
+                @{
+                    int i = 1;
+                    foreach (var c in this.Model)
+                    {
+                        string classLigne = "";
+                        if (i == 1)
+                        {
+                            classLigne = "success";
+                        }
+                        else if (i == this.Model.Count)
+                        {
+                            classLigne = "danger";
+                        }
+                        else
+                        {
+                            classLigne = "warning";
+                        }
+                        <tr class="@classLigne">
+                            <td>@i°</td>
+                            <td>
+                                @c.NomComplet
+                            </td>
+                            <td>
+                                @c.NombrePronosGagnes
+                            </td>
+                            <td>
+                                @c.NombrePronosPerdus
+                            </td>
+                            <td>
+                                @c.NombreScoreExact
+                            </td>
+                            <td>
+                                @c.Points
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+            </table>
+        </div>
+    }
+}

@@ -48,8 +48,19 @@
                             @c.ConcoursCompteUtilisateurs.Count()
                         </td>
                         <td>
-                            @Html.ActionLink("Saisir les pronostics", "SaisirPronostics", new { pConcoursID = c.ID })
+                            @Html.ActionLink("Classement", "ClassementConcours", new { pConcoursID = c.ID })
                         </td>
+                        <td>
+                            @Html.ActionLink("Vos pronos", "SaisirPronostics", new { pConcoursID = c.ID })
+                        </td>
+                        @{
+                            if (ViewBag.UserID == c.CompteUtilisateurID)
+                            {
+                                <td>
+                                    @Html.ActionLink("Scores des matchs", "SaisirScoresMatch", new { pConcoursID = c.ID })
+                                </td>
+                            }
+                        }
                     </tr>
                 }
             </table>

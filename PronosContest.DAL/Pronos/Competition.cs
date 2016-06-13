@@ -92,9 +92,24 @@ namespace PronosContest.DAL.Pronos
 				return equipes;
 			}
 		}
+        [NotMapped]
+        public List<Match> AllMatchs
+        {
+            get
+            {
+                var listMatchs = new List<Match>();
 
-		#region Propriétés de navigation
-		public virtual ICollection<PhaseGroupe> Groupes { get; set; }
+                foreach (var g in this.Groupes)
+                    listMatchs.AddRange(g.Matchs);
+
+                foreach (var pf in this.PhasesFinales)
+                    listMatchs.AddRange(pf.Matchs);
+
+                return listMatchs;
+            }
+        }
+        #region Propriétés de navigation
+        public virtual ICollection<PhaseGroupe> Groupes { get; set; }
 		public virtual ICollection<PhaseFinale> PhasesFinales { get; set; }
 		#endregion
     }

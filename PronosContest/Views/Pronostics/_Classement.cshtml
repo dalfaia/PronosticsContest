@@ -21,17 +21,21 @@
                 </thead>
                 @{
                     int i = 1;
-                    int milieu = this.Model.Count / 2;
                     foreach (var c in this.Model)
                     {
                         string classLigne = "";
-                        if (i > milieu)
+                        switch (i)
                         {
-                            classLigne = "danger";
-                        }
-                        else
-                        {
-                            classLigne = "success";
+                            case 1 :
+                            case 2 :
+                                classLigne = "success";
+                                break;
+                            case 3 :
+                                classLigne = "warning";
+                                break;
+                            case 4 :
+                                classLigne = "danger";
+                                break;
                         }
                         <tr class="@classLigne">
                             <td>@i°</td>

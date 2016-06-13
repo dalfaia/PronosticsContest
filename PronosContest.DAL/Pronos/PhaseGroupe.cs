@@ -95,15 +95,15 @@ namespace PronosContest.DAL.Pronos
 							var matchJoue = this.Matchs.Where(pipcg => (pipcg.EquipeAID == equipeA || pipcg.EquipeBID == equipeA) && (pipcg.EquipeAID == equipeB || pipcg.EquipeBID == equipeB)).FirstOrDefault();
 							if (matchJoue.VainqueurID != null)
 							{
-								if (matchJoue.VainqueurID == equipeA)
-								{
-									index = classementProvisoire.IndexOf(cp) + 1;
-								}
-								else
-								{
-									index = classementProvisoire.IndexOf(cp);
-								}
-							}
+                                if (matchJoue.VainqueurID == equipeB)
+                                {
+                                    index = classementProvisoire.IndexOf(cp);
+                                }
+                                else
+                                {
+                                    index = classementProvisoire.IndexOf(cp) + 1;
+                                }
+                            }
 						}
 						classementProvisoire.Insert(index, c);
 					}
@@ -175,62 +175,67 @@ namespace PronosContest.DAL.Pronos
                 }
             }
 			classementFinal = classementFinal.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
-			// ordre du classement
-			if (classementFinal.GroupBy(g=> g.Points).Count() != classementFinal.Count)
-			{
-				List<ClassementGroupeModel> classementProvisoire = new List<ClassementGroupeModel>();
 
-				foreach (var c in classementFinal)
-				{
-					if (!classementProvisoire.Any())
-					{
-						classementProvisoire.Add(c);
-						continue;
-					}
-					if (classementProvisoire.Any(cl => cl.Points == c.Points))
-					{
-						// Equipes avec le meme nombre de points
-						var index = 0;
-						foreach (var cp in classementProvisoire.Where(cl => cl.Points == c.Points && cl.IDEquipe != c.IDEquipe))
-						{
-							var equipeA = cp.IDEquipe;
-							var equipeB = c.IDEquipe;
+            if (pronostics.Count() == 6)
+            {
+                // ordre du classement
+                if (classementFinal.GroupBy(g => g.Points).Count() != classementFinal.Count)
+                {
+                    List<ClassementGroupeModel> classementProvisoire = new List<ClassementGroupeModel>();
 
-							var pronoJoue = pPronosticsIDPourCeGroupe.Where(pipcg => (pipcg.EquipeAID == equipeA || pipcg.EquipeBID == equipeA) && (pipcg.EquipeAID == equipeB || pipcg.EquipeBID == equipeB)).FirstOrDefault();
-							if (pronoJoue.VainqueurID != null)
-							{
-								if (pronoJoue.VainqueurID == equipeA)
-								{
-									index = classementProvisoire.IndexOf(cp) + 1;
-								}
-								else
-								{
-									index = classementProvisoire.IndexOf(cp);
-								}
-							}
-						}
-						classementProvisoire.Insert(index, c);
-					}
-					else
-					{
-						var index = 0;
-                        foreach (var cp in classementProvisoire.Where(cl => cl.IDEquipe != c.IDEquipe))
-						{
-							if (cp.Points > c.Points)
-							{
-								index = classementProvisoire.IndexOf(cp) + 1;
-							}
-							else
-							{
-								index = classementProvisoire.IndexOf(cp);
-							}
-						}
-						classementProvisoire.Insert(index, c);
-					}
-				}
+                    foreach (var c in classementFinal)
+                    {
+                        if (!classementProvisoire.Any())
+                        {
+                            classementProvisoire.Add(c);
+                            continue;
+                        }
+                        if (classementProvisoire.Any(cl => cl.Points == c.Points))
+                        {
+                            // Equipes avec le meme nombre de points
+                            var index = 0;
+                            foreach (var cp in classementProvisoire.Where(cl => cl.Points == c.Points && cl.IDEquipe != c.IDEquipe))
+                            {
+                                var equipeA = cp.IDEquipe;
+                                var equipeB = c.IDEquipe;
 
-				classementFinal = classementProvisoire;
-			}
+                                var pronoJoue = pPronosticsIDPourCeGroupe.Where(pipcg => (pipcg.EquipeAID == equipeA || pipcg.EquipeBID == equipeA) && (pipcg.EquipeAID == equipeB || pipcg.EquipeBID == equipeB)).FirstOrDefault();
+                                if (pronoJoue != null && pronoJoue.VainqueurID != null)
+                                {
+                                    if (pronoJoue.VainqueurID == equipeB)
+                                    {
+                                        index = classementProvisoire.IndexOf(cp);
+                                    }
+                                    else
+                                    {
+                                        index = classementProvisoire.IndexOf(cp) + 1;
+                                    }
+                                }
+                            }
+                            classementProvisoire.Insert(index, c);
+                        }
+                        else
+                        {
+                            var index = 0;
+                            foreach (var cp in classementProvisoire.Where(cl => cl.IDEquipe != c.IDEquipe))
+                            {
+                                if (cp.Points > c.Points)
+                                {
+                                    index = classementProvisoire.IndexOf(cp) + 1;
+                                }
+                                else
+                                {
+                                    index = classementProvisoire.IndexOf(cp);
+                                }
+                            }
+                            classementProvisoire.Insert(index, c);
+                        }
+                    }
+
+                    classementFinal = classementProvisoire;
+                }
+            }
+			
 			return classementFinal;
         }
         public class ClassementGroupeModel

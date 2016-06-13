@@ -64,11 +64,12 @@ namespace PronosContest.DAL.Pronos
 				}
 				else
 				{
-					if (this.ButsEquipeDomicile > this.ButsEquipeExterieur)
-						return this.EquipeAID;
-					else
-						return this.EquipeBID;
-				}
+                    if (this.ButsPenaltiesEquipeDomicile > this.ButsPenaltiesEquipeExterieur)
+                        return this.EquipeAID;
+                    else if (this.ButsPenaltiesEquipeExterieur > this.ButsPenaltiesEquipeDomicile)
+                        return this.EquipeBID;
+                    else return 0;
+                }
 			}
 		}
 		#endregion

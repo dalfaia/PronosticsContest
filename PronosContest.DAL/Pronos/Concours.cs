@@ -43,6 +43,53 @@ namespace PronosContest.DAL.Pronos
 		public virtual ICollection<Pronostic> Pronostics { get; set; }
 		public virtual Competition Competition { get; set; }
 		public virtual CompteUtilisateur CompteUtilisateur { get; set; }
-		#endregion
-	}
+        #endregion
+
+        public List<ClassementConcoursModel> Classement()
+        {
+            var classementFinal = new List<ClassementConcoursModel>();
+
+            foreach (var concoursUser in this.ConcoursCompteUtilisateurs)
+            {
+                var user = concoursUser.CompteUtilisateur;
+                if (user != null)
+                {
+                    var elementClassement = new ClassementConcoursModel();
+                    elementClassement.CompteUtilisateurID = user.ID;
+                    elementClassement.NomComplet = user.Prenom + " " + user.Nom;
+                    foreach (var p in this.Pronostics.Where(c => c.CompteUtilisateurID == user.ID && c.Match != null && c.Match.ButsEquipeDomicile != null && c.Match.ButsEquipeExterieur != null))
+                    {
+                        var match = this.Competition.AllMatchs.Where(m => m.ID == p.MatchID).FirstOrDefault();
+                        if (match != null)
+                        {
+                            if (match.VainqueurID == p.VainqueurID)
+                                elementClassement.NombrePronosGagnes += 1;
+                            else if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
+                                elementClassement.NombrePronosPerdus += 1;
+                            if (match.ButsEquipeDomicile == p.ButsEquipeDomicile && match.ButsEquipeExterieur == p.ButsEquipeExterieur)
+                                elementClassement.NombreScoreExact += 1;
+                        }
+                    }
+                    classementFinal.Add(elementClassement);
+                }
+            }
+            return classementFinal.OrderByDescending(c => c.NombreScoreExact).OrderByDescending(c => c.Points).ToList();
+        }
+
+        public class ClassementConcoursModel
+        {
+            public int CompteUtilisateurID { get; set; }
+            public string NomComplet { get; set; }
+            public int NombreScoreExact { get; set; }
+            public int NombrePronosGagnes { get; set; }
+            public int NombrePronosPerdus { get; set; }
+            public int Points
+            {
+                get
+                {
+                    return (this.NombreScoreExact * 3) + this.NombrePronosGagnes;
+                }
+            }
+        }
+    }
 }
