@@ -53,14 +53,9 @@
                         <td>
                             @Html.ActionLink("Vos pronos", "SaisirPronostics", new { pConcoursID = c.ID })
                         </td>
-                        @{
-                            if (ViewBag.UserID == c.CompteUtilisateurID)
-                            {
-                                <td>
-                                    @Html.ActionLink("Scores des matchs", "SaisirScoresMatch", new { pConcoursID = c.ID })
-                                </td>
-                            }
-                        }
+						<td>
+							@Html.ActionLink("Scores des matchs", "ScoresMatch", new { pConcoursID = c.ID })
+						</td>
                     </tr>
                 }
             </table>

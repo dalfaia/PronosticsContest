@@ -69,6 +69,8 @@ namespace PronosContest.DAL.Pronos
 			}
 		}
 
+		public string InformationsMatchURL { get; set; }
+
 		#endregion
 
 		#region Propriétés de navigation

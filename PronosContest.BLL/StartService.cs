@@ -276,6 +276,149 @@ namespace PronosContest.BLL
             }
 		}
 
+		public void UpdateUrlMatchs()
+		{
+			int i = 1;
+			foreach (var m in _pronosContestContextDatabase.Matchs.OrderBy(m => m.Date))
+			{
+				switch (i)
+				{
+					case 1:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017877/index.html";
+						
+						break;
+					case 2:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017878/index.html";
+						break;
+					case 3:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017880/index.html";
+						break;
+					case 4:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017879/index.html";
+						break;
+					case 5:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017884/index.html";
+						break;
+					case 6:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017882/index.html";
+						break;
+					case 7:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017881/index.html";
+						break;
+					case 8:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017883/index.html";
+						break;
+					case 9:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017954/index.html";
+						break;
+					case 10:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017953/index.html";
+						break;
+					case 11:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017960/index.html";
+						break;
+					case 12:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017959/index.html";
+						break;
+					case 13:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017888/index.html";
+						break;
+					case 14:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017886/index.html";
+						break;
+					case 15:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017885/index.html";
+						break;
+					case 16:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017887/index.html";
+						break;
+					case 17:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017890/index.html";
+						break;
+					case 18:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017889/index.html";
+						break;
+					case 19:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017956/index.html";
+						break;
+					case 20:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017892/index.html";
+						break;
+					case 21:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017891/index.html";
+						break;
+					case 22:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017955/index.html";
+						break;
+					case 23:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017962/index.html";
+						break;
+					case 24:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017961/index.html";
+						break;
+					case 37:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000744/match=2017996/index.html";
+						break;
+					case 38:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000744/match=2017997/index.html";
+						break;
+					case 39:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000744/match=2017998/index.html";
+						break;
+					case 40:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000744/match=2017999/index.html";
+						break;
+					case 41:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000744/match=2018000/index.html";
+						break;
+					case 42:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000744/match=2018001/index.html";
+						break;
+					case 43:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000744/match=2018002/index.html";
+						break;
+					case 44:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000744/match=2018003/index.html";
+						break;
+					case 45:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000449/match=2017901/index.html";
+						break;
+					case 46:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000449/match=2017902/index.html";
+						break;
+					case 47:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000449/match=2017903/index.html";
+						break;
+					case 48:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000449/match=2017904/index.html";
+						break;
+					case 49:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000450/match=2017905/index.html";
+						break;
+					case 50:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000450/match=2017906/index.html";
+						break;
+					case 51:
+						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000451/match=2017907/index.html";
+						break;
+				}
+				i++;
+			}
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "ROU" && m.EquipeB.ShortName == "ALB").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017894/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "SUI" && m.EquipeB.ShortName == "FRA").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017893/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "RUS" && m.EquipeB.ShortName == "GAL").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017896/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "SLO" && m.EquipeB.ShortName == "ANG").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017895/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "UKR" && m.EquipeB.ShortName == "POL").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017898/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "IRN" && m.EquipeB.ShortName == "ALL").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017897/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "RPT" && m.EquipeB.ShortName == "TUR").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017900/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "CRO" && m.EquipeB.ShortName == "ESP").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017899/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "ISL" && m.EquipeB.ShortName == "AUT").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017963/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "HON" && m.EquipeB.ShortName == "POR").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017964/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "ITA" && m.EquipeB.ShortName == "IRL").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017958/index.html";
+			_pronosContestContextDatabase.Matchs.Where(m => m.EquipeA.ShortName == "SUE" && m.EquipeB.ShortName == "BEL").First().InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017957/index.html";
+			
+			_pronosContestContextDatabase.SaveChanges();
+		}
 		private void _deleteTables()
         {
             _pronosContestContextDatabase.Matchs.RemoveRange(_pronosContestContextDatabase.Matchs);

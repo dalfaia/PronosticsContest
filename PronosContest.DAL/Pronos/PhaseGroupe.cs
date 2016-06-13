@@ -47,29 +47,34 @@ namespace PronosContest.DAL.Pronos
                 var equipeDom = classementFinal.Where(c => c.Nom == match.EquipeA.Libelle).First();
                 var equipeExt = classementFinal.Where(c => c.Nom == match.EquipeB.Libelle).First();
 
-                equipeDom.MatchsJoues += 1;
-                equipeExt.MatchsJoues += 1;
-                if (match.ButsEquipeDomicile > match.ButsEquipeExterieur)
-                {
-                    equipeDom.MatchsGagnes += 1;
-                    equipeExt.MatchsPerdus += 1;
-                }
-                else if (match.ButsEquipeExterieur > match.ButsEquipeDomicile)
-                {
-                    equipeDom.MatchsPerdus += 1;
-                    equipeExt.MatchsGagnes += 1;
-                }
-                else
-                {
-                    equipeDom.MatchsNuls += 1;
-                    equipeExt.MatchsNuls += 1;
-                }
-
-                equipeDom.ButsMarques += match.ButsEquipeDomicile.Value;
-                equipeDom.ButsEncaisses += match.ButsEquipeExterieur.Value;
-                equipeExt.ButsMarques += match.ButsEquipeExterieur.Value;
-                equipeExt.ButsEncaisses += match.ButsEquipeDomicile.Value;
-            }
+				if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
+				{
+					equipeDom.IDEquipe = match.EquipeAID.Value;
+					equipeExt.IDEquipe = match.EquipeBID.Value;
+					equipeDom.MatchsJoues += 1;
+					equipeExt.MatchsJoues += 1;
+					if (match.ButsEquipeDomicile > match.ButsEquipeExterieur)
+					{
+						equipeDom.MatchsGagnes += 1;
+						equipeExt.MatchsPerdus += 1;
+					}
+					else if (match.ButsEquipeExterieur > match.ButsEquipeDomicile)
+					{
+						equipeDom.MatchsPerdus += 1;
+						equipeExt.MatchsGagnes += 1;
+					}
+					else
+					{
+						equipeDom.MatchsNuls += 1;
+						equipeExt.MatchsNuls += 1;
+					}
+					
+					equipeDom.ButsMarques += match.ButsEquipeDomicile.Value;
+					equipeDom.ButsEncaisses += match.ButsEquipeExterieur.Value;
+					equipeExt.ButsMarques += match.ButsEquipeExterieur.Value;
+					equipeExt.ButsEncaisses += match.ButsEquipeDomicile.Value;
+				}
+			}
 			classementFinal = classementFinal.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
 			// ordre du classement
 			if (classementFinal.GroupBy(g => g.Points).Count() != classementFinal.Count)

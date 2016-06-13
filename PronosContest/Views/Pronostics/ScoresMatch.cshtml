@@ -259,8 +259,8 @@
                                                                         </span>
                                                                     </div>
                                                                 </div>
-                                                            }
-                                                        }
+															}
+														}
                                                     }
                                                 </div>
                                             </center>
@@ -316,6 +316,9 @@
                                                 &nbsp;
                                             </div>
                                         </td>
+										<td width="10px">
+											<a href="@Url.Action("InformationsMatch", "Pronostics", new { pId = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
+										</td>
                                         <td width="30px" class="text-right">
                                             <div class="form-group">
                                                 @{
@@ -367,6 +370,7 @@
                                     <center>
                                         <div class="form-group">
                                             <label>@prono.DateHeure</label>
+											<a href="@Url.Action("InformationsMatch", "Pronostics", new { pId = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
                                         </div>
                                     </center>
                                 </div>
@@ -475,32 +479,6 @@
                                             </div>
                                         }
                                     </div>
-                                </div>
-                            </div>
-                           
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <center>
-                                        <div class="form-group">
-                                            @{
-                                                switch (prono.Etat)
-                                                {
-                                                    case PronosContest.DAL.Pronos.EtatPronostic.Empty:
-                                                        <span class="label label-default">Non renseigné</span>
-                                                        break;
-                                                    case PronosContest.DAL.Pronos.EtatPronostic.EnCours:
-                                                        <span class="label label-primary">En cours</span>
-                                                        break;
-                                                    case PronosContest.DAL.Pronos.EtatPronostic.Gagne:
-                                                        <span class="label label-success">Gagné</span>
-                                                        break;
-                                                    case PronosContest.DAL.Pronos.EtatPronostic.Perdu:
-                                                        <span class="label label-danger">Perdu</span>
-                                                        break;
-                                                }
-                                            }
-                                        </div>
-                                    </center>
                                 </div>
                             </div>
                         }
