@@ -285,7 +285,6 @@ namespace PronosContest.BLL
 				{
 					case 1:
 						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017877/index.html";
-						
 						break;
 					case 2:
 						m.InformationsMatchURL = "http://fr.uefa.com/uefaeuro/season=2016/matches/round=2000448/match=2017878/index.html";
