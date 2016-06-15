@@ -80,7 +80,65 @@ namespace PronosContest.DAL.Pronos
 				combinaisons.Add(groupe.Lettre.ToCharArray().First());
             }
 			return combinaisons;
-        }
+		}
+		public List<char> GetCombinaisonClassementTroisiemes()
+		{
+			List<PhaseGroupe.ClassementGroupeModel> classement = new List<PhaseGroupe.ClassementGroupeModel>();
+
+			foreach (var groupe in Groupes)
+			{
+				var equipe3eme = groupe.Classement().ElementAt(2);
+				classement.Add(equipe3eme);
+			}
+
+			classement = classement.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
+
+			List<char> combinaisons = new List<char>();
+			foreach (var cl in classement.Take(4))
+			{
+				var groupe = this.Groupes.Where(g => g.Equipes.Any(e => e.ID == cl.IDEquipe)).FirstOrDefault();
+				combinaisons.Add(groupe.Lettre.ToCharArray().First());
+			}
+			return combinaisons;
+		}
+
+		public List<int> GetEquipesQualifiees()
+		{
+			List<int> equipes = new List<int>();
+			foreach (var groupe in this.Groupes)
+			{
+				var classement = groupe.Classement();
+				if (classement.Count == 4)
+				{
+					var equipe1 = classement.ElementAt(0);
+					var equipe2 = classement.ElementAt(1);
+					equipes.Add(equipe1.IDEquipe);
+					equipes.Add(equipe2.IDEquipe);
+					if (GetCombinaisonClassementTroisiemes().Any(c => c.ToString() == groupe.Lettre))
+						equipes.Add(classement.ElementAt(2).IDEquipe);
+				}
+			}
+			return equipes;
+		}
+		public List<int> GetEquipesQualifiees(List<Pronostic> pPronosticsUser)
+		{
+			List<int> equipes = new List<int>();
+			foreach (var groupe in this.Groupes)
+			{
+				var classement = groupe.ClassementWithPronostics(pPronosticsUser);
+				if (classement.Count == 4)
+				{
+					var equipe1 = classement.ElementAt(0);
+					var equipe2 = classement.ElementAt(1);
+					equipes.Add(equipe1.IDEquipe);
+					equipes.Add(equipe2.IDEquipe);
+					if (GetCombinaisonClassementTroisiemes(pPronosticsUser).Any(c => c.ToString() == groupe.Lettre))
+						equipes.Add(classement.ElementAt(2).IDEquipe);
+				}
+			}
+			return equipes;
+		}
+
 		[NotMapped]
 		public List<Equipe> Equipes
 		{
