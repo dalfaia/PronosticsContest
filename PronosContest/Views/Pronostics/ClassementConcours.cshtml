@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Vos concours";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var concoursID = Request.Params["pConcoursID"];
 }
 
 @{
@@ -51,8 +53,8 @@
                         <tr class="@classLigne">
                             <td>@i°</td>
                             <td>
-                                @c.NomComplet
-                            </td>
+                                @c.NomComplet <span class="pull-right"><a href="@Url.Action("Pronostics", "Pronostics", new { pConcoursID = concoursID, pUserID = c.CompteUtilisateurID })"><i class="fa fa-info-circle text-primary"></i></a></span>
+</td>
                             <td>
                                 @c.NombrePronosGagnes
                             </td>

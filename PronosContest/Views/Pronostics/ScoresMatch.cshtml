@@ -142,11 +142,11 @@
 								@{
 									if (this.Model.Any(m => m.IsChoosen))
 									{
-										@Html.ActionLink("Tous les groupes", "SaisirPronostics", new { pConcoursID = concoursID }, null)
+										@Html.ActionLink("Tous les groupes", "ScoresMatch", new { pConcoursID = concoursID }, null)
 									}
 									else
 									{
-										@Html.ActionLink("Tous les groupes", "SaisirPronostics", new { pConcoursID = concoursID }, null)
+										@Html.ActionLink("Tous les groupes", "ScoresMatch", new { pConcoursID = concoursID }, null)
 									}
 								}
 							</li>
@@ -157,11 +157,11 @@
 										@{
 											if (grp.IsChoosen)
 											{
-												@Html.ActionLink(grp.ShortName, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name }, null)
+												@Html.ActionLink(grp.ShortName, "ScoresMatch", new { pConcoursID = concoursID, pGroupe = grp.Name }, null)
 											}
 											else
 											{
-												@Html.ActionLink(grp.ShortName, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name }, null)
+												@Html.ActionLink(grp.ShortName, "ScoresMatch", new { pConcoursID = concoursID, pGroupe = grp.Name }, null)
 											}
 										}
 									</li>
@@ -178,10 +178,10 @@
     <div class="col-md-2 hidden-xs hidden-sm" >
         <ul class="nav nav-pills nav-stacked">
             @{
-                <li role="presentation" @(this.Model.Any(m => m.IsChoosen) ? "" : "class=active")>@Html.ActionLink("Tous", "SaisirPronostics", new { pConcoursID = concoursID })</li>
+                <li role="presentation" @(this.Model.Any(m => m.IsChoosen) ? "" : "class=active")>@Html.ActionLink("Tous", "ScoresMatch", new { pConcoursID = concoursID })</li>
                 foreach (var grp in this.Model)
                 {
-                    <li role="presentation" @(grp.IsChoosen ? "class=active" : "")>@Html.ActionLink(grp.Name, "SaisirPronostics", new { pConcoursID = concoursID, pGroupe = grp.Name })</li>
+                    <li role="presentation" @(grp.IsChoosen ? "class=active" : "")>@Html.ActionLink(grp.Name, "ScoresMatch", new { pConcoursID = concoursID, pGroupe = grp.Name })</li>
                 }
             }
         </ul>
@@ -317,29 +317,8 @@
                                             </div>
                                         </td>
 										<td width="10px">
-											<a href="@Url.Action("InformationsMatch", "Pronostics", new { pId = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
+											<a href="@Url.Action("InformationsMatch", "Pronostics", new { pIdMatch = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
 										</td>
-                                        <td width="30px" class="text-right">
-                                            <div class="form-group">
-                                                @{
-                                                    switch (prono.Etat)
-                                                    {
-                                                        case PronosContest.DAL.Pronos.EtatPronostic.Empty:
-                                                            <span class="label label-default">Non renseigné</span>
-                                                            break;
-                                                        case PronosContest.DAL.Pronos.EtatPronostic.EnCours:
-                                                            <span class="label label-primary">En cours</span>
-                                                            break;
-                                                        case PronosContest.DAL.Pronos.EtatPronostic.Gagne:
-                                                            <span class="label label-success">Gagné</span>
-                                                            break;
-                                                        case PronosContest.DAL.Pronos.EtatPronostic.Perdu:
-                                                            <span class="label label-danger">Perdu</span>
-                                                            break;
-                                                    }
-                                                }
-                                            </div>
-                                        </td>
                                     </tr>
                                 }
                              }
@@ -370,7 +349,7 @@
                                     <center>
                                         <div class="form-group">
                                             <label>@prono.DateHeure</label>
-											<a href="@Url.Action("InformationsMatch", "Pronostics", new { pId = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
+											<a href="@Url.Action("InformationsMatch", "Pronostics", new { pIdMatch = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
                                         </div>
                                     </center>
                                 </div>

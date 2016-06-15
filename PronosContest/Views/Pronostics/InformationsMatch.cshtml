@@ -4,16 +4,16 @@
 }
 
 <script language="javascript" type="text/javascript">
-  function resizeIframe(iframe) {
-  	$(iframe).attr('height', (parseInt($(iframe).closest('body').css('height').replace('px', '')) - 200) + 'px');
-  }
+    $(document).ready(function () {
+        $('iframe').attr('height', parseInt($(window).height() - 100) + 'px');
+    });
 </script>
 @{
 	if (this.Model != null && this.Model.InformationsMatchURL != null)
 	{
 		<div class="row">
 			<div class="col-xs-12" style="margin:0px;padding:0px;overflow:hidden;">
-				<iframe src="@Model.InformationsMatchURL" frameborder="0" onload="resizeIframe(this);" style="width:100%;"></iframe>
+				<iframe src="@Model.InformationsMatchURL" frameborder="0" scrolling="no" width="100%" style="width: 1px;min-width:100%; *width:100%;"></iframe>
 			</div>
 		</div>
 	}

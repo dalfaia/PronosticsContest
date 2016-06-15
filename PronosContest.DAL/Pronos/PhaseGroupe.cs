@@ -98,7 +98,7 @@ namespace PronosContest.DAL.Pronos
 							var equipeB = c.IDEquipe;
 
 							var matchJoue = this.Matchs.Where(pipcg => (pipcg.EquipeAID == equipeA || pipcg.EquipeBID == equipeA) && (pipcg.EquipeAID == equipeB || pipcg.EquipeBID == equipeB)).FirstOrDefault();
-							if (matchJoue.VainqueurID != null)
+							if (matchJoue != null && matchJoue.VainqueurID != null)
 							{
                                 if (matchJoue.VainqueurID == equipeB)
                                 {

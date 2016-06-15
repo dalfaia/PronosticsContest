@@ -48,14 +48,12 @@
                             @c.ConcoursCompteUtilisateurs.Count()
                         </td>
                         <td>
-                            @Html.ActionLink("Classement", "ClassementConcours", new { pConcoursID = c.ID })
+                            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                                @Html.ActionLink("Classement", "ClassementConcours", new { pConcoursID = c.ID }, new { @class = "btn btn-default"})
+                                @Html.ActionLink("Pronostics", "SaisirPronostics", new { pConcoursID = c.ID }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Résultats", "ScoresMatch", new { pConcoursID = c.ID }, new { @class = "btn btn-default" })
+                            </div>
                         </td>
-                        <td>
-                            @Html.ActionLink("Vos pronos", "SaisirPronostics", new { pConcoursID = c.ID })
-                        </td>
-						<td>
-							@Html.ActionLink("Scores des matchs", "ScoresMatch", new { pConcoursID = c.ID })
-						</td>
                     </tr>
                 }
             </table>
