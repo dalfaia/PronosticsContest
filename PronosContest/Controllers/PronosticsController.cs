@@ -1180,5 +1180,11 @@ namespace PronosContest.Controllers
 			var match = PronosContestWebService.GetService().PronosService.GetMatchByID(pIdMatch);
 			return View(match);
 		}
-    }
+		public ActionResult InformationsPronostic(int pIdConcours, int pIdMatch)
+		{
+			var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pIdConcours);
+			var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch).ToList() };
+			return View(model);
+		}
+	}
 }

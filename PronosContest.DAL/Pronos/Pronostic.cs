@@ -72,6 +72,15 @@ namespace PronosContest.DAL.Pronos
                 }
 			}
 		}
+
+		[NotMapped]
+		public string Score
+		{
+			get
+			{
+				return this.ButsEquipeDomicile + " - " + this.ButsEquipeExterieur;
+            }
+		}
 		#endregion
 
 		public Pronostic()

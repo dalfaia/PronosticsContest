@@ -135,7 +135,6 @@ namespace PronosContest.DAL.Pronos
 			return classementFinal.OrderByDescending(c => c.NombreScoreExact).OrderByDescending(c => c.Points).ToList();
 		}
 
-
 		public class ClassementConcoursModel
         {
             public int CompteUtilisateurID { get; set; }

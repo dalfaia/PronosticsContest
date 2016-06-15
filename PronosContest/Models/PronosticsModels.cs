@@ -3,6 +3,7 @@ using PronosContest.DAL.Shared;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace PronosContest.Models
 {
@@ -95,4 +96,46 @@ namespace PronosContest.Models
 		public int? Penalties { get; set; }
 		public bool IsReadOnly { get; set; }
     }
+
+	public class InformationsPronosticViewModel
+	{
+		public List<Pronostic> ListePronostics { get; set; } 
+
+		public List<StatistiqueModel> StatsParVainqueur
+		{
+			get
+			{
+				if (this.ListePronostics.Any())
+				{
+					var libelleDomicile = this.ListePronostics.First().EquipeA.Libelle;
+					var libelleExterieur = this.ListePronostics.First().EquipeB.Libelle;
+					var nbDomicile = this.ListePronostics.Where(lp => lp.VainqueurID == lp.EquipeAID).Count();
+					var nbExterieur = this.ListePronostics.Where(lp => lp.VainqueurID == lp.EquipeBID).Count();
+					var nbNul = this.ListePronostics.Where(lp => lp.VainqueurID == 0).Count();
+
+					return new List<StatistiqueModel>()
+					{
+						new StatistiqueModel() { IntitulePrincipal = libelleDomicile, Nombre = nbDomicile },
+						new StatistiqueModel() { IntitulePrincipal = "Nul", Nombre = nbNul },
+						new StatistiqueModel() { IntitulePrincipal = libelleExterieur, Nombre = nbExterieur }
+					};
+				}
+				return new List<StatistiqueModel>();
+			}
+		}
+		public List<StatistiqueModel> StatsParScore
+		{
+			get
+			{
+				return this.ListePronostics.GroupBy(lp => lp.Score).Select(g => new StatistiqueModel() { IntitulePrincipal = g.Key, Nombre = g.Count() }).ToList();
+			}
+		}
+	}
+
+	public class StatistiqueModel
+	{
+		public string IntitulePrincipal { get; set; }
+		public string IntituleSecondaire { get; set; }
+		public int Nombre { get; set; }
+	}
 }

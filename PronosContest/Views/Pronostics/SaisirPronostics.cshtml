@@ -337,6 +337,9 @@
                                                 }
                                             </div>
                                         </td>
+										<td width="10px">
+											<a href="@Url.Action("InformationsPronostic", "Pronostics", new { pIdConcours = concoursID, pIdMatch = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
+										</td>
                                     </tr>
                                 }
                              }
@@ -367,6 +370,7 @@
                                     <center>
                                         <div class="form-group">
                                             <label>@prono.DateHeure</label>
+											<a href="@Url.Action("InformationsPronostic", "Pronostics", new { pIdConcours = concoursID, pIdMatch = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
                                         </div>
                                     </center>
                                 </div>
