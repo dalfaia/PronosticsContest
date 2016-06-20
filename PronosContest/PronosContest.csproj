@@ -599,13 +599,13 @@
     <Content Include="bower_components\raphael\raphael.js" />
     <Content Include="Content\timeline.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Controllers\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Controllers\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Controllers\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="img\euro.jpg" />
     <Content Include="less\mixins.less" />
     <Content Include="less\sb-admin-2.less" />
@@ -967,6 +967,7 @@
     <Content Include="Views\Pronostics\_WidgetStatsVainqueurs.cshtml" />
     <Content Include="Views\Pronostics\_WidgetStatsScores.cshtml" />
     <Content Include="Views\Pronostics\_WidgetListeScores.cshtml" />
+    <Content Include="Views\Pronostics\_WidgetClassementParMatch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PronosContest.BLL\PronosContest.BLL.csproj">

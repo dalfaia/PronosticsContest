@@ -1,29 +1,19 @@
-﻿@model PronosContest.Models.ScoreViewModel
+﻿@model PronosContest.Models.InformationsPronosticViewModel
 
-@if (this.Model != null)
-{
-	<div class="form-group">
-		@{
-			if (this.Model.IsReadOnly)
-			{
-				<span class="text-primary">@prono.ButsB</span>
-				if (prono.PenaltiesB > 0)
-				{
-					<span class="text-primary">(@prono.PenaltiesB)</span>
-				}
-			}
-			else
-			{
-				<span>
-					@Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
-				</span>
-				if (grp.TypePhaseFinale != null)
-				{
-					<span>
-						@Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesB", prono.PenaltiesB, "", new { type = "number", @class = "form-control input-sm text-center", style = "width:60px;", min = "0", max = "20", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val());" })
-					</span>
-				}
-			}
-		}
-	</div>
+@{
+    if (this.Model != null)
+    {
+        <div id="chartStatsVainqueurs" style="height: 200px;"></div>
+    }
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.getJSON("/Pronostics/GetStatsVainqueursJson?pIdConcours=" + @this.Model.ConcoursID + "&pIdMatch=" + @this.Model.MatchID, function (data) {
+            new Morris.Donut({
+                element: 'chartStatsVainqueurs',
+                data: JSON.parse(data)
+            });
+        });
+    });
+</script>

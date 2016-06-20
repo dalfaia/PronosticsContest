@@ -70,12 +70,88 @@ namespace PronosContest.DAL.Pronos
                                 elementClassement.NombreScoreExact += 1;
                         }
                     }
+
+                    var allGroupMatchesAreFinished = true;
+                    // Points sur les classements
+                    foreach (var g in this.Competition.Groupes)
+                    {
+                        if (g.Matchs.Count(c => c.ButsEquipeDomicile != null && c.ButsEquipeExterieur != null) == g.Matchs.Count())
+                        {
+                            var classementReel = g.Classement();
+                            var classementUser = g.ClassementWithPronostics(this.Pronostics.Where(c => c.CompteUtilisateurID == user.ID).ToList());
+
+                            if (classementReel.Count == classementUser.Count)
+                            {
+                                int nbBonnesPositionsGroupe = 0;
+                                for (int i = 0; i < classementReel.Count; i++)
+                                {
+                                    if (classementReel[i].IDEquipe == classementUser[i].IDEquipe)
+                                    {
+                                        elementClassement.NombreBonnePositionPoule += 1;
+                                        nbBonnesPositionsGroupe++;
+                                    }
+                                }
+                                if (nbBonnesPositionsGroupe == classementUser.Count)
+                                    elementClassement.NombrePouleComplete += 1;
+                            }
+                        }
+                        else
+                            allGroupMatchesAreFinished = false;
+                    }
+
+                    if (allGroupMatchesAreFinished)
+                    {
+                        // Points sur les equipes qualifiées
+                        var equipesQualifiesReel = this.Competition.GetEquipesQualifiees();
+                        var equipesQualifiesUser = this.Competition.GetEquipesQualifiees(this.Pronostics.Where(c => c.CompteUtilisateurID == user.ID).ToList());
+                        elementClassement.NombreBonneEquipeQualifiee = equipesQualifiesUser.Intersect(equipesQualifiesReel).Count();
+                    }
+
+                    classementFinal.Add(elementClassement);
+                }
+            }
+            return classementFinal.OrderByDescending(c => c.NombrePronosGagnes).OrderByDescending(c => c.Points).ToList();
+        }
+        public List<ClassementConcoursModel> ClassementAvantDate(DateTime pDate)
+        {
+            var classementFinal = new List<ClassementConcoursModel>();
+            
+            foreach (var concoursUser in this.ConcoursCompteUtilisateurs)
+            {
+                var user = concoursUser.CompteUtilisateur;
+                if (user != null)
+                {
+                    var elementClassement = new ClassementConcoursModel();
+                    elementClassement.CompteUtilisateurID = user.ID;
+                    elementClassement.NomComplet = user.Prenom + " " + user.Nom;
+                    foreach (var p in this.Pronostics.Where(c => c.CompteUtilisateurID == user.ID && c.Match != null && c.Match.ButsEquipeDomicile != null && c.Match.ButsEquipeExterieur != null && c.Match.Date <= pDate))
+                    {
+                        var match = this.Competition.AllMatchs.Where(m => m.ID == p.MatchID).FirstOrDefault();
+                        if (match != null)
+                        {
+                            if (match.VainqueurID == p.VainqueurID)
+                                elementClassement.NombrePronosGagnes += 1;
+                            else if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
+                                elementClassement.NombrePronosPerdus += 1;
+                            if (match.ButsEquipeDomicile == p.ButsEquipeDomicile && match.ButsEquipeExterieur == p.ButsEquipeExterieur)
+                                elementClassement.NombreScoreExact += 1;
+                        }
+                    }
                     classementFinal.Add(elementClassement);
                 }
             }
             return classementFinal.OrderByDescending(c => c.NombreScoreExact).OrderByDescending(c => c.Points).ToList();
         }
-		public List<ClassementConcoursModel> ClassementProvisoire()
+        public Dictionary<Match, List<ClassementConcoursModel>> ClassementParMatch()
+        {
+            var classementParMatch = new Dictionary<Match, List<ClassementConcoursModel>>();
+
+            foreach (var match in this.Competition.AllMatchs.Where(m => m.ButsEquipeDomicile != null && m.ButsEquipeExterieur != null).OrderBy(m => m.Date))
+                classementParMatch.Add(match, ClassementAvantDate(match.Date));
+
+            return classementParMatch;
+        }
+        public List<ClassementConcoursModel> ClassementProvisoire()
 		{
 			var classementFinal = new List<ClassementConcoursModel>();
 
@@ -132,7 +208,7 @@ namespace PronosContest.DAL.Pronos
 					classementFinal.Add(elementClassement);
 				}
 			}
-			return classementFinal.OrderByDescending(c => c.NombreScoreExact).OrderByDescending(c => c.Points).ToList();
+			return classementFinal.OrderByDescending(c => c.NombrePronosGagnes).OrderByDescending(c => c.Points).ToList();
 		}
 
 		public class ClassementConcoursModel
@@ -149,7 +225,7 @@ namespace PronosContest.DAL.Pronos
             {
                 get
                 {
-                    return (this.NombreScoreExact * 3) + this.NombrePronosGagnes + this.NombreBonneEquipeQualifiee + this.NombreBonnePositionPoule + (this.NombrePouleComplete * 2);
+                    return (this.NombreScoreExact * 2) + this.NombrePronosGagnes + this.NombreBonneEquipeQualifiee + this.NombreBonnePositionPoule + (this.NombrePouleComplete * 2);
                 }
             }
         }

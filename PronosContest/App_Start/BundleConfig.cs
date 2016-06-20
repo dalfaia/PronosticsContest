@@ -12,14 +12,18 @@ namespace PronosContest
 					  "~/Content/site.css", 
 					  "~/bower_components/bootstrap/dist/css/bootstrap.min.css",
 					  "~/bower_components/metisMenu/dist/metisMenu.min.css",
-					  "~/bower_components/font-awesome/css/font-awesome.min.css"
-					  ));
+                      "~/bower_components/morrisjs/morris.css",
+                      "~/bower_components/font-awesome/css/font-awesome.min.css"
+                      ));
 
 			bundles.Add(new ScriptBundle("~/Content/js").Include(
 					  "~/bower_components/jquery/dist/jquery.min.js",
 					  "~/bower_components/bootstrap/dist/js/bootstrap.min.js",
-					  "~/bower_components/metisMenu/dist/metisMenu.min.js"
-					));	
+                      "~/bower_components/raphael/raphael.js",
+                      "~/bower_components/morrisjs/morris.min.js",
+                      "~/bower_components/metisMenu/dist/metisMenu.min.js",
+                      "~/bower_components/flot/jquery.flot.js"
+                    ));	
 		}
 	}
 }

@@ -11,30 +11,36 @@
 @{
 	if (this.Model != null)
 	{
-		<div class="row hidden-md hidden-lg">
-			<div class="col-xs-12">
-				@{
-					Html.RenderPartial("_WidgetListeScores", this.Model.ListePronostics);
-				}
+		<div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Scores pronostiqués par participant</div>
+                    <div class="panel-body" style="max-height: 250px;min-height: 250px;overflow-y: scroll;">
+                        @{
+                            Html.RenderPartial("_WidgetListeScores", this.Model.ListePronostics);
+                        }
+                    </div>
+                </div>
+            </div>
+			<div class="col-xs-12 col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Répartition des vainqueurs</div>
+                    <div class="panel-body" style="max-height: 250px;min-height: 250px;overflow-y: scroll;">
+                        @{
+                            Html.RenderPartial("_WidgetStatsVainqueurs", this.Model);
+                        }
+                    </div>
+                </div>
 			</div>
-			<div class="col-xs-12">
-
-			</div>
-			<div class="col-xs-12">
-
-			</div>
-		</div>
-		<div class="row hidden-xs hidden-sm">
-			<div class="col-md-4">
-				@{
-					Html.RenderPartial("_WidgetListeScores", this.Model.ListePronostics);
-				}
-			</div>
-			<div class="col-md-4">
-
-			</div>
-			<div class="col-md-4">
-
+			<div class="col-xs-12 col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Répartition des scores</div>
+                    <div class="panel-body" style="max-height: 250px;min-height: 250px;overflow-y: scroll;">
+                        @{
+                            Html.RenderPartial("_WidgetStatsScores", this.Model);
+                        }
+                    </div>
+                </div>
 			</div>
 		</div>
 	}

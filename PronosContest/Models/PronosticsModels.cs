@@ -99,9 +99,11 @@ namespace PronosContest.Models
 
 	public class InformationsPronosticViewModel
 	{
-		public List<Pronostic> ListePronostics { get; set; } 
+        public int ConcoursID { get; set; }
+        public int MatchID { get; set; }
+        public List<Pronostic> ListePronostics { get; set; } 
 
-		public List<StatistiqueModel> StatsParVainqueur
+		public List<DonutItemModel> StatsParVainqueur
 		{
 			get
 			{
@@ -113,29 +115,38 @@ namespace PronosContest.Models
 					var nbExterieur = this.ListePronostics.Where(lp => lp.VainqueurID == lp.EquipeBID).Count();
 					var nbNul = this.ListePronostics.Where(lp => lp.VainqueurID == 0).Count();
 
-					return new List<StatistiqueModel>()
+					return new List<DonutItemModel>()
 					{
-						new StatistiqueModel() { IntitulePrincipal = libelleDomicile, Nombre = nbDomicile },
-						new StatistiqueModel() { IntitulePrincipal = "Nul", Nombre = nbNul },
-						new StatistiqueModel() { IntitulePrincipal = libelleExterieur, Nombre = nbExterieur }
+						new DonutItemModel() { label = libelleDomicile, value = nbDomicile },
+						new DonutItemModel() { label = "Nul", value = nbNul },
+						new DonutItemModel() { label = libelleExterieur, value = nbExterieur }
 					};
 				}
-				return new List<StatistiqueModel>();
+				return new List<DonutItemModel>();
 			}
 		}
-		public List<StatistiqueModel> StatsParScore
+		public List<DonutItemModel> StatsParScore
 		{
 			get
 			{
-				return this.ListePronostics.GroupBy(lp => lp.Score).Select(g => new StatistiqueModel() { IntitulePrincipal = g.Key, Nombre = g.Count() }).ToList();
+				return this.ListePronostics.GroupBy(lp => lp.Score).Select(g => new DonutItemModel() { label = g.Key, value = g.Count() }).ToList();
 			}
 		}
 	}
 
-	public class StatistiqueModel
+	public class DonutItemModel
 	{
-		public string IntitulePrincipal { get; set; }
-		public string IntituleSecondaire { get; set; }
-		public int Nombre { get; set; }
+		public string label { get; set; }
+		public int value { get; set; }
 	}
+    public class StatsObjectDataClassementItemModel
+    {
+        public string label { get; set; }
+        public List<List<int>> data { get; set; }
+    }
+    public class ConcoursClassementViewModel
+    {
+        public List<Concours.ClassementConcoursModel> Classement { get; set; }
+        public List<Concours.ClassementConcoursModel> ClassementProvisoire { get; set; }
+    }
 }

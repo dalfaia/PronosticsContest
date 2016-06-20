@@ -1,4 +1,5 @@
-﻿using PronosContest.BLL;
+﻿using Newtonsoft.Json;
+using PronosContest.BLL;
 using PronosContest.Code;
 using PronosContest.Core;
 using PronosContest.DAL.Pronos;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace PronosContest.Controllers
 {
@@ -210,7 +212,7 @@ namespace PronosContest.Controllers
                                         pronoModel.NumeroMatch = match.NumeroMatch;
                                         pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
                                         pronoModel.Etat = EtatPronostic.Empty;
-                                        pronoModel.IsReadOnly = concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now;
+                                        pronoModel.IsReadOnly = (this.UserID != 12 && concours.DateLimiteSaisie < DateTime.Now) || match.Date < DateTime.Now;
                                     }
                                 }
                                 else
@@ -242,7 +244,7 @@ namespace PronosContest.Controllers
                                                 pronoModel.NumeroMatch = match.NumeroMatch;
                                                 pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
                                                 pronoModel.Etat = EtatPronostic.Empty;
-                                                pronoModel.IsReadOnly = concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now;
+                                                pronoModel.IsReadOnly = (this.UserID != 12 && concours.DateLimiteSaisie < DateTime.Now) || match.Date < DateTime.Now;
                                             }
                                         }
                                         else
@@ -286,7 +288,7 @@ namespace PronosContest.Controllers
                                                 pronoModel.NumeroMatch = match.NumeroMatch;
                                                 pronoModel.DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString();
                                                 pronoModel.Etat = EtatPronostic.Empty;
-                                                pronoModel.IsReadOnly = concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now;
+                                                pronoModel.IsReadOnly = (this.UserID != 12 && concours.DateLimiteSaisie < DateTime.Now) || match.Date < DateTime.Now;
                                             }
                                         }
                                         else
@@ -1058,8 +1060,13 @@ namespace PronosContest.Controllers
         public ActionResult ClassementConcours(int pConcoursID)
         {
             Concours c = PronosContestWebService.GetService().PronosService.GetConcoursByID(pConcoursID);
-            if (c != null)
-                return View(c.Classement());
+            ConcoursClassementViewModel model = new ConcoursClassementViewModel()
+            {
+                Classement = c.Classement(),
+                ClassementProvisoire = c.ClassementProvisoire()
+            };
+            if (model != null)
+                return View(model);
             return RedirectToAction("Concours");
         }
 
@@ -1178,13 +1185,83 @@ namespace PronosContest.Controllers
 		public ActionResult InformationsMatch(int pIdMatch)
 		{
 			var match = PronosContestWebService.GetService().PronosService.GetMatchByID(pIdMatch);
-			return View(match);
+            if (match != null)
+                ViewBag.Title = match.EquipeA.Libelle + " vs. " + match.EquipeB.Libelle;
+            return View(match);
 		}
-		public ActionResult InformationsPronostic(int pIdConcours, int pIdMatch)
+
+        public JsonResult GetStatsScoresJson(int pIdConcours, int pIdMatch)
+        {
+            var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pIdConcours);
+            var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch).ToList() };
+           
+            return Json(JsonConvert.SerializeObject(model.StatsParScore), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetStatsVainqueursJson(int pIdConcours, int pIdMatch)
+        {
+            var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pIdConcours);
+            var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch).ToList() };
+
+            return Json(JsonConvert.SerializeObject(model.StatsParVainqueur), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetStatsClassementConcours(int pIdConcours)
+        {
+            var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pIdConcours);
+            var classement = concours.ClassementParMatch();
+
+            List<StatsObjectDataClassementItemModel> stats = new List<StatsObjectDataClassementItemModel>();
+            int i = 1;
+            foreach (var element in classement)
+            {
+                foreach (var e in element.Value)
+                {
+                    string nom = e.NomComplet;
+                    int place = element.Value.FindIndex(v => v == e) + 1;
+
+                    if (stats.Any(s => s.label == nom))
+                    {
+                        var stat = stats.Where(s => s.label == nom).FirstOrDefault();
+                        if (stat != null)
+                            stat.data.Add(new List<int>()
+                            {
+                                i, place
+                            });
+                    }
+                    else
+                    {
+                        stats.Add(new StatsObjectDataClassementItemModel()
+                        {
+                            label = nom,
+                            data = new List<List<int>>()
+                            {
+                                new List<int>
+                                {
+                                    i, place
+                                }
+                            }
+                        });
+                    }
+                }
+                i++;
+            }
+
+            return Json(JsonConvert.SerializeObject(stats), JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult InformationsPronostic(int pIdConcours, int pIdMatch)
 		{
 			var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pIdConcours);
 			var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch).ToList() };
-			return View(model);
+            model.MatchID = pIdMatch;
+            model.ConcoursID = pIdConcours;
+            var match = concours.Competition.AllMatchs.Where(m => m.ID == pIdMatch).FirstOrDefault();
+            if (match != null)
+                ViewBag.Title = match.EquipeA.Libelle + " vs. " + match.EquipeB.Libelle;
+
+            return View(model);
 		}
 	}
 }
