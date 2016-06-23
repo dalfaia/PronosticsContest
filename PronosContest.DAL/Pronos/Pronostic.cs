@@ -42,7 +42,9 @@ namespace PronosContest.DAL.Pronos
 		public int ButsPenaltiesEquipeDomicile { get; set; }
 		public int ButsPenaltiesEquipeExterieur { get; set; }
 
-		[ForeignKey("CompteUtilisateur")]
+        public bool IsNouveauProno { get; set; }
+
+        [ForeignKey("CompteUtilisateur")]
 		public int CompteUtilisateurID { get; set; }
 		[ForeignKey("Match")]
 		public int MatchID { get; set; }

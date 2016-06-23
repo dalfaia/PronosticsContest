@@ -45,6 +45,7 @@ namespace PronosContest.Models
         public int ConcoursID { get; set; }
         public EtatPronostic Etat { get; set; }
         public bool IsReadOnly { get; set; }
+        public bool IsNewProno { get; set; }
 		public int VanqueurID {
 			get
 			{

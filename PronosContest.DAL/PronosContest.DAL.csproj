@@ -136,6 +136,10 @@
     <Compile Include="Migrations\201606131010467_1.0.0.19.Designer.cs">
       <DependentUpon>201606131010467_1.0.0.19.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606211936542_1.0.0.20.cs" />
+    <Compile Include="Migrations\201606211936542_1.0.0.20.Designer.cs">
+      <DependentUpon>201606211936542_1.0.0.20.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PronosContestContext.cs" />
     <Compile Include="Pronos\ConcoursCompteUtilisateur.cs" />
@@ -216,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606131010467_1.0.0.19.resx">
       <DependentUpon>201606131010467_1.0.0.19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606211936542_1.0.0.20.resx">
+      <DependentUpon>201606211936542_1.0.0.20.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

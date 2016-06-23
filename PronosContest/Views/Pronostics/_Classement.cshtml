@@ -30,18 +30,37 @@
                     foreach (var c in this.Model)
                     {
                         string classLigne = "";
-                        switch (i)
+                        if (this.Model.Count == 4)
                         {
-                            case 1 :
-                            case 2 :
-                                classLigne = "success";
-                                break;
-                            case 3 :
-                                classLigne = "warning";
-                                break;
-                            case 4 :
-                                classLigne = "danger";
-                                break;
+                            switch (i)
+                            {
+                                case 1:
+                                case 2:
+                                    classLigne = "success";
+                                    break;
+                                case 3:
+                                    classLigne = "warning";
+                                    break;
+                                case 4:
+                                    classLigne = "danger";
+                                    break;
+                            }
+                        }
+                        else if (this.Model.Count == 6)
+                        {
+                            switch (i)
+                            {
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4:
+                                    classLigne = "success";
+                                    break;
+                                case 5:
+                                case 6:
+                                    classLigne = "danger";
+                                    break;
+                            }
                         }
                         <tr class="@classLigne">
                             <td>@i°</td>

@@ -11,6 +11,7 @@
     if (this.Model != null && this.Model.Classement.Any())
     {
         <h3>Classement actuel</h3>
+        <p>Ce classement prend en compte maintenant les équipes qualifiées, les bonnes positions des poules terminées et les points bonus des poules complètes. Les points pour les qualifiées en 3 place seront comptabilisées à la fin des groupes.</p>
         <div class="table-responsive hidden-xs hidden-sm">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -138,7 +139,7 @@
         </div>
     </div>
     
-    if (this.Model != null && this.Model.ClassementProvisoire.Any())
+    if (this.Model != null && this.Model.ClassementProvisoire.Any() && false)
     {
         <h3>Classement provisoire</h3>
         <p>Ce classement prend en compte les classements de groupes. <br> - EQ: Equipes qualifiées <br> - BP: Bonne position dans le classement <br> - PC: Poule complète</p>

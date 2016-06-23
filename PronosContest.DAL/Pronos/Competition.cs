@@ -61,18 +61,33 @@ namespace PronosContest.DAL.Pronos
                 return list;
             }
         }
-		public List<char> GetCombinaisonClassementTroisiemes (List<Pronostic> pPronosticsUser)
+        public List<PhaseGroupe.ClassementGroupeModel> GetClassement3emesPronostics(List<Pronostic> pPronosticsUser)
+        {
+            List<PhaseGroupe.ClassementGroupeModel> classement = new List<PhaseGroupe.ClassementGroupeModel>();
+
+            foreach (var groupe in Groupes)
+            {
+                var equipe3eme = groupe.ClassementWithPronostics(pPronosticsUser).ElementAt(2);
+                classement.Add(equipe3eme);
+            }
+
+            return classement.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
+        }
+        public List<PhaseGroupe.ClassementGroupeModel> GetClassement3emes()
+        {
+            List<PhaseGroupe.ClassementGroupeModel> classement = new List<PhaseGroupe.ClassementGroupeModel>();
+
+            foreach (var groupe in Groupes)
+            {
+                var equipe3eme = groupe.Classement().ElementAt(2);
+                classement.Add(equipe3eme);
+            }
+
+            return classement.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
+        }
+        public List<char> GetCombinaisonClassementTroisiemes (List<Pronostic> pPronosticsUser)
 		{
-			List<PhaseGroupe.ClassementGroupeModel> classement = new List<PhaseGroupe.ClassementGroupeModel>();
-
-			foreach (var groupe in Groupes)
-			{
-				var equipe3eme = groupe.ClassementWithPronostics(pPronosticsUser).ElementAt(2);
-				classement.Add(equipe3eme);
-			}
-
-			classement = classement.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
-
+            var classement = GetClassement3emesPronostics(pPronosticsUser);
 			List<char> combinaisons = new List<char>();
 			foreach (var cl in classement.Take(4))
 			{
@@ -83,17 +98,8 @@ namespace PronosContest.DAL.Pronos
 		}
 		public List<char> GetCombinaisonClassementTroisiemes()
 		{
-			List<PhaseGroupe.ClassementGroupeModel> classement = new List<PhaseGroupe.ClassementGroupeModel>();
-
-			foreach (var groupe in Groupes)
-			{
-				var equipe3eme = groupe.Classement().ElementAt(2);
-				classement.Add(equipe3eme);
-			}
-
-			classement = classement.OrderByDescending(c => c.ButsMarques).OrderByDescending(c => c.Difference).OrderByDescending(c => c.Points).ToList();
-
-			List<char> combinaisons = new List<char>();
+            var classement = GetClassement3emes();
+            List<char> combinaisons = new List<char>();
 			foreach (var cl in classement.Take(4))
 			{
 				var groupe = this.Groupes.Where(g => g.Equipes.Any(e => e.ID == cl.IDEquipe)).FirstOrDefault();
