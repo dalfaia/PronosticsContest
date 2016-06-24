@@ -606,7 +606,10 @@
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Controllers\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="img\animated_favicon1.gif" />
     <Content Include="img\euro.jpg" />
+    <Content Include="img\favicon.ico" />
+    <Content Include="img\icone.png" />
     <Content Include="less\mixins.less" />
     <Content Include="less\sb-admin-2.less" />
     <Content Include="less\variables.less" />
@@ -958,7 +961,6 @@
     <Content Include="Views\Pronostics\Concours.cshtml" />
     <Content Include="Views\Pronostics\SearchConcours.cshtml" />
     <Content Include="Views\Pronostics\_Classement.cshtml" />
-    <Content Include="Views\Pronostics\_Match.cshtml" />
     <Content Include="Views\Pronostics\ScoresMatch.cshtml" />
     <Content Include="Views\Pronostics\ClassementConcours.cshtml" />
     <Content Include="Views\Pronostics\InformationsMatch.cshtml" />

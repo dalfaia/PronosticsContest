@@ -3,7 +3,7 @@
 @{
     if (this.Model != null && this.Model.Any())
     {
-        <div class="table-responsive">
+        <div class="table-responsive hidden-xs hidden-sm">
             <table class="table">
                 <thead>
                     <tr>
@@ -98,5 +98,47 @@
                 }
             </table>
         </div>
-    }
+		<div class="list-group hidden-md hidden-lg">
+			@{
+				i = 1;
+				foreach (var c in this.Model)
+				{
+					string classLigne = "";
+					switch (i)
+					{
+						case 1:
+						case 2:
+							classLigne = "list-group-item-success";
+							break;
+						case 3:
+							classLigne = "list-group-item-danger";
+							break;
+						case 4:
+							classLigne = "list-group-item-warning";
+							break;
+					}
+                    <div class="list-group-item @classLigne">
+						<h4 class="list-group-item-heading">@i° @c.Nom <span class="label label-warning pull-right" style="font-size:1.15em;">@c.Points</span></h4>
+						<p class="list-group-item-text">
+							<span class="label label-info">EQ: @c.MatchsJoues</span>
+							<span class="label label-success">G: @c.MatchsGagnes</span>
+							<span class="label label-warning">SE: @c.MatchsNuls</span>
+							<span class="label label-danger">P: @c.MatchsPerdus</span>
+							<span class="label label-success">BP: @c.ButsMarques</span>
+							<span class="label label-danger">PC: @c.ButsEncaisses</span>
+							@if (c.Difference >= 0)
+							{
+								<span class="label label-success">PC: @c.Difference</span>
+							}
+							else
+							{
+								<span class="label label-danger">PC: @c.Difference</span>
+							}
+						</p>
+					</div>
+					i++;
+				}
+			}
+		</div>
+	}
 }

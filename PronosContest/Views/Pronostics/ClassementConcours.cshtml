@@ -11,7 +11,6 @@
     if (this.Model != null && this.Model.Classement.Any())
     {
         <h3>Classement actuel</h3>
-        <p>Ce classement prend en compte maintenant les équipes qualifiées, les bonnes positions des poules terminées et les points bonus des poules complètes. Les points pour les qualifiées en 3 place seront comptabilisées à la fin des groupes.</p>
         <div class="table-responsive hidden-xs hidden-sm">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -57,7 +56,7 @@
                         {
                             classLigne = "success";
                         }
-                        else if (i >= (this.Model.ClassementProvisoire.Count - 2))
+                        else if (i >= (this.Model.Classement.Count - 2))
                         {
                             classLigne = "danger";
                         }
@@ -107,7 +106,7 @@
                     {
                         classLigne = "list-group-item-success";
                     }
-                    else if (i >= (this.Model.ClassementProvisoire.Count - 2))
+                    else if (i >= (this.Model.Classement.Count - 2))
                     {
                         classLigne = "list-group-item-danger";
                     }
@@ -139,131 +138,14 @@
         </div>
     </div>
     
-    if (this.Model != null && this.Model.ClassementProvisoire.Any() && false)
-    {
-        <h3>Classement provisoire</h3>
-        <p>Ce classement prend en compte les classements de groupes. <br> - EQ: Equipes qualifiées <br> - BP: Bonne position dans le classement <br> - PC: Poule complète</p>
-        <div class="table-responsive hidden-xs hidden-sm">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Nom</th>
-                        <th>
-                            <span class="hidden-md hidden-lg">G</span>
-                            <span class="hidden-xs hidden-sm">Gagnés</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">P</span>
-                            <span class="hidden-xs hidden-sm">Perdus</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">SE</span>
-                            <span class="hidden-xs hidden-sm">Scores exacts</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">EQ</span>
-                            <span class="hidden-xs hidden-sm">Equipe qualifiée</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">BP</span>
-                            <span class="hidden-xs hidden-sm">Bonne position</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">PC</span>
-                            <span class="hidden-xs hidden-sm">Poule complète</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">Pts</span>
-                            <span class="hidden-xs hidden-sm">Points</span>
-                        </th>
-                    </tr>
-                </thead>
-                @{
-                    int i = 1;
-                    foreach (var c in this.Model.ClassementProvisoire)
-                    {
-                        string classLigne = "";
-                        if (i <= 3)
-                        {
-                            classLigne = "success";
-                        }
-                        else if (i >= (this.Model.ClassementProvisoire.Count - 2))
-                        {
-                            classLigne = "danger";
-                        }
-                        else
-                        {
-                            classLigne = "warning";
-                        }
-                        <tr class="@classLigne">
-                            <td>@i°</td>
-                            <td>
-                                @c.NomComplet <span class="pull-right"><a href="@Url.Action("Pronostics", "Pronostics", new { pConcoursID = concoursID, pUserID = c.CompteUtilisateurID })"><i class="fa fa-info-circle text-primary"></i></a></span>
-                            </td>
-                            <td>
-                                @c.NombrePronosGagnes
-                            </td>
-                            <td>
-                                @c.NombrePronosPerdus
-                            </td>
-                            <td>
-                                @c.NombreScoreExact
-                            </td>
-                            <td>
-                                @c.NombreBonneEquipeQualifiee
-                            </td>
-                            <td>
-                                @c.NombreBonnePositionPoule
-                            </td>
-                            <td>
-                                @c.NombrePouleComplete
-                            </td>
-                            <td>
-                                @c.Points
-                            </td>
-                        </tr>
-                        i++;
-                    }
-                }
-            </table>
-        </div>
-        <div class="list-group hidden-md hidden-lg">
-            @{
-                i = 1;
-                foreach (var c in this.Model.ClassementProvisoire)
-                {
-                    string classLigne = "";
-                    if (i <= 3)
-                    {
-                        classLigne = "list-group-item-success";
-                    }
-                    else if (i >= (this.Model.ClassementProvisoire.Count - 2))
-                    {
-                        classLigne = "list-group-item-danger";
-                    }
-                    else
-                    {
-                        classLigne = "list-group-item-warning";
-                    }
-                    <a href="@Url.Action("Pronostics", "Pronostics", new { pConcoursID = concoursID, pUserID = c.CompteUtilisateurID })" class="list-group-item @classLigne">
-                        <h4 class="list-group-item-heading">@i° @c.NomComplet <span class="label label-warning pull-right" style="font-size:1.15em;">@c.Points</span></h4>
-                        <p class="list-group-item-text">
-                            <span class="label label-success">G: @c.NombrePronosGagnes</span>
-                            <span class="label label-danger">P: @c.NombrePronosPerdus</span>
-                            <span class="label label-primary">SE: @c.NombreScoreExact</span>
-                            <span class="label label-info">EQ: @c.NombreBonneEquipeQualifiee</span>
-                            <span class="label label-info">BP: @c.NombreBonnePositionPoule</span>
-                            <span class="label label-info">PC: @c.NombrePouleComplete</span>
-                        </p>
-                    </a>
-                    i++;
-                }
-            }
-        </div>
-    }
     <h3>Barème</h3>
-    <p>Match de poule : <br>- le bon gagnant rapporte 1 point <br>- le score exact rapporte 2 points de plus</p>
-    <p>Classement de poule : <br>- bonus de 1 point par équipe qualifiée bien choisie<br>- bonus de 1 point par équipe bien positionné dans la poule<br>- bonus de 2 points par poule complète</p>
-
+	<dl>
+		<dt>Match de poule</dt>
+		<dd>le bon gagnant rapporte 1 point</dd>
+		<dd>le score exact rapporte 2 points de plus</dd>
+		<dt>Classement de poule</dt>
+		<dd>bonus de 1 point par équipe qualifiée bien choisie</dd>
+		<dd>bonus de 1 point par équipe bien positionné dans la poule</dd>
+		<dd>bonus de 2 points par poule complète</dd>
+	</dl>
 }
