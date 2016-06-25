@@ -97,7 +97,7 @@ namespace PronosContest.Controllers
                                 DateHeure = match.Date.ToShortDateString() + " à " + match.Date.ToShortTimeString(),
                                 Etat = EtatPronostic.Empty,
                                 IsReadOnly = concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now
-                            }; 
+                        }; 
                             if (prono != null)
                             {
                                 newProno.ButsA = prono.ButsEquipeDomicile;
@@ -157,7 +157,7 @@ namespace PronosContest.Controllers
 
                         foreach (var match in grp.Matchs.OrderBy(m => m.Date))
                         {
-                            var prono = concours.Pronostics.Where(p => p.MatchID == match.ID && p.CompteUtilisateurID == this.UserID.Value).FirstOrDefault();
+                            var prono = concours.Pronostics.Where(p => p.MatchID == match.ID && !p.IsNouveauProno && p.CompteUtilisateurID == this.UserID.Value).FirstOrDefault();
 
                             PronosticsModel pronoModel = new PronosticsModel();
 
@@ -227,7 +227,7 @@ namespace PronosContest.Controllers
                                 {
                                     if (grp.TypePhaseFinale == TypePhaseFinale.Quart)
                                     {
-                                        var nbPronosticsHuitiemes = concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && p.Match.PhaseFinale != null && p.Match.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Huitieme).Count();
+                                        var nbPronosticsHuitiemes = concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && !p.IsNouveauProno && p.Match.PhaseFinale != null && p.Match.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Huitieme).Count();
                                         if (nbPronosticsHuitiemes >= (int)TypePhaseFinale.Huitieme)
                                         {
                                             var Match_A_ID = match.MatchVainqueurDomicileID.Value;
@@ -271,7 +271,7 @@ namespace PronosContest.Controllers
                                     }
                                     else if (grp.TypePhaseFinale == TypePhaseFinale.Demi)
                                     {
-                                        var nbPronosticsQuarts = concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && p.Match.PhaseFinale != null && p.Match.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Quart).Count();
+                                        var nbPronosticsQuarts = concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && !p.IsNouveauProno && p.Match.PhaseFinale != null && p.Match.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Quart).Count();
                                         if (nbPronosticsQuarts >= (int)TypePhaseFinale.Quart)
                                         {
                                             var Match_A_ID = match.MatchVainqueurDomicileID.Value;
@@ -315,7 +315,7 @@ namespace PronosContest.Controllers
                                     }
                                     else if (grp.TypePhaseFinale == TypePhaseFinale.Finale)
                                     {
-                                        var nbPronosticsDemis = concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && p.Match.PhaseFinale != null && p.Match.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Demi).Count();
+                                        var nbPronosticsDemis = concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && !p.IsNouveauProno && p.Match.PhaseFinale != null && p.Match.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Demi).Count();
                                         if (nbPronosticsDemis >= (int)TypePhaseFinale.Demi)
                                         {
                                             var Match_A_ID = match.MatchVainqueurDomicileID.Value;
@@ -748,7 +748,7 @@ namespace PronosContest.Controllers
 							if (match.EquipePossibleDomicile_Place != null && match.EquipePossibleExterieur_Place != null)
 							{
 								// Premiere phase finale (generation apres les groupes)
-								var combinaison3emes = concours.Competition.GetCombinaisonClassementTroisiemes(concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID).ToList());
+								var combinaison3emes = concours.Competition.GetCombinaisonClassementTroisiemes();
 								var combinaison = concours.Competition.TableauCombinaisons.Where(tc => tc.Combinaisons.Intersect(combinaison3emes).Count() == combinaison3emes.Count).FirstOrDefault();
 
 								var groupe_A = concours.Competition.Groupes.Where(g => match.EquipePossibleDomicile_Groupes.Contains(g.Lettre)).FirstOrDefault();
@@ -1323,8 +1323,7 @@ namespace PronosContest.Controllers
             Concours c = PronosContestWebService.GetService().PronosService.GetConcoursByID(pConcoursID);
             ConcoursClassementViewModel model = new ConcoursClassementViewModel()
             {
-                Classement = c.Classement(),
-                ClassementProvisoire = c.ClassementProvisoire()
+                Classement = c.Classement()
             };
             if (model != null)
                 return View(model);
@@ -1353,6 +1352,7 @@ namespace PronosContest.Controllers
             }
             return PartialView();
         }
+
         [HttpGet]
         public ActionResult GetClassement3emesPronostics(string pConcoursID)
         {
@@ -1453,7 +1453,6 @@ namespace PronosContest.Controllers
             }
             return null;
         }
-
         private List<PhaseGroupe.ClassementGroupeModel> GetClassement3emesPronostics(int pConcoursID)
         {
             var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pConcoursID);
@@ -1549,10 +1548,10 @@ namespace PronosContest.Controllers
 
         }
 
-        public ActionResult InformationsPronostic(int pIdConcours, int pIdMatch)
+        public ActionResult InformationsPronostic(int pIdConcours, int pIdMatch, bool pIsNewProno = false)
 		{
 			var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pIdConcours);
-			var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch && !p.IsNouveauProno).ToList() };
+			var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch && pIsNewProno).ToList() };
             model.MatchID = pIdMatch;
             model.ConcoursID = pIdConcours;
             var match = concours.Competition.AllMatchs.Where(m => m.ID == pIdMatch).FirstOrDefault();

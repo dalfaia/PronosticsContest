@@ -74,3 +74,17 @@ C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\bin\Debug\EntityFramewor
 C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
 C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
 C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll.config
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\PronosContest.BLL.pdb
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\EntityFramework.dll
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\PronosContest.Core.dll
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\PronosContest.DAL.dll
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\PronosContest.Core.pdb
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\PronosContest.DAL.pdb
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\EntityFramework.xml
+C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Repos\NewRepo\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
+C:\Repos\NewRepo\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
+C:\Repos\NewRepo\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb

@@ -59,15 +59,49 @@ namespace PronosContest.DAL.Pronos
                     elementClassement.NomComplet = user.Prenom + " " + user.Nom;
                     foreach (var p in this.Pronostics.Where(c => c.CompteUtilisateurID == user.ID && c.Match != null && c.Match.ButsEquipeDomicile != null && c.Match.ButsEquipeExterieur != null))
                     {
-                        var match = this.Competition.AllMatchs.Where(m => m.ID == p.MatchID).FirstOrDefault();
+                        var match = p.Match;
                         if (match != null)
                         {
-                            if (match.VainqueurID == p.VainqueurID)
-                                elementClassement.NombrePronosGagnes += 1;
-                            else if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
-                                elementClassement.NombrePronosPerdus += 1;
-                            if (match.ButsEquipeDomicile == p.ButsEquipeDomicile && match.ButsEquipeExterieur == p.ButsEquipeExterieur)
-                                elementClassement.NombreScoreExact += 1;
+                            if (match.PhaseGroupe != null)
+                            {
+                                // Points matchs phases de groupes
+                                if (match.VainqueurID == p.VainqueurID)
+                                    elementClassement.NombrePronosGagnes += 1;
+                                else if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
+                                    elementClassement.NombrePronosPerdus += 1;
+                                if (match.ButsEquipeDomicile == p.ButsEquipeDomicile && match.ButsEquipeExterieur == p.ButsEquipeExterieur)
+                                    elementClassement.NombreScoreExact += 1;
+                            }
+                            else if (match.PhaseFinale != null)
+                            {
+                                if (p.IsNouveauProno)
+                                {
+                                    if (match.ButsEquipeDomicile > match.ButsEquipeExterieur && p.ButsEquipeDomicile > p.ButsEquipeExterieur)
+                                        elementClassement.NombrePronosGagnesNouveauProno += 1;
+                                    else if (match.ButsEquipeDomicile < match.ButsEquipeExterieur && p.ButsEquipeDomicile < p.ButsEquipeExterieur)
+                                        elementClassement.NombrePronosGagnesNouveauProno += 1;
+                                    else if (match.ButsEquipeDomicile == match.ButsEquipeExterieur && p.ButsEquipeDomicile == p.ButsEquipeExterieur)
+                                    {
+                                        elementClassement.NombrePronosGagnesNouveauProno += 1;
+                                        if (match.ButsPenaltiesEquipeDomicile > match.ButsPenaltiesEquipeExterieur && p.ButsPenaltiesEquipeDomicile > p.ButsPenaltiesEquipeExterieur)
+                                            elementClassement.NombrePronosGagnesPenaltyNouveauProno++;
+                                        else if (match.ButsPenaltiesEquipeDomicile < match.ButsPenaltiesEquipeExterieur && p.ButsPenaltiesEquipeDomicile < p.ButsPenaltiesEquipeExterieur)
+                                            elementClassement.NombrePronosGagnesPenaltyNouveauProno++;
+                                        else
+                                            elementClassement.NombrePronosPerdusPenaltyNouveauProno++;
+                                        if (match.ButsPenaltiesEquipeDomicile == p.ButsPenaltiesEquipeDomicile && match.ButsPenaltiesEquipeExterieur == p.ButsPenaltiesEquipeExterieur)
+                                            elementClassement.NombreScoreExactPenaltyNouveauProno++;
+                                    }
+                                    else
+                                        elementClassement.NombrePronosPerdusNouveauProno += 1;
+                                    if (match.ButsEquipeDomicile == p.ButsEquipeDomicile && match.ButsEquipeExterieur == p.ButsEquipeExterieur)
+                                        elementClassement.NombreScoreExactNouveauProno += 1;
+                                }
+                                else
+                                {
+
+                                }
+                            }
                         }
                     }
 
@@ -272,11 +306,21 @@ namespace PronosContest.DAL.Pronos
 			public int NombreBonneEquipeQualifiee { get; set; }
 			public int NombreBonnePositionPoule { get; set; }
 			public int NombrePouleComplete { get; set; }
-			public int Points
+            public int NombrePronosGagnesNouveauProno { get; set; }
+            public int NombrePronosPerdusNouveauProno { get; set; }
+            public int NombreScoreExactNouveauProno { get; set; }
+            public int NombrePronosGagnesPenaltyNouveauProno { get; set; }
+            public int NombrePronosPerdusPenaltyNouveauProno { get; set; }
+            public int NombreScoreExactPenaltyNouveauProno { get; set; }
+            public int NombreBonneEquipeQualifieePourQuarts { get; set; }
+            public int NombreBonneEquipeQualifieePourDemis { get; set; }
+            public int NombreBonneEquipeQualifieePourFinale { get; set; }
+            public int Points
             {
                 get
                 {
-                    return (this.NombreScoreExact * 2) + this.NombrePronosGagnes + this.NombreBonneEquipeQualifiee + this.NombreBonnePositionPoule + (this.NombrePouleComplete * 2);
+                    return (this.NombreScoreExact * 2) + this.NombrePronosGagnes + this.NombreBonneEquipeQualifiee + this.NombreBonnePositionPoule + (this.NombrePouleComplete * 2)
+                        + this.NombrePronosGagnesNouveauProno + (this.NombreScoreExactNouveauProno * 2) + this.NombrePronosGagnesPenaltyNouveauProno + (this.NombreScoreExactPenaltyNouveauProno * 2);
                 }
             }
         }

@@ -13,38 +13,28 @@
         <h3>Classement actuel</h3>
         <div class="table-responsive hidden-xs hidden-sm">
             <table class="table table-bordered table-hover">
-                <thead>
+                <thead style="vertical-align:text-top;">
                     <tr>
-                        <th></th>
-                        <th>Nom</th>
-                        <th>
-                            <span class="hidden-md hidden-lg">G</span>
-                            <span class="hidden-xs hidden-sm">Gagnés</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">P</span>
-                            <span class="hidden-xs hidden-sm">Perdus</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">SE</span>
-                            <span class="hidden-xs hidden-sm">Scores exacts</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">EQ</span>
-                            <span class="hidden-xs hidden-sm">Equipe qualifiée</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">BP</span>
-                            <span class="hidden-xs hidden-sm">Bonne position</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">PC</span>
-                            <span class="hidden-xs hidden-sm">Poule complète</span>
-                        </th>
-                        <th>
-                            <span class="hidden-md hidden-lg">Pts</span>
-                            <span class="hidden-xs hidden-sm">Points</span>
-                        </th>
+                        <th rowspan="2"></th>
+                        <th rowspan="2">Nom</th>
+                        <th colspan="6">Groupes</th>
+                        <th colspan="6">Phases finales - Nouveaux</th>
+                        <th rowspan="2">Pts</th>
+                    </tr>
+                    <tr>
+                        <th title="Pronostics gagnés">G</th>
+                        <th title="Pronostics perdus">P</th>
+                        <th title="Scores exacts">SE</th>
+                        <th title="Equipes qualifiées en Huitièmes">EQ</th>
+                        <th title="Bonnes positions dans les classements des groupes">BP</th>
+                        <th title="Poule complète">PC</th>
+
+                        <th title="Pronostics gagnés">G</th>
+                        <th title="Pronostics perdus">P</th>
+                        <th title="Scores exacts">SE</th>
+                        <th title="Penaltys gagnés">PG</th>
+                        <th title="Penaltys perdus">PP</th>
+                        <th title="Scores exacts penaltys">PC</th>
                     </tr>
                 </thead>
                 @{
@@ -86,6 +76,24 @@
                             </td>
                             <td>
                                 @c.NombrePouleComplete
+                            </td>
+                            <td>
+                                @c.NombrePronosGagnesNouveauProno
+                            </td>
+                            <td>
+                                @c.NombrePronosPerdusNouveauProno
+                            </td>
+                            <td>
+                                @c.NombreScoreExactNouveauProno
+                            </td>
+                            <td>
+                                @c.NombrePronosGagnesPenaltyNouveauProno
+                            </td>
+                            <td>
+                                @c.NombrePronosPerdusPenaltyNouveauProno
+                            </td>
+                            <td>
+                                @c.NombreScoreExactPenaltyNouveauProno
                             </td>
                             <td>
                                 @c.Points

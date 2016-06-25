@@ -98,7 +98,7 @@ namespace PronosContest.BLL
 		{
 			var concours = _pronosContestContextDatabase.Concours.Where(c => c.ID == pConcoursID).FirstOrDefault();
             var match = _pronosContestContextDatabase.Matchs.Where(m => m.ID == pMatchID).FirstOrDefault();
-            if (concours != null && match != null && DateTime.Now >= match.Date)
+            if (concours != null && match != null && match.Date >= DateTime.Now)
             {
 				var prono = concours.Pronostics.Where(p => p.MatchID == pMatchID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno == pIsNewProno).FirstOrDefault();
 				if (prono != null)

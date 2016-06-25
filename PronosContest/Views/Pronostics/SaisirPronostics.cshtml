@@ -358,6 +358,10 @@
                                                         {
                                                             <a href="@Url.Action("InformationsPronostic", "Pronostics", new { pIdConcours = concoursID, pIdMatch = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
                                                         }
+                                                        else if (prono.IsReadOnly)
+                                                        {
+                                                            <a href="@Url.Action("InformationsPronostic", "Pronostics", new { pIdConcours = concoursID, pIdMatch = prono.MatchID, pIsNewProno = prono.IsNewProno })"><i class="fa fa-info-circle text-primary"></i></a>
+                                                        }
                                                     }
 										        </td>
                                             </tr>

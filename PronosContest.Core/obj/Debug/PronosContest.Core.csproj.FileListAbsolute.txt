@@ -8,3 +8,7 @@ C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.Core\bin\Debug\PronosContest
 C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.Core\obj\Debug\PronosContest.Core.csprojResolveAssemblyReference.cache
 C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.Core\obj\Debug\PronosContest.Core.dll
 C:\Users\hp\Source\Repos\RepositoryDA\PronosContest.Core\obj\Debug\PronosContest.Core.pdb
+C:\Repos\NewRepo\PronosContest.Core\bin\Debug\PronosContest.Core.dll
+C:\Repos\NewRepo\PronosContest.Core\bin\Debug\PronosContest.Core.pdb
+C:\Repos\NewRepo\PronosContest.Core\obj\Debug\PronosContest.Core.dll
+C:\Repos\NewRepo\PronosContest.Core\obj\Debug\PronosContest.Core.pdb
