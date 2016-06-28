@@ -92,14 +92,65 @@ namespace PronosContest.DAL.Pronos
                                         if (match.ButsPenaltiesEquipeDomicile == p.ButsPenaltiesEquipeDomicile && match.ButsPenaltiesEquipeExterieur == p.ButsPenaltiesEquipeExterieur)
                                             elementClassement.NombreScoreExactPenaltyNouveauProno++;
                                     }
+                                    else if (match.ButsEquipeDomicile == match.ButsEquipeExterieur && p.ButsEquipeDomicile != p.ButsEquipeExterieur)
+                                    {
+                                        if (match.VainqueurID == p.VainqueurID)
+                                            elementClassement.NombrePronosGagnesNouveauProno++;
+                                        else
+                                            elementClassement.NombrePronosPerdusNouveauProno++;
+                                    }
                                     else
                                         elementClassement.NombrePronosPerdusNouveauProno += 1;
                                     if (match.ButsEquipeDomicile == p.ButsEquipeDomicile && match.ButsEquipeExterieur == p.ButsEquipeExterieur)
                                         elementClassement.NombreScoreExactNouveauProno += 1;
                                 }
-                                else
-                                {
+                            }
+                        }
+                    }
 
+                    foreach (var phaseFinale in this.Competition.PhasesFinales)
+                    {
+                        foreach (var match in phaseFinale.Matchs.Where(m => m.ButsEquipeDomicile != null && m.ButsEquipeExterieur != null))
+                        {
+                            var pronosticsConcernes = this.Pronostics.Where(p => p.CompteUtilisateurID == user.ID && p.IsNouveauProno == false && p.Match.PhaseFinale != null && p.Match.PhaseFinale.TypePhaseFinale == match.PhaseFinale.TypePhaseFinale &&
+                            (p.EquipeAID == match.EquipeAID || p.EquipeBID == match.EquipeBID || p.EquipeAID == match.EquipeBID || p.EquipeBID == match.EquipeAID));
+
+                            foreach (var prono in pronosticsConcernes)
+                            {
+                                switch (phaseFinale.TypePhaseFinale)
+                                {
+                                    case TypePhaseFinale.Huitieme:
+                                        if ((prono.VainqueurID == match.EquipeAID || prono.VainqueurID == match.EquipeBID) && this.Competition.GetEquipesQualifieesQuarts().Contains(prono.VainqueurID.Value))
+                                            elementClassement.NombreBonneEquipeQualifieePourQuartsAncienProno++;
+                                        if (this.Competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Huitieme).FirstOrDefault().Matchs.Where(m =>
+                                        (m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
+                                        || (m.EquipeAID == prono.EquipeBID && m.EquipeBID == prono.EquipeAID && m.ButsEquipeDomicile == prono.ButsEquipeExterieur && m.ButsEquipeExterieur == prono.ButsEquipeDomicile)).Any())
+                                            elementClassement.NombreBonMatchEtBonScoreHuitiemesAncienProno++;
+                                        break;
+                                    case TypePhaseFinale.Quart:
+                                        if ((prono.VainqueurID == match.EquipeAID || prono.VainqueurID == match.EquipeBID) && this.Competition.GetEquipesQualifieesDemis().Contains(prono.VainqueurID.Value))
+                                            elementClassement.NombreBonneEquipeQualifieePourDemisAncienProno++;
+                                        if (this.Competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Quart).FirstOrDefault().Matchs.Where(m =>
+                                        (m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
+                                        || (m.EquipeAID == prono.EquipeBID && m.EquipeBID == prono.EquipeAID && m.ButsEquipeDomicile == prono.ButsEquipeExterieur && m.ButsEquipeExterieur == prono.ButsEquipeDomicile)).Any())
+                                            elementClassement.NombreBonMatchEtBonScoreQuartsAncienProno++;
+                                        break;
+                                    case TypePhaseFinale.Demi:
+                                        if ((prono.VainqueurID == match.EquipeAID || prono.VainqueurID == match.EquipeBID) && this.Competition.GetEquipesQualifieesFinale().Contains(prono.VainqueurID.Value))
+                                            elementClassement.NombreBonneEquipeQualifieePourFinaleAncienProno++;
+                                        if (this.Competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Demi).FirstOrDefault().Matchs.Where(m =>
+                                    (m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
+                                    || (m.EquipeAID == prono.EquipeBID && m.EquipeBID == prono.EquipeAID && m.ButsEquipeDomicile == prono.ButsEquipeExterieur && m.ButsEquipeExterieur == prono.ButsEquipeDomicile)).Any())
+                                            elementClassement.NombreBonMatchEtBonScoreDemisAncienProno++;
+                                        break;
+                                    case TypePhaseFinale.Finale:
+                                        if (this.Competition.GetVainqueurCompetition() == prono.VainqueurID.Value)
+                                            elementClassement.NombreBonGagnantCompetitionAncienProno++;
+                                        if (this.Competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Finale).FirstOrDefault().Matchs.Where(m =>
+                                    (m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
+                                    || (m.EquipeAID == prono.EquipeBID && m.EquipeBID == prono.EquipeAID && m.ButsEquipeDomicile == prono.ButsEquipeExterieur && m.ButsEquipeExterieur == prono.ButsEquipeDomicile)).Any())
+                                            elementClassement.NombreBonMatchEtBonScoreFinaleAncienProno++;
+                                        break;
                                 }
                             }
                         }
@@ -125,9 +176,9 @@ namespace PronosContest.DAL.Pronos
                                         nbBonnesPositionsGroupe++;
                                     }
                                 }
-                                if (this.Competition.GetEquipesQualifiees().Contains(classementUser[0].IDEquipe))
+                                if (this.Competition.GetEquipesQualifieesHuitiemes().Contains(classementUser[0].IDEquipe))
                                     elementClassement.NombreBonneEquipeQualifiee++;
-                                if (this.Competition.GetEquipesQualifiees().Contains(classementUser[1].IDEquipe))
+                                if (this.Competition.GetEquipesQualifieesHuitiemes().Contains(classementUser[1].IDEquipe))
                                     elementClassement.NombreBonneEquipeQualifiee++;
                                 if (nbBonnesPositionsGroupe == classementUser.Count)
                                     elementClassement.NombrePouleComplete += 1;
@@ -143,7 +194,7 @@ namespace PronosContest.DAL.Pronos
 
                         foreach (var equipe in equipes3emesQualifies)
                         {
-                            if (this.Competition.GetEquipesQualifiees().Contains(equipe.IDEquipe))
+                            if (this.Competition.GetEquipesQualifieesHuitiemes().Contains(equipe.IDEquipe))
                                 elementClassement.NombreBonneEquipeQualifiee++;
                         }
                     }
@@ -199,9 +250,9 @@ namespace PronosContest.DAL.Pronos
                                         nbBonnesPositionsGroupe++;
                                     }
                                 }
-                                if (this.Competition.GetEquipesQualifiees().Contains(classementUser[0].IDEquipe))
+                                if (this.Competition.GetEquipesQualifieesHuitiemes().Contains(classementUser[0].IDEquipe))
                                     elementClassement.NombreBonneEquipeQualifiee++;
-                                if (this.Competition.GetEquipesQualifiees().Contains(classementUser[1].IDEquipe))
+                                if (this.Competition.GetEquipesQualifieesHuitiemes().Contains(classementUser[1].IDEquipe))
                                     elementClassement.NombreBonneEquipeQualifiee++;
                                 if (nbBonnesPositionsGroupe == classementUser.Count)
                                     elementClassement.NombrePouleComplete += 1;
@@ -217,7 +268,7 @@ namespace PronosContest.DAL.Pronos
 
                         foreach (var equipe in equipes3emesQualifies)
                         {
-                            if (this.Competition.GetEquipesQualifiees().Contains(equipe.IDEquipe))
+                            if (this.Competition.GetEquipesQualifieesHuitiemes().Contains(equipe.IDEquipe))
                                 elementClassement.NombreBonneEquipeQualifiee++;
                         }
                     }
@@ -286,8 +337,8 @@ namespace PronosContest.DAL.Pronos
 					}
 
 					// Points sur les equipes qualifiées
-					var equipesQualifiesReel = this.Competition.GetEquipesQualifiees();
-					var equipesQualifiesUser = this.Competition.GetEquipesQualifiees(this.Pronostics.Where(c => c.CompteUtilisateurID == user.ID).ToList());
+					var equipesQualifiesReel = this.Competition.GetEquipesQualifieesHuitiemes();
+					var equipesQualifiesUser = this.Competition.GetEquipesQualifieesHuitiemes(this.Pronostics.Where(c => c.CompteUtilisateurID == user.ID).ToList());
 					elementClassement.NombreBonneEquipeQualifiee = equipesQualifiesUser.Intersect(equipesQualifiesReel).Count();
 
 					classementFinal.Add(elementClassement);
@@ -312,15 +363,23 @@ namespace PronosContest.DAL.Pronos
             public int NombrePronosGagnesPenaltyNouveauProno { get; set; }
             public int NombrePronosPerdusPenaltyNouveauProno { get; set; }
             public int NombreScoreExactPenaltyNouveauProno { get; set; }
-            public int NombreBonneEquipeQualifieePourQuarts { get; set; }
-            public int NombreBonneEquipeQualifieePourDemis { get; set; }
-            public int NombreBonneEquipeQualifieePourFinale { get; set; }
+            public int NombreBonneEquipeQualifieePourQuartsAncienProno { get; set; }
+            public int NombreBonMatchEtBonScoreHuitiemesAncienProno { get; set; }
+            public int NombreBonneEquipeQualifieePourDemisAncienProno { get; set; }
+            public int NombreBonMatchEtBonScoreQuartsAncienProno { get; set; }
+            public int NombreBonneEquipeQualifieePourFinaleAncienProno { get; set; }
+            public int NombreBonMatchEtBonScoreDemisAncienProno { get; set; }
+            public int NombreBonGagnantCompetitionAncienProno { get; set; }
+            public int NombreBonMatchEtBonScoreFinaleAncienProno { get; set; }
             public int Points
             {
                 get
                 {
                     return (this.NombreScoreExact * 2) + this.NombrePronosGagnes + this.NombreBonneEquipeQualifiee + this.NombreBonnePositionPoule + (this.NombrePouleComplete * 2)
-                        + this.NombrePronosGagnesNouveauProno + (this.NombreScoreExactNouveauProno * 2) + this.NombrePronosGagnesPenaltyNouveauProno + (this.NombreScoreExactPenaltyNouveauProno * 2);
+                        + this.NombrePronosGagnesNouveauProno + (this.NombreScoreExactNouveauProno * 2) + this.NombrePronosGagnesPenaltyNouveauProno + (this.NombreScoreExactPenaltyNouveauProno * 2)
+                        + (this.NombreBonneEquipeQualifieePourQuartsAncienProno * 2) + (this.NombreBonneEquipeQualifieePourDemisAncienProno * 2) + (this.NombreBonneEquipeQualifieePourFinaleAncienProno * 3)
+                        + (this.NombreBonGagnantCompetitionAncienProno * 5) + (this.NombreBonMatchEtBonScoreHuitiemesAncienProno * 3) + (this.NombreBonMatchEtBonScoreQuartsAncienProno * 4)
+                        + (this.NombreBonMatchEtBonScoreDemisAncienProno * 5) + (this.NombreBonMatchEtBonScoreFinaleAncienProno * 10);
                 }
             }
         }

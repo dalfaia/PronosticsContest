@@ -22,6 +22,8 @@ namespace PronosContest
                       "~/bower_components/raphael/raphael.js",
                       "~/bower_components/morrisjs/morris.min.js",
                       "~/bower_components/metisMenu/dist/metisMenu.min.js",
+                      "~/bower_components/bootstrap/js/transition.js",
+                      "~/bower_components/bootstrap/js/collapse.js",
                       "~/bower_components/flot/jquery.flot.js"
                     ));	
 		}

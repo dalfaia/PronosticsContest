@@ -155,6 +155,29 @@ namespace PronosContest.BLL
                 _pronosContestContextDatabase.SaveChanges();
             }
         }
+        public void SetScorePenaltiesMatch(int pUserID, int pConcoursID, int pMatchID, int pEquipeAID, int pEquipeBID, bool pIsExterieur, int pButs)
+        {
+            var match = GetMatchByID(pMatchID);
+            if (match != null)
+            {
+                match.EquipeAID = pEquipeAID;
+                match.EquipeBID = pEquipeBID;
+                if (!pIsExterieur)
+                    match.ButsPenaltiesEquipeDomicile = pButs;
+                else
+                    match.ButsPenaltiesEquipeExterieur = pButs;
+
+                _pronosContestContextDatabase.SaveChanges();
+            }
+        }
+
+        public void UpdatePronosEquipes(Pronostic pProno)
+        {
+            Pronostic prono = _pronosContestContextDatabase.Pronostics.Where(p => p.ID == pProno.ID).FirstOrDefault();
+            prono.EquipeAID = pProno.EquipeAID;
+            prono.EquipeBID = pProno.EquipeBID;
+            _pronosContestContextDatabase.SaveChanges();
+        }
 
         private void _genererHuitiemes(int pConcoursID)
         {
@@ -288,21 +311,6 @@ namespace PronosContest.BLL
                     }
                     _pronosContestContextDatabase.SaveChanges();
                 }
-            }
-        }
-        public void SetScorePenaltiesMatch(int pUserID, int pConcoursID, int pMatchID, int pEquipeAID, int pEquipeBID, bool pIsExterieur, int pButs)
-        {
-            var match = GetMatchByID(pMatchID);
-            if (match != null)
-            {
-                match.EquipeAID = pEquipeAID;
-                match.EquipeBID = pEquipeBID;
-                if (!pIsExterieur)
-                    match.ButsPenaltiesEquipeDomicile = pButs;
-                else
-                    match.ButsPenaltiesEquipeExterieur = pButs;
-
-                _pronosContestContextDatabase.SaveChanges();
             }
         }
     }

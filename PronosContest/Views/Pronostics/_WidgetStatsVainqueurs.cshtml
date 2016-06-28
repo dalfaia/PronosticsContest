@@ -9,7 +9,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $.getJSON("/Pronostics/GetStatsVainqueursJson?pIdConcours=" + @this.Model.ConcoursID + "&pIdMatch=" + @this.Model.MatchID, function (data) {
+        $.getJSON("/Pronostics/GetStatsVainqueursJson?pIdConcours=" + @this.Model.ConcoursID + "&pIdMatch=" + @this.Model.MatchID + "&pIsNewProno=@this.Model.IsNewProno.ToString()", function (data) {
             new Morris.Donut({
                 element: 'chartStatsVainqueurs',
                 data: JSON.parse(data)

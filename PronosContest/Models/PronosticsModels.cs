@@ -102,6 +102,7 @@ namespace PronosContest.Models
 	{
         public int ConcoursID { get; set; }
         public int MatchID { get; set; }
+        public bool IsNewProno { get; set; }
         public List<Pronostic> ListePronostics { get; set; } 
 
 		public List<DonutItemModel> StatsParVainqueur

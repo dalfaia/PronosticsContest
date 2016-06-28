@@ -80,7 +80,10 @@ namespace PronosContest.DAL.Pronos
 		{
 			get
 			{
-				return this.ButsEquipeDomicile + " - " + this.ButsEquipeExterieur;
+                if (this.ButsEquipeDomicile == this.ButsEquipeExterieur && this.ButsPenaltiesEquipeDomicile > 0 && this.ButsPenaltiesEquipeExterieur > 0)
+                    return "(" + this.ButsPenaltiesEquipeDomicile + ") " + this.ButsEquipeDomicile + " - " + this.ButsEquipeExterieur + " (" + this.ButsPenaltiesEquipeExterieur + ")";
+                else
+				    return "    " + this.ButsEquipeDomicile + " - " + this.ButsEquipeExterieur + "    ";
             }
 		}
 		#endregion

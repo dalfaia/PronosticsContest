@@ -222,6 +222,7 @@ namespace PronosContest.Controllers
                                         pronoModel.Etat = EtatPronostic.Empty;
                                         pronoModel.IsReadOnly = concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now;
                                     }
+
                                 }
                                 else
                                 {
@@ -393,6 +394,7 @@ namespace PronosContest.Controllers
                                     else
                                         pronoModel.Etat = EtatPronostic.Perdu;
                                 }
+
                             }
                             
                             grpModel.MatchsPronostics.Add(pronoModel);
@@ -1304,6 +1306,11 @@ namespace PronosContest.Controllers
                                     else
                                         pronoModel.Etat = EtatPronostic.Perdu;
                                 }
+
+
+                                prono.EquipeAID = pronoModel.EquipeAID;
+                                prono.EquipeBID = pronoModel.EquipeBID;
+                                //PronosContestWebService.GetService().PronosService.UpdatePronosEquipes(prono);
                             }
                             pronoModel.IsReadOnly = true;
                             grpModel.MatchsPronostics.Add(pronoModel);
@@ -1487,18 +1494,20 @@ namespace PronosContest.Controllers
             return View(match);
 		}
 
-        public JsonResult GetStatsScoresJson(int pIdConcours, int pIdMatch)
+        public JsonResult GetStatsScoresJson(int pIdConcours, int pIdMatch, string pIsNewProno)
         {
             var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pIdConcours);
-            var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch).ToList() };
+            bool isNewProno = Helper.GetBoolFromString(pIsNewProno).Value;
+            var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch && p.IsNouveauProno == isNewProno).ToList() };
            
             return Json(JsonConvert.SerializeObject(model.StatsParScore), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetStatsVainqueursJson(int pIdConcours, int pIdMatch)
+        public JsonResult GetStatsVainqueursJson(int pIdConcours, int pIdMatch, string pIsNewProno)
         {
             var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pIdConcours);
-            var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch).ToList() };
+            bool isNewProno = Helper.GetBoolFromString(pIsNewProno).Value;
+            var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch && p.IsNouveauProno == isNewProno).ToList() };
 
             return Json(JsonConvert.SerializeObject(model.StatsParVainqueur), JsonRequestBehavior.AllowGet);
         }
@@ -1551,9 +1560,10 @@ namespace PronosContest.Controllers
         public ActionResult InformationsPronostic(int pIdConcours, int pIdMatch, bool pIsNewProno = false)
 		{
 			var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pIdConcours);
-			var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch && pIsNewProno).ToList() };
+			var model = new InformationsPronosticViewModel() { ListePronostics = concours.Pronostics.Where(p => p.MatchID == pIdMatch && p.IsNouveauProno == pIsNewProno).ToList() };
             model.MatchID = pIdMatch;
             model.ConcoursID = pIdConcours;
+            model.IsNewProno = pIsNewProno;
             var match = concours.Competition.AllMatchs.Where(m => m.ID == pIdMatch).FirstOrDefault();
             if (match != null)
                 ViewBag.Title = match.EquipeA.Libelle + " vs. " + match.EquipeB.Libelle;

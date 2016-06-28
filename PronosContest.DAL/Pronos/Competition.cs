@@ -108,7 +108,7 @@ namespace PronosContest.DAL.Pronos
 			return combinaisons;
 		}
 
-		public List<int> GetEquipesQualifiees()
+		public List<int> GetEquipesQualifieesHuitiemes()
 		{
 			List<int> equipes = new List<int>();
 			foreach (var groupe in this.Groupes)
@@ -126,7 +126,45 @@ namespace PronosContest.DAL.Pronos
 			}
 			return equipes;
 		}
-		public List<int> GetEquipesQualifiees(List<Pronostic> pPronosticsUser)
+        public List<int> GetEquipesQualifieesQuarts()
+        {
+            List<int> equipes = new List<int>();
+            var huitiemes = this.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Huitieme).FirstOrDefault();
+            if (huitiemes != null)
+                foreach (var match in huitiemes.Matchs)
+                    if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
+                        equipes.Add(match.VainqueurID.Value);
+            return equipes;
+        }
+        public List<int> GetEquipesQualifieesDemis()
+        {
+            List<int> equipes = new List<int>();
+            var quarts = this.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Quart).FirstOrDefault();
+            if (quarts != null)
+                foreach (var match in quarts.Matchs)
+                    if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
+                        equipes.Add(match.VainqueurID.Value);
+            return equipes;
+        }
+        public List<int> GetEquipesQualifieesFinale()
+        {
+            List<int> equipes = new List<int>();
+            var demis = this.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Demi).FirstOrDefault();
+            if (demis != null)
+                foreach (var match in demis.Matchs)
+                    if (match.ButsEquipeDomicile != null && match.ButsEquipeExterieur != null)
+                        equipes.Add(match.VainqueurID.Value);
+            return equipes;
+        }
+        public int? GetVainqueurCompetition()
+        {
+            var finale = this.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Finale).FirstOrDefault();
+            if (finale != null)
+                if (finale.Matchs.FirstOrDefault() != null)
+                    return finale.Matchs.First().VainqueurID;
+            return null;
+        }
+        public List<int> GetEquipesQualifieesHuitiemes(List<Pronostic> pPronosticsUser)
 		{
 			List<int> equipes = new List<int>();
 			foreach (var groupe in this.Groupes)

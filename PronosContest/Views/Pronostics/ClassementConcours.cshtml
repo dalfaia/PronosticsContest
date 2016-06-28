@@ -19,6 +19,7 @@
                         <th rowspan="2">Nom</th>
                         <th colspan="6">Groupes</th>
                         <th colspan="6">Phases finales - Nouveaux</th>
+                        <th colspan="8">Phases finales - Anciens</th>
                         <th rowspan="2">Pts</th>
                     </tr>
                     <tr>
@@ -35,6 +36,16 @@
                         <th title="Penaltys gagnés">PG</th>
                         <th title="Penaltys perdus">PP</th>
                         <th title="Scores exacts penaltys">PC</th>
+
+                        <th title="Bonnes équipes qualifiées pour les quarts">BE 1/4</th>
+                        <th title="Bon match et bon score - huitièmes">MS 1/8</th>
+                        <th title="Bonnes équipes qualifiées pour les demis">BE 1/2</th>
+                        <th title="Bon match et bon score - quarts">MS 1/4</th>
+                        <th title="Bonnes équipes qualifiées pour la finale">BE Finale</th>
+                        <th title="Bon match et bon score - demis">MS 1/2</th>
+                        <th title="Bon gagnant de la compétition">BG</th>
+                        <th title="Bon match et bon score - finale">MS Finale</th>
+
                     </tr>
                 </thead>
                 @{
@@ -95,6 +106,33 @@
                             <td>
                                 @c.NombreScoreExactPenaltyNouveauProno
                             </td>
+
+
+                            <td>
+                                @c.NombreBonneEquipeQualifieePourQuartsAncienProno
+                            </td>
+                            <td>
+                                @c.NombreBonMatchEtBonScoreHuitiemesAncienProno
+                            </td>
+                            <td>
+                                @c.NombreBonneEquipeQualifieePourDemisAncienProno
+                            </td>
+                            <td>
+                                @c.NombreBonMatchEtBonScoreQuartsAncienProno
+                            </td>
+                            <td>
+                                @c.NombreBonneEquipeQualifieePourFinaleAncienProno
+                            </td>
+                            <td>
+                                @c.NombreBonMatchEtBonScoreDemisAncienProno
+                            </td>
+                            <td>
+                                @c.NombreBonGagnantCompetitionAncienProno
+                            </td>
+                            <td>
+                                @c.NombreBonMatchEtBonScoreFinaleAncienProno
+                            </td>
+
                             <td>
                                 @c.Points
                             </td>
@@ -104,7 +142,8 @@
                 }
             </table>
         </div>
-        <div class="list-group hidden-md hidden-lg">
+        <div class="panel-group hidden-md hidden-lg" id="accordion" role="tablist" aria-multiselectable="true">
+            
             @{
                 i = 1;
                 foreach (var c in this.Model.Classement)
@@ -112,27 +151,112 @@
                     string classLigne = "";
                     if (i <= 3)
                     {
-                        classLigne = "list-group-item-success";
+                        classLigne = "panel-success";
                     }
                     else if (i >= (this.Model.Classement.Count - 2))
                     {
-                        classLigne = "list-group-item-danger";
+                        classLigne = "panel-danger";
                     }
                     else
                     {
-                        classLigne = "list-group-item-warning";
+                        classLigne = "panel-warning";
                     }
-                    <a href="@Url.Action("Pronostics", "Pronostics", new { pConcoursID = concoursID, pUserID = c.CompteUtilisateurID })" class="list-group-item @classLigne">
-                        <h4 class="list-group-item-heading">@i° @c.NomComplet <span class="label label-warning pull-right" style="font-size:1.15em;">@c.Points</span></h4>
-                        <p class="list-group-item-text">
-                            <span class="label label-success">G: @c.NombrePronosGagnes</span>
-                            <span class="label label-danger">P: @c.NombrePronosPerdus</span>
-                            <span class="label label-primary">SE: @c.NombreScoreExact</span>
-                            <span class="label label-info">EQ: @c.NombreBonneEquipeQualifiee</span>
-                            <span class="label label-info">BP: @c.NombreBonnePositionPoule</span>
-                            <span class="label label-info">PC: @c.NombrePouleComplete</span>
-                        </p>
-                    </a>
+                    <div class="panel @classLigne">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)" aria-expanded="true" aria-controls="collapse@(i)">
+                                    @i° @c.NomComplet <span class="label label-info pull-right">@c.Points</span>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse@(i)" class="panel-collapse collapse text-center" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h5>Groupes</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <span class="label label-success">Pronos gagnés: @c.NombrePronosGagnes</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-danger">Pronos perdus: @c.NombrePronosPerdus</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-primary">Scores exacts: @c.NombreScoreExact</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-info">Equipes qualifiées: @c.NombreBonneEquipeQualifiee</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-info">Bonnes positions: @c.NombreBonnePositionPoule</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-info">Poules complètes: @c.NombrePouleComplete</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h5>Phases finales - Nouveaux</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <span class="label label-success">Pronos gagnés: @c.NombrePronosGagnesNouveauProno</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-danger">Pronos perdus: @c.NombrePronosPerdusNouveauProno</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-primary">Scores exacts: @c.NombreScoreExactNouveauProno</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-success">Equipes qualifiées: @c.NombrePronosGagnesPenaltyNouveauProno</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-danger">Bonnes positions: @c.NombrePronosPerdusPenaltyNouveauProno</span>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <span class="label label-primary">Poules complètes: @c.NombreScoreExactPenaltyNouveauProno</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h5>Phases finales - Anciens</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <span class="label label-success">Equipes qualifiées en 1/4: @c.NombreBonneEquipeQualifieePourQuartsAncienProno</span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="label label-danger">Bon match et bon score 1/8: @c.NombreBonMatchEtBonScoreHuitiemesAncienProno</span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="label label-primary">Equipes qualifiées en 1/2: @c.NombreBonneEquipeQualifieePourDemisAncienProno</span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="label label-success">Bon match et bon score 1/4: @c.NombreBonMatchEtBonScoreQuartsAncienProno</span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="label label-danger">Equipes qualifiées en finale: @c.NombreBonneEquipeQualifieePourFinaleAncienProno</span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="label label-primary">Bon match et bon score en 1/2: @c.NombreBonMatchEtBonScoreDemisAncienProno</span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="label label-danger">Bon gagnant de la compétition: @c.NombreBonGagnantCompetitionAncienProno</span>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span class="label label-primary">Bon match et bon score en finale: @c.NombreBonMatchEtBonScoreFinaleAncienProno</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="@Url.Action("Pronostics", "Pronostics", new { pConcoursID = concoursID, pUserID = c.CompteUtilisateurID })"></a>
+
                     i++;
                 }
             }
@@ -155,5 +279,19 @@
 		<dd>bonus de 1 point par équipe qualifiée bien choisie</dd>
 		<dd>bonus de 1 point par équipe bien positionné dans la poule</dd>
 		<dd>bonus de 2 points par poule complète</dd>
+        <dt>Phases finales - Nouveaux pronostics</dt>
+        <dd>le bon gagnant rapporte 1 point</dd>
+        <dd>le score exact rapporte 2 points de plus</dd>
+        <dd>bonus de 1 point si bon gagnant aux penaltys</dd>
+        <dd>bonus de 2 points si bon score aux penaltys</dd>
+        <dt>Phases finales - Anciens</dt>
+        <dd>la bonne équipe qualifiée pour les 1/4 de finale rapporte 2 points</dd>
+        <dd>bonus de 3 points si bon match et bon score pour les 1/8</dd>
+        <dd>la bonne équipe qualifiée pour les 1/2 finales rapporte 2 points</dd>
+        <dd>bonus de 4 points si bon match et bon score pour les 1/4</dd>
+        <dd>la bonne équipe qualifiée pour la finale rapporte 3 points</dd>
+        <dd>bonus de 5 points si bon match et bon score pour les 1/2</dd>
+        <dd>le bon vainqueur de la compétition rapporte 5 points</dd>
+        <dd>bonus de 10 points si bon match et bon score pour la finale</dd>
 	</dl>
 }
