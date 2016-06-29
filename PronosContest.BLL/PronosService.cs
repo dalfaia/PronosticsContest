@@ -56,11 +56,11 @@ namespace PronosContest.BLL
             return _pronosContestContextDatabase.Matchs.Where(m => m.ID == pId).FirstOrDefault();
         }
 
-        public void SetScore(int pUserID, int pConcoursID, int pMatchID, int pEquipeAID, int pEquipeBID, bool pIsExterieur, int pButs, bool pIsNewProno)
+        public void SetScore(int pUserID, int pConcoursID, int pMatchID, int pEquipeAID, int pEquipeBID, bool pIsExterieur, int pButs, bool pIsNewProno, bool pSkipDate = false)
         {
             var concours = _pronosContestContextDatabase.Concours.Where(c => c.ID == pConcoursID).FirstOrDefault();
             var match = _pronosContestContextDatabase.Matchs.Where(m => m.ID == pMatchID).FirstOrDefault();
-            if (concours != null && match != null && match.Date >= DateTime.Now)
+            if (concours != null && match != null && (match.Date >= DateTime.Now || pSkipDate))
             {
                 var prono = concours.Pronostics.Where(p => p.MatchID == pMatchID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno == pIsNewProno).FirstOrDefault();
                 if (prono != null)

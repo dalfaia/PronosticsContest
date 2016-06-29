@@ -46,7 +46,8 @@ namespace PronosContest.Models
         public EtatPronostic Etat { get; set; }
         public bool IsReadOnly { get; set; }
         public bool IsNewProno { get; set; }
-		public int VanqueurID {
+		public int VanqueurID
+		{
 			get
 			{
 				if (this.ButsA > this.ButsB)
@@ -71,8 +72,68 @@ namespace PronosContest.Models
 				}
 			}
 		}
-    }
 
+		public PronosticsModel(int pConcoursID, Match pMatch, bool pIsReadOnly)
+		{
+			this.ConcoursID = pConcoursID;
+			this.MatchID = pMatch.ID;
+			this.NumeroMatch = pMatch.NumeroMatch;
+			this.DateHeure = pMatch.Date.ToShortDateString() + " à " + pMatch.Date.ToShortTimeString();
+			this.IsReadOnly = pIsReadOnly;
+		}
+		public void SetEquipes(Equipe pEquipeDomicile, Equipe pEquipeExterieur)
+		{
+			this.EquipeAName = pEquipeDomicile.Libelle;
+			this.EquipeAShortName = pEquipeDomicile.ShortName;
+			this.EquipeAID = pEquipeDomicile.ID;
+			this.LogoUrlEquipeA = pEquipeDomicile.Logo;
+			this.EquipeBName = pEquipeExterieur.Libelle;
+			this.EquipeBShortName = pEquipeExterieur.ShortName;
+			this.EquipeBID = pEquipeExterieur.ID;
+			this.LogoUrlEquipeB = pEquipeExterieur.Logo;
+		}
+		public void SetEquipes(Match pMatch)
+		{
+			this.EquipeAID = pMatch.EquipeA.ID;
+			this.EquipeBID = pMatch.EquipeB.ID;
+			this.EquipeAName = pMatch.EquipeA.Libelle;
+			this.EquipeBName = pMatch.EquipeB.Libelle;
+			this.EquipeAShortName = pMatch.EquipeA.ShortName;
+			this.EquipeBShortName = pMatch.EquipeB.ShortName;
+			this.LogoUrlEquipeA = pMatch.EquipeA.Logo;
+			this.LogoUrlEquipeB = pMatch.EquipeB.Logo;
+		}
+		public void SetLibellesEquipesProbables(Match pMatch)
+		{
+			this.EquipeAName = pMatch.EquipePossibleDomicile_Libelle;
+			this.EquipeAShortName = pMatch.EquipePossibleDomicile_Libelle;
+			this.EquipeBName = pMatch.EquipePossibleExterieur_Libelle;
+			this.EquipeBShortName = pMatch.EquipePossibleExterieur_Libelle;
+			this.IsReadOnly = true;
+		}
+		public void SetScore(Pronostic pProno)
+		{
+			this.ButsA = pProno.ButsEquipeDomicile;
+			this.ButsB = pProno.ButsEquipeExterieur;
+			this.PenaltiesA = pProno.ButsPenaltiesEquipeDomicile;
+			this.PenaltiesB = pProno.ButsPenaltiesEquipeExterieur;
+		}
+		public void SetScore(Match pMatch)
+		{
+			this.ButsA = pMatch.ButsEquipeDomicile;
+			this.ButsB = pMatch.ButsEquipeExterieur;
+			this.PenaltiesA = pMatch.ButsPenaltiesEquipeDomicile;
+			this.PenaltiesB = pMatch.ButsPenaltiesEquipeExterieur;
+		}
+	}
+
+	public enum TypeSaisiePronostics
+	{
+		ReadOnly = 0,
+		SaisieAvantDateLimite = 1,
+		SaisieAvantDateMatch = 2,
+		SaisieOnly = 3
+	}
     public class GroupePronosticsModel
     {
         public int ID { get; set; }
@@ -88,7 +149,51 @@ namespace PronosContest.Models
             this.MatchsPronostics = new List<PronosticsModel>();
             this.Classement = new List<PhaseGroupe.ClassementGroupeModel>();
         }
-    }
+
+		public GroupePronosticsModel(PhaseFinale pPhaseFinale, string pTitreGroupe, bool pIsNewPronos)
+		{
+			this.ID = pPhaseFinale.ID;
+			this.TypePhaseFinale = pPhaseFinale.TypePhaseFinale;
+			switch (this.TypePhaseFinale)
+			{
+				case DAL.Pronos.TypePhaseFinale.TrenteDeuxieme:
+					this.Name = this.ShortName = "32° de finale";
+					break;
+				case DAL.Pronos.TypePhaseFinale.Seizieme:
+					this.Name = this.ShortName = "16° de finale";
+					break;
+				case DAL.Pronos.TypePhaseFinale.Huitieme:
+					this.Name = this.ShortName = "Huitieme de finale";
+					break;
+				case DAL.Pronos.TypePhaseFinale.Quart:
+					this.Name = this.ShortName = "Quart de finales";
+					break;
+				case DAL.Pronos.TypePhaseFinale.Demi:
+					this.Name = this.ShortName = "Demi-finale";
+					break;
+				case DAL.Pronos.TypePhaseFinale.Finale:
+					this.Name = this.ShortName = "Finale";
+					break;
+			}
+			if (pIsNewPronos)
+			{
+				this.Name += " - Nouveau";
+				this.ShortName += " - Nouveau";
+			}
+			this.IsChoosen = pTitreGroupe == this.Name;
+			this.MatchsPronostics = new List<PronosticsModel>();
+			this.Classement = new List<PhaseGroupe.ClassementGroupeModel>();
+		}
+		public GroupePronosticsModel(PhaseGroupe pGroupe, string pTitreGroupe)
+		{
+			this.ID = pGroupe.ID;
+			this.Name = "Groupe " + pGroupe.Lettre;
+			this.ShortName = pGroupe.Lettre;
+			this.IsChoosen = pTitreGroupe == this.Name;
+			this.MatchsPronostics = new List<PronosticsModel>();
+			this.Classement = new List<PhaseGroupe.ClassementGroupeModel>();
+		}
+	}
 
 	public class ScoreViewModel
 	{
