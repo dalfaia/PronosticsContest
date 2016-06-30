@@ -22,8 +22,10 @@ namespace PronosContest.DAL.Pronos
         EnCours = 1,
         [Display(Name = "Gagné")]
         Gagne = 2,
-        [Display(Name = "Perdu")]
-        Perdu = 3
+		[Display(Name = "Score exact")]
+		GagneScoreExact = 3,
+		[Display(Name = "Perdu")]
+        Perdu = 4
 	}
 	public class Pronostic
 	{

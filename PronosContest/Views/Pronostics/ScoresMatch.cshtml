@@ -482,3 +482,35 @@
 </div>
     
 
+<footer class="hidden-lg hidden-md">
+	<div class="navbar navbar-fixed-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3 text-center">
+					<a href="@Url.Action("ClassementConcours", "Pronostics", new { pConcoursID = concoursID })" class="btn btn-primary" title="Classement" style="border:none; display:block; width:100%;">
+						<i class="fa fa-2x fa-trophy"></i><br />
+						<span style="font-size:0.7em;">Classement</span>
+					</a>
+				</div>
+				<div class="col-xs-3 text-center">
+					<a href="@Url.Action("SaisirPronostics", "Pronostics", new { pConcoursID = concoursID })" class="btn btn-primary" title="Vos pronostics" style="border:none; display:block; width:100%;">
+						<i class="fa fa-2x fa-pencil"></i><br />
+						<span style="font-size:0.7em;">Pronostics</span>
+					</a>
+				</div>
+				<div class="col-xs-3 text-center">
+					<a href="#" class="btn btn-primary active" title="Résultats des matchs" style="border:none; display:block; width:100%;">
+						<i class="fa fa-2x fa-soccer-ball-o"></i><br />
+						<span style="font-size:0.7em;">Résultats</span>
+					</a>
+				</div>
+				<div class="col-xs-3 text-center">
+					<a href="#" class="btn btn-primary" title="Statistiques du concours" style="border:none; display:block; width:100%;">
+						<i class="fa fa-2x fa-bar-chart"></i><br />
+						<span style="font-size:0.7em;">Stats</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

@@ -74,7 +74,7 @@ namespace PronosContest.Controllers
 
 				var newProno = new PronosticsModel(pConcours.ID, match, isReadOnly);
 				newProno.SetEquipes(match);
-
+				newProno.GroupeModel = grpModel;
 				if (!pIsScoresMatchs)
 				{
 					var prono = pConcours.Pronostics.Where(p => p.MatchID == match.ID && p.CompteUtilisateurID == this.UserID.Value).FirstOrDefault();
@@ -90,6 +90,7 @@ namespace PronosContest.Controllers
 					{
 						newProno.ButsA = prono.ButsEquipeDomicile;
 						newProno.ButsB = prono.ButsEquipeExterieur;
+						newProno.SetResultatsMatch(match);
 					}
 				}
 				else
@@ -141,6 +142,7 @@ namespace PronosContest.Controllers
 							var prono = concours.Pronostics.Where(p => p.MatchID == match.ID && !p.IsNouveauProno && p.CompteUtilisateurID == this.UserID.Value).FirstOrDefault();
 
 							PronosticsModel pronoModel = new PronosticsModel(pConcoursID, match, concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now);
+							pronoModel.GroupeModel = grpModel;
 
 							var nbPronosticsGroupes = concours.Pronostics.Where(p => p.CompteUtilisateurID == this.UserID && p.Match.PhaseGroupe != null).Count();
 							var nbMatchsGroupes = 0;
@@ -253,7 +255,10 @@ namespace PronosContest.Controllers
 							}
 
 							if (prono != null)
+							{
 								pronoModel.SetScore(prono);
+								pronoModel.SetResultatsMatch(match);
+							}
 
 							grpModel.MatchsPronostics.Add(pronoModel);
 						}
@@ -279,8 +284,10 @@ namespace PronosContest.Controllers
 								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 								pronoModel.SetEquipes(m);
 								pronoModel.IsNewProno = true;
+								pronoModel.GroupeModel = grpModel;
+								pronoModel.SetResultatsMatch(m);
 
-                                if (prono != null)
+								if (prono != null)
 									pronoModel.SetScore(prono);
                                     
                                 grpModel.MatchsPronostics.Add(pronoModel);
@@ -305,8 +312,10 @@ namespace PronosContest.Controllers
 								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 								pronoModel.SetEquipes(m);
 								pronoModel.IsNewProno = true;
+								pronoModel.SetResultatsMatch(m);
+								pronoModel.GroupeModel = grpModel;
 
-                                if (prono != null)
+								if (prono != null)
 									pronoModel.SetScore(prono);
 
                                 grpModel.MatchsPronostics.Add(pronoModel);
@@ -331,6 +340,8 @@ namespace PronosContest.Controllers
 								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 								pronoModel.SetEquipes(m);
 								pronoModel.IsNewProno = true;
+								pronoModel.SetResultatsMatch(m);
+								pronoModel.GroupeModel = grpModel;
 
 								if (prono != null)
 									pronoModel.SetScore(prono);
@@ -357,6 +368,8 @@ namespace PronosContest.Controllers
 								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 								pronoModel.SetEquipes(m);
 								pronoModel.IsNewProno = true;
+								pronoModel.SetResultatsMatch(m);
+								pronoModel.GroupeModel = grpModel;
 
 								if (prono != null)
 									pronoModel.SetScore(prono);
@@ -426,6 +439,7 @@ namespace PronosContest.Controllers
 					foreach (var match in grp.Matchs.OrderBy(m => m.Date))
 					{
 						PronosticsModel pronoModel = new PronosticsModel(pConcoursID, match, concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now);
+						pronoModel.GroupeModel = grpModel;
 
 						var nbScoresGroupes = 0;
 						var nbMatchsGroupes = 0;
@@ -593,8 +607,9 @@ namespace PronosContest.Controllers
                             var prono = concours.Pronostics.Where(p => p.MatchID == match.ID && p.CompteUtilisateurID == pUserID).FirstOrDefault();
 
                             PronosticsModel pronoModel = new PronosticsModel(pConcoursID, match, true);
+							pronoModel.GroupeModel = grpModel;
 
-                            var nbPronosticsGroupes = concours.Pronostics.Where(p => p.CompteUtilisateurID == pUserID && p.Match.PhaseGroupe != null).Count();
+							var nbPronosticsGroupes = concours.Pronostics.Where(p => p.CompteUtilisateurID == pUserID && p.Match.PhaseGroupe != null).Count();
                             var nbMatchsGroupes = 0;
                             foreach (var g in concours.Competition.Groupes)
                                 nbMatchsGroupes += g.Matchs.Count();
@@ -703,7 +718,10 @@ namespace PronosContest.Controllers
 								pronoModel.SetLibellesEquipesProbables(match);
 
                             if (prono != null)
+							{
 								pronoModel.SetScore(prono);
+								pronoModel.SetResultatsMatch(match);
+							}
 							
                             grpModel.MatchsPronostics.Add(pronoModel);
                         }
@@ -723,16 +741,21 @@ namespace PronosContest.Controllers
 
 							foreach (var m in huitieme.Matchs)
 							{
-								var prono = concours.Pronostics.Where(p => p.MatchID == m.ID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno).FirstOrDefault();
+								if (m.Date < DateTime.Now)
+								{
+									var prono = concours.Pronostics.Where(p => p.MatchID == m.ID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno).FirstOrDefault();
 
-								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
-								pronoModel.SetEquipes(m);
-								pronoModel.IsNewProno = true;
+									var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
+									pronoModel.SetEquipes(m);
+									pronoModel.IsNewProno = true;
+									pronoModel.SetResultatsMatch(m);
+									pronoModel.GroupeModel = grpModel;
 
-								if (prono != null)
-									pronoModel.SetScore(prono);
+									if (prono != null)
+										pronoModel.SetScore(prono);
 
-								grpModel.MatchsPronostics.Add(pronoModel);
+									grpModel.MatchsPronostics.Add(pronoModel);
+								}
 							}
 							model.Add(grpModel);
 						}
@@ -749,16 +772,21 @@ namespace PronosContest.Controllers
 							GroupePronosticsModel grpModel = new GroupePronosticsModel(quarts, pGroupe, true);
 							foreach (var m in quarts.Matchs)
 							{
-								var prono = concours.Pronostics.Where(p => p.MatchID == m.ID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno).FirstOrDefault();
+								if (m.Date < DateTime.Now)
+								{
+									var prono = concours.Pronostics.Where(p => p.MatchID == m.ID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno).FirstOrDefault();
 
-								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
-								pronoModel.SetEquipes(m);
-								pronoModel.IsNewProno = true;
+									var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
+									pronoModel.SetEquipes(m);
+									pronoModel.IsNewProno = true;
+									pronoModel.SetResultatsMatch(m);
+									pronoModel.GroupeModel = grpModel;
 
-								if (prono != null)
-									pronoModel.SetScore(prono);
+									if (prono != null)
+										pronoModel.SetScore(prono);
 
-								grpModel.MatchsPronostics.Add(pronoModel);
+									grpModel.MatchsPronostics.Add(pronoModel);
+								}
 							}
 							model.Add(grpModel);
 						}
@@ -775,16 +803,21 @@ namespace PronosContest.Controllers
 							GroupePronosticsModel grpModel = new GroupePronosticsModel(demis, pGroupe, true);
 							foreach (var m in demis.Matchs)
 							{
-								var prono = concours.Pronostics.Where(p => p.MatchID == m.ID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno).FirstOrDefault();
+								if (m.Date < DateTime.Now)
+								{
+									var prono = concours.Pronostics.Where(p => p.MatchID == m.ID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno).FirstOrDefault();
 
-								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
-								pronoModel.SetEquipes(m);
-								pronoModel.IsNewProno = true;
+									var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
+									pronoModel.SetEquipes(m);
+									pronoModel.IsNewProno = true;
+									pronoModel.SetResultatsMatch(m);
+									pronoModel.GroupeModel = grpModel;
 
-								if (prono != null)
-									pronoModel.SetScore(prono);
+									if (prono != null)
+										pronoModel.SetScore(prono);
 
-								grpModel.MatchsPronostics.Add(pronoModel);
+									grpModel.MatchsPronostics.Add(pronoModel);
+								}
 							}
 							model.Add(grpModel);
 						}
@@ -801,16 +834,21 @@ namespace PronosContest.Controllers
 							GroupePronosticsModel grpModel = new GroupePronosticsModel(finale, pGroupe, true);
 							foreach (var m in finale.Matchs)
 							{
-								var prono = concours.Pronostics.Where(p => p.MatchID == m.ID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno).FirstOrDefault();
+								if (m.Date < DateTime.Now)
+								{
+									var prono = concours.Pronostics.Where(p => p.MatchID == m.ID && p.CompteUtilisateurID == pUserID && p.IsNouveauProno).FirstOrDefault();
 
-								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
-								pronoModel.SetEquipes(m);
-								pronoModel.IsNewProno = true;
+									var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
+									pronoModel.SetEquipes(m);
+									pronoModel.IsNewProno = true;
+									pronoModel.SetResultatsMatch(m);
+									pronoModel.GroupeModel = grpModel;
 
-								if (prono != null)
-									pronoModel.SetScore(prono);
+									if (prono != null)
+										pronoModel.SetScore(prono);
 
-								grpModel.MatchsPronostics.Add(pronoModel);
+									grpModel.MatchsPronostics.Add(pronoModel);
+								}
 							}
 							model.Add(grpModel);
 						}

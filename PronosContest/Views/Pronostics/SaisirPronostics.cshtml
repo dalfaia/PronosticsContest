@@ -199,7 +199,7 @@
         </ul>
     </div>
    
-    <div class="col-xs-1">
+    <div class="col-xs-1 hidden-xs hidden-sm">
         &nbsp;
     </div>
     @{ 
@@ -221,151 +221,10 @@
                             {
                                 <table>
                                     @{
-								        foreach (var prono in grp.MatchsPronostics)
-								        {
-                                            <tr>
-                                                <td width="130px">
-                                                    <div class="form-group">
-                                                        <label>@prono.DateHeure</label>
-                                                    </div>
-                                                </td>
-                                                <td width="27%">
-                                                    <div class="form-group text-right text-primary">
-                                                        &nbsp;
-                                                        <label class="hidden-sm hidden-xs">@prono.EquipeAName</label>
-                                                        <label class="hidden-md hidden-lg">@prono.EquipeAShortName</label>
-                                                        <span style="width:20px;"><img src="@prono.LogoUrlEquipeA" width="20" /></span>
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                                <td width="80px">
-                                                    <center>
-                                                        <div class="form-group">
-													        @{
-														        if (prono.IsReadOnly)
-														        {
-															        <span class="text-primary">@prono.ButsA</span>
-															        if (prono.PenaltiesA > 0)
-															        {
-																        <span class="text-primary">(@prono.PenaltiesA)</span>
-                                                                    }
-                                                                }
-                                                                else
-                                                                {
-                                                                    <div class="input-group input-group-sm" style="width:100px;">
-                                                                        <span class="input-group-btn">
-                                                                            <a href="#" class="btn btn-primary" onclick="RemoveGoalScoreOnClick($(this),'prono@(prono.MatchID)_ButsA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-minus"></i></a>
-                                                                        </span>
-                                                                        @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { @class = "form-control text-center", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val(), '" + prono.IsNewProno.ToString() + "');" })
-                                                                        <span class="input-group-btn">
-                                                                            <a href="#" class="btn btn-primary" onclick="AddGoalScoreOnClick($(this),'prono@(prono.MatchID)_ButsA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-plus"></i></a>
-                                                                        </span>
-                                                                    </div>
-                                                                    if (grp.TypePhaseFinale != null)
-                                                                    {
-                                                                        <div class="form-group" style="display:inline-block;">
-                                                                            <div class="input-group input-group-sm" style="width:100px;">
-                                                                                <span class="input-group-btn">
-                                                                                    <a href="#" class="btn btn-primary" onclick="RemoveGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-minus"></i></a>
-                                                                                </span>
-                                                                                @Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesA", prono.PenaltiesA, "", new { @class = "form-control text-center", placeholder = "P", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val(), '" + prono.IsNewProno.ToString() + "');" })
-                                                                                <span class="input-group-btn">
-                                                                                    <a href="#" class="btn btn-primary" onclick="AddGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-plus"></i></a>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    }
-                                                                }
-                                                            }
-                                                        </div>
-                                                    </center>
-                                                </td>
-                                                <td width="80px">
-                                                    <center>
-                                                        <div class="form-group">
-                                                            @{
-														        if (prono.IsReadOnly)
-														        {
-															        <span class="text-primary">@prono.ButsB</span>
-															        if (prono.PenaltiesB > 0)
-															        {
-																        <span class="text-primary">(@prono.PenaltiesB)</span>
-                                                                    }
-                                                                }
-                                                                else
-                                                                {
-                                                                    <div class="input-group input-group-sm" style="width:100px;">
-                                                                        <span class="input-group-btn">
-                                                                            <a href="#" class="btn btn-primary" onclick="RemoveGoalScoreOnClick($(this),'prono@(prono.MatchID)_ButsB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-minus"></i></a>
-                                                                        </span>
-                                                                        @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { @class = "form-control text-center", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val(),'" + prono.IsNewProno.ToString() + "');" })
-                                                                        <span class="input-group-btn">
-                                                                            <a href="#" class="btn btn-primary" onclick="AddGoalScoreOnClick($(this),'prono@(prono.MatchID)_ButsB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-plus"></i></a>
-                                                                        </span>
-                                                                    </div>
-                                                                    if (grp.TypePhaseFinale != null)
-                                                                    {
-                                                                        <div class="form-group" style="display:inline-block;">
-                                                                            <div class="input-group input-group-sm" style="width:100px;">
-                                                                                <span class="input-group-btn">
-                                                                                    <a href="#" class="btn btn-primary" onclick="RemoveGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-minus"></i></a>
-                                                                                </span>
-                                                                                @Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesB", prono.PenaltiesB, "", new { @class = "form-control text-center", placeholder = "P", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val(),'" + prono.IsNewProno.ToString() + "');" })
-                                                                                <span class="input-group-btn">
-                                                                                    <a href="#" class="btn btn-primary" onclick="AddGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-plus"></i></a>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    }
-                                                                }
-                                                            }
-                                                        </div>
-                                                    </center>
-                                                </td>
-                                                <td width="27%">
-                                                    <div class="form-group text-primary">
-                                                        &nbsp;
-                                                        <span style="width:20px;"><img src="@prono.LogoUrlEquipeB" width="20" /></span>
-                                                        <label class="hidden-sm hidden-xs">@prono.EquipeBName</label>
-                                                        <label class="hidden-md hidden-lg">@prono.EquipeBShortName</label>
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                                <td width="30px" class="text-right">
-                                                    <div class="form-group">
-                                                        @{
-                                                            switch (prono.Etat)
-                                                            {
-                                                                case PronosContest.DAL.Pronos.EtatPronostic.Empty:
-                                                                    <span class="label label-default">Non renseigné</span>
-                                                                    break;
-                                                                case PronosContest.DAL.Pronos.EtatPronostic.EnCours:
-                                                                    <span class="label label-primary">En cours</span>
-                                                                    break;
-                                                                case PronosContest.DAL.Pronos.EtatPronostic.Gagne:
-                                                                    <span class="label label-success">Gagné</span>
-                                                                    break;
-                                                                case PronosContest.DAL.Pronos.EtatPronostic.Perdu:
-                                                                    <span class="label label-danger">Perdu</span>
-                                                                    break;
-                                                            }
-                                                        }
-                                                    </div>
-                                                </td>
-										        <td width="10px">
-                                                    @{
-                                                        if (!prono.IsNewProno)
-                                                        {
-                                                            <a href="@Url.Action("InformationsPronostic", "Pronostics", new { pIdConcours = concoursID, pIdMatch = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
-                                                        }
-                                                        else if (prono.IsReadOnly)
-                                                        {
-                                                            <a href="@Url.Action("InformationsPronostic", "Pronostics", new { pIdConcours = concoursID, pIdMatch = prono.MatchID, pIsNewProno = prono.IsNewProno })"><i class="fa fa-info-circle text-primary"></i></a>
-                                                        }
-                                                    }
-										        </td>
-                                            </tr>
-                                        }
+										foreach (var prono in grp.MatchsPronostics)
+										{
+											Html.RenderPartial("_Pronostic", prono);
+										}
                                      }
                                 </table>
                             }
@@ -389,161 +248,13 @@
                     <div class="panel-heading">@grp.Name</div>
                     <div class="panel-body">
                     @{
-                        if (grp.ID != 0)
-                        {
-                            foreach (var prono in grp.MatchsPronostics)
-                            {
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <center>
-                                            <div class="form-group">
-                                                <label>@prono.DateHeure</label>
-                                                @if (!prono.IsNewProno)
-                                                {
-                                                    <a href="@Url.Action("InformationsPronostic", "Pronostics", new { pIdConcours = concoursID, pIdMatch = prono.MatchID })"><i class="fa fa-info-circle text-primary"></i></a>
-                                                }
-                                                else if (prono.IsReadOnly)
-                                                {
-                                                    <a href="@Url.Action("InformationsPronostic", "Pronostics", new { pIdConcours = concoursID, pIdMatch = prono.MatchID, pIsNewProno = prono.IsNewProno })"><i class="fa fa-info-circle text-primary"></i></a>
-                                                }
-                                            </div>
-                                        </center>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12 text-center" style="">
-                                        <div class="col-xs-5">
-                                            <div class="form-group text-primary text-right" style="">
-                                                &nbsp;
-                                                <label class="hidden-sm hidden-xs">@prono.EquipeAName</label>
-                                                <label class="hidden-md hidden-lg">@prono.EquipeAShortName</label>
-                                                <span style="width:20px;"><img src="@prono.LogoUrlEquipeA" width="20" /></span>
-                                                &nbsp;
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="form-group" style="display:inline-block; width:100px;">
-                                                @{
-                                                    if (prono.IsReadOnly)
-                                                    {
-                                                        <span class="text-primary">@prono.ButsA</span>
-                                                        if (prono.PenaltiesA > 0)
-                                                        {
-                                                            <span class="text-primary">(@prono.PenaltiesA)</span>
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="input-group input-group-sm" style="width:100px;">
-                                                            <span class="input-group-btn">
-                                                                <a href="#" class="btn btn-primary" onclick="RemoveGoalScoreOnClick($(this),'prono@(prono.MatchID)_ButsA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-minus"></i></a>
-                                                            </span>
-                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsA", prono.ButsA, "", new { @class = "form-control text-center", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val(),'" + prono.IsNewProno.ToString() + "');" })
-                                                            <span class="input-group-btn">
-                                                                <a href="#" class="btn btn-primary" onclick="AddGoalScoreOnClick($(this),'prono@(prono.MatchID)_ButsA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-plus"></i></a>
-                                                            </span>
-                                                        </div>
-                                                    }
-                                                }
-                                            </div>
-                                            @if (!prono.IsReadOnly && grp.TypePhaseFinale != null)
-                                            {
-                                                <div class="form-group" style="display:inline-block;">
-                                                    <div class="input-group input-group-sm" style="width:100px;">
-                                                        <span class="input-group-btn">
-                                                            <a href="#" class="btn btn-primary" onclick="RemoveGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-minus"></i></a>
-                                                        </span>
-                                                        @Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesA", prono.PenaltiesA, "", new { @class = "form-control text-center", placeholder = "P", onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','false',$(this).val(),'" + prono.IsNewProno.ToString() + "');" })
-                                                        <span class="input-group-btn">
-                                                            <a href="#" class="btn btn-primary" onclick="AddGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesA','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','false','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-plus"></i></a>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12 text-center" style="">
-                                        <div class="col-xs-5">
-                                            <div class="form-group text-primary text-right" style="">
-                                                &nbsp;
-                                                <label class="hidden-sm hidden-xs">@prono.EquipeBName</label>
-                                                <label class="hidden-md hidden-lg">@prono.EquipeBShortName</label>
-                                                <span style="width:20px;"><img src="@prono.LogoUrlEquipeB" width="20" /></span>
-                                                &nbsp;
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="form-group" style="display:inline-block;width:100px;">
-                                                @{
-                                                    if (prono.IsReadOnly)
-                                                    {
-                                                        <span class="text-primary">@prono.ButsB</span>
-                                                        if (prono.PenaltiesB > 0)
-                                                        {
-                                                            <span class="text-primary">(@prono.PenaltiesB)</span>
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="input-group input-group-sm" style="width:100px;">
-                                                            <span class="input-group-btn">
-                                                                <a href="#" class="btn btn-primary" onclick="RemoveGoalScoreOnClick($(this),'prono@(prono.MatchID)_ButsB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-minus"></i></a>
-                                                            </span>
-                                                            @Html.TextBox("prono" + prono.MatchID + "_ButsB", prono.ButsB, "", new { @class = "form-control text-center", onchange = "SetScore('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val(),'" + prono.IsNewProno.ToString() + "');" })
-                                                            <span class="input-group-btn">
-                                                                <a href="#" class="btn btn-primary" onclick="AddGoalScoreOnClick($(this),'prono@(prono.MatchID)_ButsB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-plus"></i></a>
-                                                            </span>
-                                                        </div>
-                                                    }
-                                                }
-                                            </div>
-                                            @if (!prono.IsReadOnly && grp.TypePhaseFinale != null)
-                                            {
-                                                <div class="form-group" style="display:inline-block;">
-                                                    <div class="input-group input-group-sm" style="width:100px;">
-                                                        <span class="input-group-btn">
-                                                            <a href="#" class="btn btn-primary" onclick="RemoveGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-minus"></i></a>
-                                                        </span>
-                                                        @Html.TextBox("prono" + prono.MatchID + "_ButsPenaltiesB", prono.PenaltiesB, "", new { @class = "form-control text-center", placeholder = "P",onchange = "SetScorePenalties('" + prono.ConcoursID + "','" + grp.ID + "','" + prono.MatchID + "','" + prono.EquipeAID + "','" + prono.EquipeBID + "','true',$(this).val(),'" + prono.IsNewProno.ToString() + "');" })
-                                                        <span class="input-group-btn">
-                                                            <a href="#" class="btn btn-primary" onclick="AddGoalPenaltyScoreOnClick($(this),'prono@(prono.MatchID)_ButsPenaltiesB','@(prono.ConcoursID)','@(grp.ID)','@(prono.MatchID)','@(prono.EquipeAID)','@(prono.EquipeBID)','true','@(prono.IsNewProno.ToString())');return false;"><i class="fa fa-plus"></i></a>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                           
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <center>
-                                            <div class="form-group">
-                                                @{
-                                                    switch (prono.Etat)
-                                                    {
-                                                        case PronosContest.DAL.Pronos.EtatPronostic.Empty:
-                                                            <span class="label label-default">Non renseigné</span>
-                                                            break;
-                                                        case PronosContest.DAL.Pronos.EtatPronostic.EnCours:
-                                                            <span class="label label-primary">En cours</span>
-                                                            break;
-                                                        case PronosContest.DAL.Pronos.EtatPronostic.Gagne:
-                                                            <span class="label label-success">Gagné</span>
-                                                            break;
-                                                        case PronosContest.DAL.Pronos.EtatPronostic.Perdu:
-                                                            <span class="label label-danger">Perdu</span>
-                                                            break;
-                                                    }
-                                                }
-                                            </div>
-                                        </center>
-                                    </div>
-                                </div>
-                            }
-                        }
+						if (grp.ID != 0)
+						{
+							foreach (var prono in grp.MatchsPronostics)
+							{
+								Html.RenderPartial("_Pronostic", prono);
+							}
+						}
                         }
                         <div id="classement_grp_@grp.ID" name="classement_grp_@grp.ID">
                             @{
@@ -557,4 +268,35 @@
     </div>
 </div>
     
-
+<footer class="hidden-lg hidden-md">
+	<div class="navbar navbar-fixed-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3 text-center">
+					<a href="@Url.Action("ClassementConcours", "Pronostics", new { pConcoursID = concoursID })" class="btn btn-primary" title="Classement" style="border:none; display:block; width:100%;">
+						<i class="fa fa-2x fa-trophy"></i><br />
+						<span style="font-size:0.7em;">Classement</span>
+					</a>
+				</div>
+				<div class="col-xs-3 text-center">
+					<a href="#" class="btn btn-primary active" title="Vos pronostics" style="border:none; display:block; width:100%;">
+						<i class="fa fa-2x fa-pencil"></i><br />
+						<span style="font-size:0.7em;">Pronostics</span>
+					</a>
+				</div>
+				<div class="col-xs-3 text-center">
+					<a href="@Url.Action("ScoresMatch", "Pronostics", new { pConcoursID = concoursID })" class="btn btn-primary" title="Résultats des matchs" style="border:none; display:block; width:100%;">
+						<i class="fa fa-2x fa-soccer-ball-o"></i><br />
+						<span style="font-size:0.7em;">Résultats</span>
+					</a>
+				</div>
+				<div class="col-xs-3 text-center">
+					<a href="#" class="btn btn-primary" title="Statistiques du concours" style="border:none; display:block; width:100%;">
+						<i class="fa fa-2x fa-bar-chart"></i><br />
+						<span style="font-size:0.7em;">Stats</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

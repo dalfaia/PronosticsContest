@@ -43,7 +43,50 @@ namespace PronosContest.Models
 		public int? PenaltiesB { get; set; }
 		public int MatchID { get; set; }
         public int ConcoursID { get; set; }
-        public EtatPronostic Etat { get; set; }
+        public EtatPronostic Etat
+		{
+			get
+			{
+				if (this.ButsA != null && this.ButsB != null)
+				{
+					if (this.Resultat_ButsA != null && this.Resultat_ButsB != null)
+					{
+						if (this.ButsA == this.Resultat_ButsA && this.ButsB == this.Resultat_ButsB)
+							return EtatPronostic.GagneScoreExact;
+						if (this.ButsA > this.ButsB && this.Resultat_ButsA > this.Resultat_ButsB)
+							return EtatPronostic.Gagne;
+						else if (this.ButsA < this.ButsB && this.Resultat_ButsA < this.Resultat_ButsB)
+							return EtatPronostic.Gagne;
+						else
+							return EtatPronostic.Perdu;
+					}
+					else
+						return EtatPronostic.EnCours;
+				}
+				else
+					return EtatPronostic.Empty;
+			}
+		}
+		public int? Points
+		{
+			get
+			{
+				switch (this.Etat)
+				{
+					case EtatPronostic.Empty:
+					case EtatPronostic.EnCours:
+						return null;
+					case EtatPronostic.Perdu:
+						return 0;
+					case EtatPronostic.Gagne:
+						return 1;
+					case EtatPronostic.GagneScoreExact:
+						return 3;
+					default:
+						return null;
+				}
+			}
+		}
         public bool IsReadOnly { get; set; }
         public bool IsNewProno { get; set; }
 		public int VanqueurID
@@ -72,6 +115,12 @@ namespace PronosContest.Models
 				}
 			}
 		}
+		public GroupePronosticsModel GroupeModel { get; set; }
+
+		public int? Resultat_ButsA { get; set; }
+		public int? Resultat_ButsB { get; set; }
+		public int? Resultat_PenaltiesA { get; set; }
+		public int? Resultat_PenaltiesB { get; set; }
 
 		public PronosticsModel(int pConcoursID, Match pMatch, bool pIsReadOnly)
 		{
@@ -124,6 +173,14 @@ namespace PronosContest.Models
 			this.ButsB = pMatch.ButsEquipeExterieur;
 			this.PenaltiesA = pMatch.ButsPenaltiesEquipeDomicile;
 			this.PenaltiesB = pMatch.ButsPenaltiesEquipeExterieur;
+		}
+
+		public void SetResultatsMatch(Match pMatch)
+		{
+			this.Resultat_ButsA = pMatch.ButsEquipeDomicile;
+			this.Resultat_ButsB = pMatch.ButsEquipeExterieur;
+			this.Resultat_PenaltiesA = pMatch.ButsPenaltiesEquipeDomicile;
+			this.Resultat_PenaltiesB = pMatch.ButsPenaltiesEquipeExterieur;
 		}
 	}
 
