@@ -313,5 +313,96 @@ namespace PronosContest.BLL
                 }
             }
         }
+
+		public int GetPointsPronoForAnUser(int pPronoID, int pUserID)
+		{
+			var prono = _pronosContestContextDatabase.Pronostics.Where(p => p.ID == pPronoID).FirstOrDefault();
+			if (prono != null && prono.Match != null)
+			{
+				// pronos groupes
+				if (prono.Match.PhaseGroupeID != null)
+				{
+					if (prono.VainqueurID == prono.Match.VainqueurID)
+						if (prono.ButsEquipeDomicile == prono.Match.ButsEquipeDomicile)
+							return 3;
+						else
+							return 1;
+					else
+						return 0;
+				}
+				// pronos phases finales - nouveaux
+				if (prono.Match.PhaseFinale != null && prono.IsNouveauProno)
+				{
+					var pointsNouveauProno = 0;
+					if (prono.Match.ButsEquipeDomicile > prono.Match.ButsEquipeExterieur && prono.ButsEquipeDomicile > prono.ButsEquipeExterieur)
+						pointsNouveauProno += 1;
+					else if (prono.Match.ButsEquipeDomicile < prono.Match.ButsEquipeExterieur && prono.ButsEquipeDomicile < prono.ButsEquipeExterieur)
+						pointsNouveauProno += 1;
+					else if (prono.Match.ButsEquipeDomicile == prono.Match.ButsEquipeExterieur && prono.ButsEquipeDomicile == prono.ButsEquipeExterieur)
+					{
+						pointsNouveauProno += 1;
+						if (prono.Match.ButsPenaltiesEquipeDomicile > prono.Match.ButsPenaltiesEquipeExterieur && prono.ButsPenaltiesEquipeDomicile > prono.ButsPenaltiesEquipeExterieur)
+							pointsNouveauProno += 1;
+						else if (prono.Match.ButsPenaltiesEquipeDomicile < prono.Match.ButsPenaltiesEquipeExterieur && prono.ButsPenaltiesEquipeDomicile < prono.ButsPenaltiesEquipeExterieur)
+							pointsNouveauProno += 1;
+						if (prono.Match.ButsPenaltiesEquipeDomicile == prono.ButsPenaltiesEquipeDomicile && prono.Match.ButsPenaltiesEquipeExterieur == prono.ButsPenaltiesEquipeExterieur)
+							pointsNouveauProno += 2;
+					}
+					else if (prono.Match.ButsEquipeDomicile == prono.Match.ButsEquipeExterieur && prono.ButsEquipeDomicile != prono.ButsEquipeExterieur)
+					{
+						if (prono.Match.VainqueurID == prono.VainqueurID)
+							pointsNouveauProno += 1;
+					}
+					
+					if (prono.Match.ButsEquipeDomicile == prono.ButsEquipeDomicile && prono.Match.ButsEquipeExterieur == prono.ButsEquipeExterieur)
+						pointsNouveauProno += 2;
+
+					return pointsNouveauProno;
+                }
+				// pronos phases finales - anciens
+				if (prono.Match.PhaseFinale != null && !prono.IsNouveauProno)
+				{
+					var competition = prono.Concours.Competition;
+					int pointsAnciens = 0;
+					switch (prono.Match.PhaseFinale.TypePhaseFinale)
+					{
+						case TypePhaseFinale.Huitieme:
+							if ((prono.VainqueurID == prono.Match.EquipeAID || prono.VainqueurID == prono.Match.EquipeBID) && competition.GetEquipesQualifieesQuarts().Contains(prono.VainqueurID.Value))
+								pointsAnciens += 2;
+							if (competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Huitieme).FirstOrDefault().Matchs.Where(m =>
+							(m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
+							|| (m.EquipeAID == prono.EquipeBID && m.EquipeBID == prono.EquipeAID && m.ButsEquipeDomicile == prono.ButsEquipeExterieur && m.ButsEquipeExterieur == prono.ButsEquipeDomicile)).Any())
+								pointsAnciens += 3;
+							break;
+						case TypePhaseFinale.Quart:
+							if ((prono.VainqueurID == prono.Match.EquipeAID || prono.VainqueurID == prono.Match.EquipeBID) && competition.GetEquipesQualifieesDemis().Contains(prono.VainqueurID.Value))
+								pointsAnciens += 2;
+							if (competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Quart).FirstOrDefault().Matchs.Where(m =>
+							(m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
+							|| (m.EquipeAID == prono.EquipeBID && m.EquipeBID == prono.EquipeAID && m.ButsEquipeDomicile == prono.ButsEquipeExterieur && m.ButsEquipeExterieur == prono.ButsEquipeDomicile)).Any())
+								pointsAnciens += 4;
+							break;
+						case TypePhaseFinale.Demi:
+							if ((prono.VainqueurID == prono.Match.EquipeAID || prono.VainqueurID == prono.Match.EquipeBID) && competition.GetEquipesQualifieesFinale().Contains(prono.VainqueurID.Value))
+								pointsAnciens += 3;
+							if (competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Demi).FirstOrDefault().Matchs.Where(m =>
+						(m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
+						|| (m.EquipeAID == prono.EquipeBID && m.EquipeBID == prono.EquipeAID && m.ButsEquipeDomicile == prono.ButsEquipeExterieur && m.ButsEquipeExterieur == prono.ButsEquipeDomicile)).Any())
+								pointsAnciens += 5;
+							break;
+						case TypePhaseFinale.Finale:
+							if (competition.GetVainqueurCompetition() == prono.VainqueurID.Value)
+								pointsAnciens += 5;
+							if (competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Finale).FirstOrDefault().Matchs.Where(m =>
+						(m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
+						|| (m.EquipeAID == prono.EquipeBID && m.EquipeBID == prono.EquipeAID && m.ButsEquipeDomicile == prono.ButsEquipeExterieur && m.ButsEquipeExterieur == prono.ButsEquipeDomicile)).Any())
+								pointsAnciens += 10;
+							break;
+					}
+					return pointsAnciens;
+				}
+			}
+			return -1;
+		}
     }
 }

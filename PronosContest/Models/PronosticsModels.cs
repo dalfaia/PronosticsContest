@@ -67,26 +67,7 @@ namespace PronosContest.Models
 					return EtatPronostic.Empty;
 			}
 		}
-		public int? Points
-		{
-			get
-			{
-				switch (this.Etat)
-				{
-					case EtatPronostic.Empty:
-					case EtatPronostic.EnCours:
-						return null;
-					case EtatPronostic.Perdu:
-						return 0;
-					case EtatPronostic.Gagne:
-						return 1;
-					case EtatPronostic.GagneScoreExact:
-						return 3;
-					default:
-						return null;
-				}
-			}
-		}
+		public int? Points { get; set; }
         public bool IsReadOnly { get; set; }
         public bool IsNewProno { get; set; }
 		public int VanqueurID
@@ -175,13 +156,14 @@ namespace PronosContest.Models
 			this.PenaltiesB = pMatch.ButsPenaltiesEquipeExterieur;
 		}
 
-		public void SetResultatsMatch(Match pMatch)
+		public void SetResultatsMatch(Match pMatch, int pPoints)
 		{
 			this.Resultat_ButsA = pMatch.ButsEquipeDomicile;
 			this.Resultat_ButsB = pMatch.ButsEquipeExterieur;
 			this.Resultat_PenaltiesA = pMatch.ButsPenaltiesEquipeDomicile;
 			this.Resultat_PenaltiesB = pMatch.ButsPenaltiesEquipeExterieur;
-		}
+			this.Points = pPoints;
+        }
 	}
 
 	public enum TypeSaisiePronostics

@@ -90,7 +90,7 @@ namespace PronosContest.Controllers
 					{
 						newProno.ButsA = prono.ButsEquipeDomicile;
 						newProno.ButsB = prono.ButsEquipeExterieur;
-						newProno.SetResultatsMatch(match);
+						newProno.SetResultatsMatch(match, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 					}
 				}
 				else
@@ -257,7 +257,7 @@ namespace PronosContest.Controllers
 							if (prono != null)
 							{
 								pronoModel.SetScore(prono);
-								pronoModel.SetResultatsMatch(match);
+								pronoModel.SetResultatsMatch(match, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 							}
 
 							grpModel.MatchsPronostics.Add(pronoModel);
@@ -285,7 +285,7 @@ namespace PronosContest.Controllers
 								pronoModel.SetEquipes(m);
 								pronoModel.IsNewProno = true;
 								pronoModel.GroupeModel = grpModel;
-								pronoModel.SetResultatsMatch(m);
+								pronoModel.SetResultatsMatch(m, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 
 								if (prono != null)
 									pronoModel.SetScore(prono);
@@ -312,7 +312,7 @@ namespace PronosContest.Controllers
 								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 								pronoModel.SetEquipes(m);
 								pronoModel.IsNewProno = true;
-								pronoModel.SetResultatsMatch(m);
+								pronoModel.SetResultatsMatch(m, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 								pronoModel.GroupeModel = grpModel;
 
 								if (prono != null)
@@ -340,7 +340,7 @@ namespace PronosContest.Controllers
 								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 								pronoModel.SetEquipes(m);
 								pronoModel.IsNewProno = true;
-								pronoModel.SetResultatsMatch(m);
+								pronoModel.SetResultatsMatch(m, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 								pronoModel.GroupeModel = grpModel;
 
 								if (prono != null)
@@ -368,7 +368,7 @@ namespace PronosContest.Controllers
 								var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 								pronoModel.SetEquipes(m);
 								pronoModel.IsNewProno = true;
-								pronoModel.SetResultatsMatch(m);
+								pronoModel.SetResultatsMatch(m, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 								pronoModel.GroupeModel = grpModel;
 
 								if (prono != null)
@@ -720,7 +720,7 @@ namespace PronosContest.Controllers
                             if (prono != null)
 							{
 								pronoModel.SetScore(prono);
-								pronoModel.SetResultatsMatch(match);
+								pronoModel.SetResultatsMatch(match, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 							}
 							
                             grpModel.MatchsPronostics.Add(pronoModel);
@@ -748,7 +748,7 @@ namespace PronosContest.Controllers
 									var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 									pronoModel.SetEquipes(m);
 									pronoModel.IsNewProno = true;
-									pronoModel.SetResultatsMatch(m);
+									pronoModel.SetResultatsMatch(m, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 									pronoModel.GroupeModel = grpModel;
 
 									if (prono != null)
@@ -779,7 +779,7 @@ namespace PronosContest.Controllers
 									var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 									pronoModel.SetEquipes(m);
 									pronoModel.IsNewProno = true;
-									pronoModel.SetResultatsMatch(m);
+									pronoModel.SetResultatsMatch(m, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 									pronoModel.GroupeModel = grpModel;
 
 									if (prono != null)
@@ -810,7 +810,7 @@ namespace PronosContest.Controllers
 									var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 									pronoModel.SetEquipes(m);
 									pronoModel.IsNewProno = true;
-									pronoModel.SetResultatsMatch(m);
+									pronoModel.SetResultatsMatch(m, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 									pronoModel.GroupeModel = grpModel;
 
 									if (prono != null)
@@ -841,7 +841,7 @@ namespace PronosContest.Controllers
 									var pronoModel = new PronosticsModel(pConcoursID, m, DateTime.Now > m.Date);
 									pronoModel.SetEquipes(m);
 									pronoModel.IsNewProno = true;
-									pronoModel.SetResultatsMatch(m);
+									pronoModel.SetResultatsMatch(m, PronosContestWebService.GetService().PronosService.GetPointsPronoForAnUser(prono.ID, this.UserID.Value));
 									pronoModel.GroupeModel = grpModel;
 
 									if (prono != null)
