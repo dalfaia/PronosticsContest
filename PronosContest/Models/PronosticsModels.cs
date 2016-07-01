@@ -51,14 +51,10 @@ namespace PronosContest.Models
 				{
 					if (this.Resultat_ButsA != null && this.Resultat_ButsB != null)
 					{
-						if (this.ButsA == this.Resultat_ButsA && this.ButsB == this.Resultat_ButsB)
-							return EtatPronostic.GagneScoreExact;
-						if (this.ButsA > this.ButsB && this.Resultat_ButsA > this.Resultat_ButsB)
-							return EtatPronostic.Gagne;
-						else if (this.ButsA < this.ButsB && this.Resultat_ButsA < this.Resultat_ButsB)
-							return EtatPronostic.Gagne;
-						else
-							return EtatPronostic.Perdu;
+                        if (this.Points > 0)
+                            return EtatPronostic.Gagne;
+                        else
+                            return EtatPronostic.Perdu;
 					}
 					else
 						return EtatPronostic.EnCours;
