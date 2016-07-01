@@ -440,8 +440,9 @@ namespace PronosContest.Controllers
 					{
 						PronosticsModel pronoModel = new PronosticsModel(pConcoursID, match, concours.DateLimiteSaisie < DateTime.Now || match.Date < DateTime.Now);
 						pronoModel.GroupeModel = grpModel;
+                        pronoModel.IsReadOnly = concours.CompteUtilisateurID != this.UserID;
 
-						var nbScoresGroupes = 0;
+                        var nbScoresGroupes = 0;
 						var nbMatchsGroupes = 0;
 						foreach (var g in concours.Competition.Groupes)
 							nbScoresGroupes += g.Matchs.Where(m => m.ButsEquipeDomicile != null && m.ButsEquipeExterieur != null).Count();

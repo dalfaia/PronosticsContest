@@ -167,6 +167,7 @@
                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)" aria-expanded="true" aria-controls="collapse@(i)">
                                     @i° @c.NomComplet <span class="label label-info pull-right">@c.Points</span>
                                 </a>
+                                <a href="@Url.Action("Pronostics", "Pronostics", new { pConcoursID = concoursID, pUserID = c.CompteUtilisateurID })"><span class="fa fa-info-circle"></span></a>
                             </h4>
                         </div>
                         <div id="collapse@(i)" class="panel-collapse collapse text-center" role="tabpanel" aria-labelledby="headingOne">
@@ -255,7 +256,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="@Url.Action("Pronostics", "Pronostics", new { pConcoursID = concoursID, pUserID = c.CompteUtilisateurID })"></a>
+                    
 
                     i++;
                 }
@@ -302,25 +303,25 @@
 			<div class="row">
 				<div class="col-xs-3 text-center">
 					<a href="#" class="btn btn-primary active" title="Classement" style="border:none; display:block; width:100%;">
-						<i class="fa fa-2x fa-trophy"></i><br />
+						<i class="fa fa-trophy" style="font-size:1.1em;"></i><br />
 						<span style="font-size:0.7em;">Classement</span>
 					</a>
 				</div>
 				<div class="col-xs-3 text-center">
 					<a href="@Url.Action("SaisirPronostics", "Pronostics", new { pConcoursID = concoursID })" class="btn btn-primary" title="Vos pronostics" style="border:none; display:block; width:100%;">
-						<i class="fa fa-2x fa-pencil"></i><br />
+						<i class="fa fa-pencil" style="font-size:1.1em;"></i><br />
 						<span style="font-size:0.7em;">Pronostics</span>
 					</a>
 				</div>
 				<div class="col-xs-3 text-center">
 					<a href="@Url.Action("ScoresMatch", "Pronostics", new { pConcoursID = concoursID })" class="btn btn-primary" title="Résultats des matchs" style="border:none; display:block; width:100%;">
-						<i class="fa fa-2x fa-soccer-ball-o"></i><br />
+						<i class="fa fa-soccer-ball-o" style="font-size:1.1em;"></i><br />
 						<span style="font-size:0.7em;">Résultats</span>
 					</a>
 				</div>
 				<div class="col-xs-3 text-center">
 					<a href="#" class="btn btn-primary" title="Statistiques du concours" style="border:none; display:block; width:100%;">
-						<i class="fa fa-2x fa-bar-chart"></i><br />
+						<i class="fa fa-bar-chart" style="font-size:1.1em;"></i><br />
 						<span style="font-size:0.7em;">Stats</span>
 					</a>
 				</div>
