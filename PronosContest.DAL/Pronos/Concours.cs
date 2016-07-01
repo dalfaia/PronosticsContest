@@ -91,6 +91,7 @@ namespace PronosContest.DAL.Pronos
                                             elementClassement.NombrePronosPerdusPenaltyNouveauProno++;
                                         if (match.ButsPenaltiesEquipeDomicile == p.ButsPenaltiesEquipeDomicile && match.ButsPenaltiesEquipeExterieur == p.ButsPenaltiesEquipeExterieur)
                                             elementClassement.NombreScoreExactPenaltyNouveauProno++;
+										
                                     }
                                     else if (match.ButsEquipeDomicile == match.ButsEquipeExterieur && p.ButsEquipeDomicile != p.ButsEquipeExterieur)
                                     {
@@ -103,7 +104,9 @@ namespace PronosContest.DAL.Pronos
                                         elementClassement.NombrePronosPerdusNouveauProno += 1;
                                     if (match.ButsEquipeDomicile == p.ButsEquipeDomicile && match.ButsEquipeExterieur == p.ButsEquipeExterieur)
                                         elementClassement.NombreScoreExactNouveauProno += 1;
-                                }
+									if (match.VainqueurID == p.VainqueurID)
+										elementClassement.NombreBonneEquipeQualifieeNouveauProno += 1;
+								}
                             }
                         }
                     }
@@ -357,7 +360,8 @@ namespace PronosContest.DAL.Pronos
 			public int NombreBonneEquipeQualifiee { get; set; }
 			public int NombreBonnePositionPoule { get; set; }
 			public int NombrePouleComplete { get; set; }
-            public int NombrePronosGagnesNouveauProno { get; set; }
+			public int NombreBonneEquipeQualifieeNouveauProno { get; set; }
+			public int NombrePronosGagnesNouveauProno { get; set; }
             public int NombrePronosPerdusNouveauProno { get; set; }
             public int NombreScoreExactNouveauProno { get; set; }
             public int NombrePronosGagnesPenaltyNouveauProno { get; set; }
@@ -379,7 +383,7 @@ namespace PronosContest.DAL.Pronos
                         + this.NombrePronosGagnesNouveauProno + (this.NombreScoreExactNouveauProno * 2) + this.NombrePronosGagnesPenaltyNouveauProno + (this.NombreScoreExactPenaltyNouveauProno * 2)
                         + (this.NombreBonneEquipeQualifieePourQuartsAncienProno * 2) + (this.NombreBonneEquipeQualifieePourDemisAncienProno * 2) + (this.NombreBonneEquipeQualifieePourFinaleAncienProno * 3)
                         + (this.NombreBonGagnantCompetitionAncienProno * 5) + (this.NombreBonMatchEtBonScoreHuitiemesAncienProno * 3) + (this.NombreBonMatchEtBonScoreQuartsAncienProno * 4)
-                        + (this.NombreBonMatchEtBonScoreDemisAncienProno * 5) + (this.NombreBonMatchEtBonScoreFinaleAncienProno * 10);
+                        + (this.NombreBonMatchEtBonScoreDemisAncienProno * 5) + (this.NombreBonMatchEtBonScoreFinaleAncienProno * 10) + this.NombreBonneEquipeQualifieeNouveauProno;
                 }
             }
         }

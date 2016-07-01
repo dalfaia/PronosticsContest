@@ -356,6 +356,8 @@ namespace PronosContest.BLL
 					
 					if (prono.Match.ButsEquipeDomicile == prono.ButsEquipeDomicile && prono.Match.ButsEquipeExterieur == prono.ButsEquipeExterieur)
 						pointsNouveauProno += 2;
+					if (prono.Match.VainqueurID == prono.VainqueurID)
+						pointsNouveauProno += 1;
 
 					return pointsNouveauProno;
                 }
