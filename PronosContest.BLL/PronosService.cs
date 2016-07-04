@@ -264,7 +264,7 @@ namespace PronosContest.BLL
             var concours = _pronosContestContextDatabase.Concours.Where(c => c.ID == pConcoursID).FirstOrDefault();
             if (concours != null)
             {
-                if (concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Quart && am.ButsEquipeDomicile != null && am.ButsEquipeExterieur != null).Count() == concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Huitieme).Count())
+                if (concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Quart && am.ButsEquipeDomicile != null && am.ButsEquipeExterieur != null).Count() == concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Quart).Count())
                 {
                     var matchsDemis = concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Demi);
                     foreach (var m in matchsDemis)
@@ -291,7 +291,7 @@ namespace PronosContest.BLL
             var concours = _pronosContestContextDatabase.Concours.Where(c => c.ID == pConcoursID).FirstOrDefault();
             if (concours != null)
             {
-                if (concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Demi && am.ButsEquipeDomicile != null && am.ButsEquipeExterieur != null).Count() == concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Huitieme).Count())
+                if (concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Demi && am.ButsEquipeDomicile != null && am.ButsEquipeExterieur != null).Count() == concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Demi).Count())
                 {
                     var matchFinale = concours.Competition.AllMatchs.Where(am => am.PhaseFinale != null && am.PhaseFinale.TypePhaseFinale == TypePhaseFinale.Finale);
                     foreach (var m in matchFinale)
@@ -348,11 +348,6 @@ namespace PronosContest.BLL
 						if (prono.Match.ButsPenaltiesEquipeDomicile == prono.ButsPenaltiesEquipeDomicile && prono.Match.ButsPenaltiesEquipeExterieur == prono.ButsPenaltiesEquipeExterieur)
 							pointsNouveauProno += 2;
 					}
-					else if (prono.Match.ButsEquipeDomicile == prono.Match.ButsEquipeExterieur && prono.ButsEquipeDomicile != prono.ButsEquipeExterieur)
-					{
-						if (prono.Match.VainqueurID == prono.VainqueurID)
-							pointsNouveauProno += 1;
-					}
 					
 					if (prono.Match.ButsEquipeDomicile == prono.ButsEquipeDomicile && prono.Match.ButsEquipeExterieur == prono.ButsEquipeExterieur)
 						pointsNouveauProno += 2;
@@ -369,7 +364,7 @@ namespace PronosContest.BLL
 					switch (prono.Match.PhaseFinale.TypePhaseFinale)
 					{
 						case TypePhaseFinale.Huitieme:
-							if ((prono.VainqueurID == prono.Match.EquipeAID || prono.VainqueurID == prono.Match.EquipeBID) && competition.GetEquipesQualifieesQuarts().Contains(prono.VainqueurID.Value))
+							if (competition.GetEquipesQualifieesQuarts().Contains(prono.VainqueurID.Value))
 								pointsAnciens += 2;
 							if (competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Huitieme).FirstOrDefault().Matchs.Where(m =>
 							(m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
@@ -377,7 +372,7 @@ namespace PronosContest.BLL
 								pointsAnciens += 3;
 							break;
 						case TypePhaseFinale.Quart:
-							if ((prono.VainqueurID == prono.Match.EquipeAID || prono.VainqueurID == prono.Match.EquipeBID) && competition.GetEquipesQualifieesDemis().Contains(prono.VainqueurID.Value))
+							if (competition.GetEquipesQualifieesDemis().Contains(prono.VainqueurID.Value))
 								pointsAnciens += 2;
 							if (competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Quart).FirstOrDefault().Matchs.Where(m =>
 							(m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)
@@ -385,7 +380,7 @@ namespace PronosContest.BLL
 								pointsAnciens += 4;
 							break;
 						case TypePhaseFinale.Demi:
-							if ((prono.VainqueurID == prono.Match.EquipeAID || prono.VainqueurID == prono.Match.EquipeBID) && competition.GetEquipesQualifieesFinale().Contains(prono.VainqueurID.Value))
+							if (competition.GetEquipesQualifieesFinale().Contains(prono.VainqueurID.Value))
 								pointsAnciens += 3;
 							if (competition.PhasesFinales.Where(pf => pf.TypePhaseFinale == TypePhaseFinale.Demi).FirstOrDefault().Matchs.Where(m =>
 						(m.EquipeAID == prono.EquipeAID && m.EquipeBID == prono.EquipeBID && m.ButsEquipeDomicile == prono.ButsEquipeDomicile && m.ButsEquipeExterieur == prono.ButsEquipeExterieur)

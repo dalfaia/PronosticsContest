@@ -93,13 +93,6 @@ namespace PronosContest.DAL.Pronos
                                             elementClassement.NombreScoreExactPenaltyNouveauProno++;
 										
                                     }
-                                    else if (match.ButsEquipeDomicile == match.ButsEquipeExterieur && p.ButsEquipeDomicile != p.ButsEquipeExterieur)
-                                    {
-                                        if (match.VainqueurID == p.VainqueurID)
-                                            elementClassement.NombrePronosGagnesNouveauProno++;
-                                        else
-                                            elementClassement.NombrePronosPerdusNouveauProno++;
-                                    }
                                     else
                                         elementClassement.NombrePronosPerdusNouveauProno += 1;
                                     if (match.ButsEquipeDomicile == p.ButsEquipeDomicile && match.ButsEquipeExterieur == p.ButsEquipeExterieur)
