@@ -1139,7 +1139,7 @@ namespace PronosContest.Controllers
 			var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pConcoursID);
 			if (concours != null)
 			{
-				model.Add(new GenericStatViewModel("StatsNombrePronostics", "pronostics", concours.Pronostics.Count, "panel-info", "fa-soccer-ball-o", concours.Pronostics.GroupBy(g => g.CompteUtilisateur).Select(g => new GenericListItemViewModel() { Label = g.Key.Prenom + " " + g.Key.Prenom, Count = g.Count() }).ToList()));
+				model.Add(new GenericStatViewModel("StatsNombrePronostics", "pronostics", concours.Pronostics.Count, "panel-info", "fa-soccer-ball-o", concours.Pronostics.GroupBy(g => g.CompteUtilisateur).Distinct().Select(g => new GenericListItemViewModel() { Label = g.Key.Prenom + " " + g.Key.Nom, Count = g.Count() }).ToList()));
 				var classement = concours.Classement();
 				if (classement != null)
 				{
