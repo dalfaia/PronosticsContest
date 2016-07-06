@@ -971,6 +971,8 @@
     <Content Include="Views\Pronostics\_WidgetListeScores.cshtml" />
     <Content Include="Views\Pronostics\_WidgetClassementParMatch.cshtml" />
     <Content Include="Views\Pronostics\_Pronostic.cshtml" />
+    <Content Include="Views\Pronostics\_WidgetStats.cshtml" />
+    <Content Include="Views\Pronostics\StatsConcours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PronosContest.BLL\PronosContest.BLL.csproj">

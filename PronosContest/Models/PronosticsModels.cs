@@ -291,4 +291,37 @@ namespace PronosContest.Models
         public List<Concours.ClassementConcoursModel> Classement { get; set; }
         public List<Concours.ClassementConcoursModel> ClassementProvisoire { get; set; }
     }
+
+	public class GenericStatViewModel
+	{
+		public string ID { get; set; }
+		public string PanelColor { get; set; }
+		public string Title { get; set; }
+		public string Icon { get; set; }
+		public int Count { get; set; }
+		public List<GenericListItemViewModel> Items { get; set; }
+		public GenericStatViewModel(string pID, string pTitle, int pCount, string pPanelColor, string pIcon)
+		{
+			this.ID = pID;
+			this.Title = pTitle;
+			this.PanelColor = pPanelColor;
+			this.Icon = pIcon;
+			this.Count = pCount;
+			this.Items = new List<GenericListItemViewModel>();
+        }
+		public GenericStatViewModel(string pID, string pTitle, int pCount, string pPanelColor, string pIcon, List<GenericListItemViewModel> pItems)
+		{
+			this.ID = pID;
+			this.Title = pTitle;
+			this.PanelColor = pPanelColor;
+			this.Icon = pIcon;
+			this.Count = pCount;
+			this.Items = pItems;
+		}
+	}
+	public class GenericListItemViewModel
+	{
+		public string Label { get; set; }
+		public int Count { get; set; }
+	}
 }

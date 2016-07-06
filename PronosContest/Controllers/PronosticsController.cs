@@ -1131,5 +1131,24 @@ namespace PronosContest.Controllers
 
             return View(model);
 		}
+
+		public ActionResult StatsConcours(int pConcoursID)
+		{
+			List<GenericStatViewModel> model = new List<GenericStatViewModel>();
+
+			var concours = PronosContestWebService.GetService().PronosService.GetConcoursByID(pConcoursID);
+			if (concours != null)
+			{
+				model.Add(new GenericStatViewModel("StatsNombrePronostics", "pronostics", concours.Pronostics.Count, "panel-info", "fa-soccer-ball-o", concours.Pronostics.GroupBy(g => g.CompteUtilisateur).Select(g => new GenericListItemViewModel() { Label = g.Key.Prenom + " " + g.Key.Prenom, Count = g.Count() }).ToList()));
+				var classement = concours.Classement();
+				if (classement != null)
+				{
+					model.Add(new GenericStatViewModel("StatsNombrePronosticsGagnants", "pronostics gagnés (Phase de poule)", classement.Sum(c => c.NombrePronosGagnes), "panel-success", "fa fa-arrow-up", classement.OrderByDescending(c => c.NombrePronosGagnes).Select(s => new GenericListItemViewModel() { Label = s.NomComplet, Count = s.NombrePronosGagnes}).ToList()));
+					model.Add(new GenericStatViewModel("StatsNombrePronosticsPerdus", "pronostics perdus (Phase de poule)", classement.Sum(c => c.NombrePronosPerdus), "panel-danger", "fa fa-arrow-down", classement.OrderByDescending(c => c.NombrePronosPerdus).Select(s => new GenericListItemViewModel() { Label = s.NomComplet, Count = s.NombrePronosPerdus }).ToList()));
+				}
+			}
+			
+			return View(model);
+		}
 	}
 }
