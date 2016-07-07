@@ -169,7 +169,22 @@
                         <div class="panel-heading" role="tab" id="headingOne">
                             <h4 class="panel-title">
                                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)" aria-expanded="true" aria-controls="collapse@(i)">
-                                    @i° @c.NomComplet <span class="label label-info pull-right">@c.Points</span>
+                                    @i° @c.NomComplet 
+									@{
+										if (c.DernierePlace != i)
+										{
+											if ((c.DernierePlace - i) > 0)
+											{
+												<span class="fa fa-arrow-up text-success">@(c.DernierePlace - i)</span>
+											}
+											else
+											{
+												<span class="fa fa-arrow-down text-danger">@(c.DernierePlace - i)</span>
+											}
+
+										}
+									}
+									<span class="label label-info pull-right">@c.Points</span>
                                 </a>
                                 <a href="@Url.Action("Pronostics", "Pronostics", new { pConcoursID = concoursID, pUserID = c.CompteUtilisateurID })"><span class="fa fa-info-circle"></span></a>
                             </h4>
