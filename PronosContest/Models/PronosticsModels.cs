@@ -288,9 +288,12 @@ namespace PronosContest.Models
     }
     public class ConcoursClassementViewModel
     {
+		public int ConcoursID { get; set; }
         public List<Concours.ClassementConcoursModel> Classement { get; set; }
-        public List<Concours.ClassementConcoursModel> ClassementProvisoire { get; set; }
-    }
+		public bool ShowGroupes { get; set; }
+		public bool ShowAnciensPronos { get; set; }
+		public bool ShowNouveauxPronos { get; set; }
+	}
 
 	public class GenericStatViewModel
 	{
