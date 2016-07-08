@@ -168,15 +168,19 @@
 										{
 											if ((c.DernierePlace - i) > 0)
 											{
-												<b>@(c.DernierePlace - i)<span class="fa fa-arrow-up pull-right"></span>&nbsp;</b> 
-											}
-											else
-											{
-												<b>@(c.DernierePlace - i)<span class="fa fa-arrow-down pull-right"></span>&nbsp;</b>
-											}
+                                                <span class="pull-right">
+                                                    <b>@(c.DernierePlace - i)<span class="fa fa-arrow-up"></span>&nbsp;</b> 
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="pull-right">
+                                                    <b>@(c.DernierePlace - i)<span class="fa fa-arrow-down"></span>&nbsp;</b>
+                                                </span>
+                                            }
 
-										}
-									}
+                                        }
+                                    }
                                 </a>
                                 <a href="@Url.Action("Pronostics", "Pronostics", new { pConcoursID = this.Model.ConcoursID, pUserID = c.CompteUtilisateurID })"><span class="fa fa-info-circle"></span></a>
                             </h4>
