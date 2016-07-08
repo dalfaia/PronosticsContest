@@ -889,16 +889,37 @@ namespace PronosContest.Controllers
         public ActionResult ClassementConcours(int pConcoursID)
         {
             Concours c = PronosContestWebService.GetService().PronosService.GetConcoursByID(pConcoursID);
-            ConcoursClassementViewModel model = new ConcoursClassementViewModel()
-            {
-                Classement = c.Classement()
+			ConcoursClassementViewModel model = new ConcoursClassementViewModel()
+			{
+				ConcoursID = pConcoursID,
+                Classement = c.Classement(), 
+				ShowAnciensPronos = true,
+				ShowGroupes = true,
+				ShowNouveauxPronos = true
             };
             if (model != null)
                 return View(model);
             return RedirectToAction("Concours");
         }
 
-        [HttpGet]
+		[HttpGet]
+		public ActionResult GetClassementConcours(string pConcoursID, bool pShowGroupes, bool pShowAnciensPronos, bool pShowNouveauxPronos)
+		{
+			Concours c = PronosContestWebService.GetService().PronosService.GetConcoursByID(Helper.GetIntFromString(pConcoursID).Value);
+			ConcoursClassementViewModel model = new ConcoursClassementViewModel()
+			{
+				ConcoursID = Helper.GetIntFromString(pConcoursID).Value,
+				Classement = c.Classement(pShowGroupes, pShowAnciensPronos, pShowNouveauxPronos),
+				ShowAnciensPronos = pShowAnciensPronos,
+				ShowGroupes = pShowGroupes,
+				ShowNouveauxPronos = pShowNouveauxPronos
+			};
+			if (model != null)
+				return PartialView("_ClassementConcours", model);
+			return PartialView();
+		}
+
+		[HttpGet]
         public ActionResult GetClassement(string pConcoursID, string pGroupeID)
         {
             if (pConcoursID != null && pGroupeID != null)

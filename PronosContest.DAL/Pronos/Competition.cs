@@ -91,6 +91,8 @@ namespace PronosContest.DAL.Pronos
 			List<char> combinaisons = new List<char>();
 			foreach (var cl in classement.Take(4))
 			{
+				if (cl.IDEquipe == 0)
+					return new List<char>();
 				var groupe = this.Groupes.Where(g => g.Equipes.Any(e => e.ID == cl.IDEquipe)).FirstOrDefault();
 				combinaisons.Add(groupe.Lettre.ToCharArray().First());
             }
@@ -102,6 +104,8 @@ namespace PronosContest.DAL.Pronos
             List<char> combinaisons = new List<char>();
 			foreach (var cl in classement.Take(4))
 			{
+				if (cl.IDEquipe == 0)
+					return new List<char>();
 				var groupe = this.Groupes.Where(g => g.Equipes.Any(e => e.ID == cl.IDEquipe)).FirstOrDefault();
 				combinaisons.Add(groupe.Lettre.ToCharArray().First());
 			}
