@@ -88,3 +88,17 @@ C:\Repos\NewRepo\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Repos\NewRepo\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
 C:\Repos\NewRepo\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
 C:\Repos\NewRepo\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll.config
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.dll
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\PronosContest.BLL.pdb
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\EntityFramework.dll
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\PronosContest.Core.dll
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.dll
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\PronosContest.Core.pdb
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\PronosContest.DAL.pdb
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\EntityFramework.xml
+C:\Repository\PronosticsContest\PronosContest.BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Repository\PronosticsContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.csprojResolveAssemblyReference.cache
+C:\Repository\PronosticsContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.dll
+C:\Repository\PronosticsContest\PronosContest.BLL\obj\Debug\PronosContest.BLL.pdb

@@ -94,7 +94,8 @@ namespace PronosContest.DAL.Pronos
 				if (cl.IDEquipe == 0)
 					return new List<char>();
 				var groupe = this.Groupes.Where(g => g.Equipes.Any(e => e.ID == cl.IDEquipe)).FirstOrDefault();
-				combinaisons.Add(groupe.Lettre.ToCharArray().First());
+                if (groupe != null)
+    				combinaisons.Add(groupe.Lettre.ToCharArray().First());
             }
 			return combinaisons;
 		}
@@ -107,7 +108,8 @@ namespace PronosContest.DAL.Pronos
 				if (cl.IDEquipe == 0)
 					return new List<char>();
 				var groupe = this.Groupes.Where(g => g.Equipes.Any(e => e.ID == cl.IDEquipe)).FirstOrDefault();
-				combinaisons.Add(groupe.Lettre.ToCharArray().First());
+                if (groupe != null)
+                    combinaisons.Add(groupe.Lettre.ToCharArray().First());
 			}
 			return combinaisons;
 		}

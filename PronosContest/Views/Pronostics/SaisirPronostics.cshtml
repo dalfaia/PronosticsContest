@@ -12,7 +12,7 @@
             type: 'GET',
             dataType: 'html',
             success: function (result) {
-                //RemplirClassement(this.ConcoursID, this.GroupeID);
+                RemplirClassement(this.ConcoursID, this.GroupeID);
             }
         });
     }
@@ -32,7 +32,7 @@
                 type: 'GET',
                 dataType: 'html',
                 success: function (result) {
-                    //RemplirClassement(this.ConcoursID, this.GroupeID);
+                    RemplirClassement(this.ConcoursID, this.GroupeID);
                     $(this.ButtonClicked).removeClass('disabled');
                 }
             });
@@ -51,7 +51,7 @@
                 type: 'GET',
                 dataType: 'html',
                 success: function (result) {
-                    //RemplirClassement(this.ConcoursID, this.GroupeID);
+                    RemplirClassement(this.ConcoursID, this.GroupeID);
                     $(this.ButtonClicked).removeClass('disabled');
                 }
             });

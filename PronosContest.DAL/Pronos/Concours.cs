@@ -48,7 +48,11 @@ namespace PronosContest.DAL.Pronos
         public List<ClassementConcoursModel> Classement(bool pShowGroupes = true, bool pShowAnciensPronos = true, bool pShowNouveauxPronos = true)
         {
 			var classementActuel = _classement(DateTime.Now, pShowGroupes, pShowAnciensPronos, pShowNouveauxPronos);
-			var dernierMatch = this.Competition.AllMatchs.Where(m => m.ButsEquipeDomicile != null && m.ButsEquipeExterieur != null).OrderBy(m => m.Date).Last();
+			var dernierMatch = this.Competition.AllMatchs.Where(m => m.ButsEquipeDomicile != null && m.ButsEquipeExterieur != null).OrderBy(m => m.Date).LastOrDefault();
+
+            if (dernierMatch == null)
+                return classementActuel;
+
 			var classementAvantDernierMatch = _classement(dernierMatch.Date.AddHours(-1), pShowGroupes, pShowAnciensPronos, pShowNouveauxPronos);
 			
 			foreach (var participant in classementActuel)
@@ -264,7 +268,7 @@ namespace PronosContest.DAL.Pronos
 						// Points sur les classements
 						foreach (var g in this.Competition.Groupes)
 						{
-							if (g.Matchs.Where(m => m.Date <= pDate).Count(c => c.ButsEquipeDomicile != null && c.ButsEquipeExterieur != null) == g.Matchs.Where(m => m.Date <= pDate).Count())
+							if (g.Matchs.Where(m => m.Date <= pDate).Count(c => c.ButsEquipeDomicile != null && c.ButsEquipeExterieur != null) == g.Matchs.Where(m => m.Date <= pDate).Count() && g.Matchs.Where(m => m.Date <= pDate).Count() != 0)
 							{
 								var classementReel = g.Classement();
 								var classementUser = g.ClassementWithPronostics(this.Pronostics.Where(c => c.CompteUtilisateurID == user.ID).ToList());

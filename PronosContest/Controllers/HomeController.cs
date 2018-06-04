@@ -11,7 +11,7 @@ namespace PronosContest.Controllers
 	{
 		public ActionResult Index()
 		{
-			//BLL.PronosContestWebService.GetService().StartService.StartDatabase();
+			BLL.PronosContestWebService.GetService().StartService.StartDatabase();
 			//BLL.PronosContestWebService.GetService().StartService.UpdateUrlMatchs();
 			return View();
 		}

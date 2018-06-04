@@ -12,3 +12,8 @@ C:\Repos\NewRepo\PronosContest.Core\bin\Debug\PronosContest.Core.dll
 C:\Repos\NewRepo\PronosContest.Core\bin\Debug\PronosContest.Core.pdb
 C:\Repos\NewRepo\PronosContest.Core\obj\Debug\PronosContest.Core.dll
 C:\Repos\NewRepo\PronosContest.Core\obj\Debug\PronosContest.Core.pdb
+C:\Repository\PronosticsContest\PronosContest.Core\bin\Debug\PronosContest.Core.dll
+C:\Repository\PronosticsContest\PronosContest.Core\bin\Debug\PronosContest.Core.pdb
+C:\Repository\PronosticsContest\PronosContest.Core\obj\Debug\PronosContest.Core.csprojResolveAssemblyReference.cache
+C:\Repository\PronosticsContest\PronosContest.Core\obj\Debug\PronosContest.Core.dll
+C:\Repository\PronosticsContest\PronosContest.Core\obj\Debug\PronosContest.Core.pdb
